@@ -4,8 +4,8 @@
 
 export interface GetCommentsResponseResultsItemCommentVersionHistoriesItem {
     id?: number;
-    commentId: number;
+    comment_id: number;
     body: string;
-    timestamp: Date;
-    contentUrl?: string;
+    timestamp: string;
+    content_url?: string;
 }

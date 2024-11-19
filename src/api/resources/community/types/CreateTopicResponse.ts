@@ -6,5 +6,5 @@ import * as CommonApi from "../../../index";
 
 export interface CreateTopicResponse {
     topic: CommonApi.CreateTopicResponseTopic;
-    userId: number;
+    user_id: number;
 }

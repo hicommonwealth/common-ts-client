@@ -6,8 +6,8 @@ import * as CommonApi from "../../../index";
 
 export interface GetMembersResponseResultsItemAddressesItem {
     id: number;
-    communityId: string;
+    community_id: string;
     address: string;
-    stakeBalance?: number;
+    stake_balance?: number;
     role: CommonApi.GetMembersResponseResultsItemAddressesItemRole;
 }

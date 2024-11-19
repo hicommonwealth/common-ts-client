@@ -9,8 +9,8 @@ export interface CreateThreadResponseReactionAddressUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.CreateThreadResponseReactionAddressUserProfileBackgroundImage;
+    background_image?: CommonApi.CreateThreadResponseReactionAddressUserProfileBackgroundImage;
 }

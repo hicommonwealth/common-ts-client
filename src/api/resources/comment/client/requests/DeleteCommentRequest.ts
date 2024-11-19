@@ -5,9 +5,9 @@
 /**
  * @example
  *     {
- *         commentId: 1
+ *         comment_id: 1
  *     }
  */
 export interface DeleteCommentRequest {
-    commentId: number;
+    comment_id: number;
 }

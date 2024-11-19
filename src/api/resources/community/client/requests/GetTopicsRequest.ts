@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface GetTopicsRequest {
-    communityId: string;
-    withContestManagers?: boolean;
-    withArchivedTopics?: boolean;
+    community_id: string;
+    with_contest_managers?: boolean;
+    with_archived_topics?: boolean;
 }

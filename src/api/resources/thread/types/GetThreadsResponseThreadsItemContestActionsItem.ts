@@ -9,8 +9,8 @@ import * as CommonApi from "../../../index";
  */
 export interface GetThreadsResponseThreadsItemContestActionsItem {
     /** On-Chain content id, 0 when adding */
-    contentId: number;
+    content_id: number;
     /** Thread id mapped from content url */
-    threadId?: number;
-    contest: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContest;
+    thread_id?: number;
+    Contest: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContest;
 }

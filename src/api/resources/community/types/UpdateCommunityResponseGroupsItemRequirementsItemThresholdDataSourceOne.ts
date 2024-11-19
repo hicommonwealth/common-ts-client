@@ -3,6 +3,6 @@
  */
 
 export interface UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceOne {
-    sourceType: "eth_native";
-    evmChainId: number;
+    source_type: "eth_native";
+    evm_chain_id: number;
 }

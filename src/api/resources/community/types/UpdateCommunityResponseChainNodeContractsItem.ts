@@ -5,14 +5,14 @@
 export interface UpdateCommunityResponseChainNodeContractsItem {
     id: number;
     address: string;
-    chainNodeId: number;
-    abiId?: number;
+    chain_node_id: number;
+    abi_id?: number;
     decimals?: number;
-    tokenName?: string;
+    token_name?: string;
     symbol?: string;
     type: string;
-    isFactory?: boolean;
+    is_factory?: boolean;
     nickname?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: string;
+    updated_at?: string;
 }

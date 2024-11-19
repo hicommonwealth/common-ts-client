@@ -5,9 +5,9 @@
 import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItem {
-    userId: number;
-    tagId: number;
-    createdAt?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemCreatedAt;
-    updatedAt?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemUpdatedAt;
-    tag?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemTag;
+    user_id: number;
+    tag_id: number;
+    created_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemCreatedAt;
+    updated_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemUpdatedAt;
+    Tag?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItemTag;
 }

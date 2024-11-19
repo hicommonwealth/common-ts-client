@@ -9,8 +9,8 @@ export interface GetCommentsResponseResultsItemAddressUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileBackgroundImage;
+    background_image?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileBackgroundImage;
 }

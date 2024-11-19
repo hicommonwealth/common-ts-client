@@ -6,19 +6,19 @@ import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemReactionsItem {
     id: number;
-    addressId: number;
+    address_id: number;
     reaction: "like";
-    threadId?: number;
-    commentId?: number;
-    proposalId?: number;
-    calculatedVotingWeight?: string;
-    canvasSignedData?: unknown;
-    canvasMsgId?: string;
-    createdAt?: CommonApi.GetThreadsResponseThreadsItemReactionsItemCreatedAt;
-    updatedAt?: CommonApi.GetThreadsResponseThreadsItemReactionsItemUpdatedAt;
-    address?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddress;
+    thread_id?: number;
+    comment_id?: number;
+    proposal_id?: number;
+    calculated_voting_weight?: string;
+    canvas_signed_data?: unknown;
+    canvas_msg_id?: string;
+    created_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemCreatedAt;
+    updated_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemUpdatedAt;
+    Address?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddress;
     address?: string;
-    lastActive?: CommonApi.GetThreadsResponseThreadsItemReactionsItemLastActive;
-    profileName?: string;
-    avatarUrl?: string;
+    last_active?: CommonApi.GetThreadsResponseThreadsItemReactionsItemLastActive;
+    profile_name?: string;
+    avatar_url?: string;
 }

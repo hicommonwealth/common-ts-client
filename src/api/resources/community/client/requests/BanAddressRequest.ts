@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
+ *         community_id: "community_id",
  *         address: "address"
  *     }
  */
 export interface BanAddressRequest {
-    communityId: string;
+    community_id: string;
     address: string;
 }

@@ -5,29 +5,29 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         contestAddress: "contest_address",
+ *         community_id: "community_id",
+ *         contest_address: "contest_address",
  *         name: "name",
- *         payoutStructure: [1],
+ *         payout_structure: [1],
  *         interval: 1
  *     }
  */
 export interface CreateContestMetadataRequest {
-    communityId: string;
+    community_id: string;
     /** On-Chain contest manager address */
-    contestAddress: string;
+    contest_address: string;
     name: string;
-    imageUrl?: string;
+    image_url?: string;
     /** Provided by admin on creation when stake funds are not used */
-    fundingTokenAddress?: string;
+    funding_token_address?: string;
     /** Percentage of pool used for prizes in recurring contests */
-    prizePercentage?: number;
+    prize_percentage?: number;
     /** Sorted array of percentages for prize, from first to last */
-    payoutStructure: number[];
+    payout_structure: number[];
     /** Recurring contest interval in seconds, 0 when one-off */
     interval: number;
     ticker?: string;
     decimals?: number;
-    topicId?: number;
-    isFarcasterContest?: boolean;
+    topic_id?: number;
+    is_farcaster_contest?: boolean;
 }

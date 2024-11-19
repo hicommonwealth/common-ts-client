@@ -6,15 +6,15 @@ import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemContestActionsItemContest {
     /** On-Chain Contest Manager */
-    contestManager: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestContestManager;
-    contestId: number;
-    contestAddress: string;
-    startTime: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestStartTime;
-    endTime: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestEndTime;
+    ContestManager: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestContestManager;
+    contest_id: number;
+    contest_address: string;
+    start_time: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestStartTime;
+    end_time: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestEndTime;
     score: CommonApi.GetThreadsResponseThreadsItemContestActionsItemContestScoreItem[];
-    contestName?: string;
-    contestInterval?: number;
-    contentId?: number;
-    contestCancelled?: boolean;
-    threadId?: number;
+    contest_name?: string;
+    contest_interval?: number;
+    content_id?: number;
+    contest_cancelled?: boolean;
+    thread_id?: number;
 }

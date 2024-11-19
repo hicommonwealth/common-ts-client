@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         commentId: 1,
+ *         comment_id: 1,
  *         body: "body"
  *     }
  */
 export interface UpdateCommentRequest {
-    commentId: number;
+    comment_id: number;
     body: string;
 }

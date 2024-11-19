@@ -5,7 +5,6 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
-import * as serializers from "../../../../serialization/index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
@@ -38,7 +37,7 @@ export class Reaction {
      *
      * @example
      *     await client.reaction.createThreadReaction({
-     *         threadId: 1
+     *         thread_id: 1
      *     })
      */
     public async createThreadReaction(
@@ -66,21 +65,13 @@ export class Reaction {
             },
             contentType: "application/json",
             requestType: "json",
-            body: {
-                ...serializers.CreateThreadReactionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-                reaction: "like",
-            },
+            body: { ...request, reaction: "like" },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateThreadReactionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateThreadReactionResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -111,7 +102,7 @@ export class Reaction {
      *
      * @example
      *     await client.reaction.createCommentReaction({
-     *         commentId: 1
+     *         comment_id: 1
      *     })
      */
     public async createCommentReaction(
@@ -139,21 +130,13 @@ export class Reaction {
             },
             contentType: "application/json",
             requestType: "json",
-            body: {
-                ...serializers.CreateCommentReactionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
-                reaction: "like",
-            },
+            body: { ...request, reaction: "like" },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateCommentReactionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateCommentReactionResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -184,8 +167,8 @@ export class Reaction {
      *
      * @example
      *     await client.reaction.deleteReaction({
-     *         communityId: "community_id",
-     *         reactionId: 1
+     *         community_id: "community_id",
+     *         reaction_id: 1
      *     })
      */
     public async deleteReaction(
@@ -213,18 +196,13 @@ export class Reaction {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.DeleteReactionRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteReactionResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.DeleteReactionResponse;
         }
 
         if (_response.error.reason === "status-code") {

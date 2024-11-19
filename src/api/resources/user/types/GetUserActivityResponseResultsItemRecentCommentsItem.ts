@@ -7,14 +7,14 @@ import * as CommonApi from "../../../index";
 export interface GetUserActivityResponseResultsItemRecentCommentsItem {
     id: number;
     address: string;
-    userId?: number;
-    profileName?: string;
-    profileAvatar?: string;
+    user_id?: number;
+    profile_name?: string;
+    profile_avatar?: string;
     body: string;
-    contentUrl?: string;
-    createdAt: string;
-    updatedAt?: string;
-    deletedAt?: string;
-    markedAsSpamAt?: string;
-    discordMeta?: CommonApi.GetUserActivityResponseResultsItemRecentCommentsItemDiscordMeta;
+    content_url?: string;
+    created_at: string;
+    updated_at?: string;
+    deleted_at?: string;
+    marked_as_spam_at?: string;
+    discord_meta?: CommonApi.GetUserActivityResponseResultsItemRecentCommentsItemDiscordMeta;
 }

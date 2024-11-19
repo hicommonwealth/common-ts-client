@@ -10,14 +10,14 @@ export interface GetCommentsResponseResultsItemAddressUser {
     isAdmin?: boolean;
     disableRichText?: boolean;
     emailVerified?: boolean;
-    selectedCommunityId?: string;
+    selected_community_id?: string;
     emailNotificationInterval?: CommonApi.GetCommentsResponseResultsItemAddressUserEmailNotificationInterval;
-    promotionalEmailsEnabled?: boolean;
-    isWelcomeOnboardFlowComplete?: boolean;
+    promotional_emails_enabled?: boolean;
+    is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetCommentsResponseResultsItemAddressUserProfile;
-    xpPoints?: number;
-    profileTags?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItem[];
-    apiKey?: CommonApi.GetCommentsResponseResultsItemAddressUserApiKey;
-    createdAt?: Date;
-    updatedAt?: Date;
+    xp_points?: number;
+    ProfileTags?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItem[];
+    ApiKey?: CommonApi.GetCommentsResponseResultsItemAddressUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }

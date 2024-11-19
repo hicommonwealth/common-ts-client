@@ -6,7 +6,6 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Thread {
@@ -38,7 +37,7 @@ export class Thread {
      *
      * @example
      *     await client.thread.getThreads({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async getThreads(
@@ -46,15 +45,15 @@ export class Thread {
         requestOptions?: Thread.RequestOptions
     ): Promise<CommonApi.GetThreadsResponse> {
         const {
-            communityId,
+            community_id: communityId,
             page,
             limit,
             stage,
-            topicId,
+            topic_id: topicId,
             includePinnedThreads,
-            orderBy,
-            fromDate,
-            toDate,
+            order_by: orderBy,
+            from_date: fromDate,
+            to_date: toDate,
             archived,
             contestAddress,
             status,
@@ -137,12 +136,7 @@ export class Thread {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetThreadsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetThreadsResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -173,13 +167,13 @@ export class Thread {
      *
      * @example
      *     await client.thread.createThread({
-     *         communityId: "community_id",
-     *         topicId: 1,
+     *         community_id: "community_id",
+     *         topic_id: 1,
      *         title: "title",
      *         body: "body",
      *         kind: CommonApi.CreateThreadRequestKind.Discussion,
      *         stage: "stage",
-     *         readOnly: true
+     *         read_only: true
      *     })
      */
     public async createThread(
@@ -207,18 +201,13 @@ export class Thread {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateThreadRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateThreadResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateThreadResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -249,7 +238,7 @@ export class Thread {
      *
      * @example
      *     await client.thread.updateThread({
-     *         threadId: 1
+     *         thread_id: 1
      *     })
      */
     public async updateThread(
@@ -277,18 +266,13 @@ export class Thread {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateThreadRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateThreadResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateThreadResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -319,7 +303,7 @@ export class Thread {
      *
      * @example
      *     await client.thread.deleteThread({
-     *         threadId: 1
+     *         thread_id: 1
      *     })
      */
     public async deleteThread(
@@ -347,18 +331,13 @@ export class Thread {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.DeleteThreadRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteThreadResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.DeleteThreadResponse;
         }
 
         if (_response.error.reason === "status-code") {

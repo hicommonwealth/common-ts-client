@@ -6,5 +6,5 @@ import * as CommonApi from "../../../index";
 
 export interface CreateCommunityResponse {
     community: CommonApi.CreateCommunityResponseCommunity;
-    adminAddress?: string;
+    admin_address?: string;
 }

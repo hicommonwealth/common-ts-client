@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         groupId: 1
+ *         community_id: "community_id",
+ *         group_id: 1
  *     }
  */
 export interface DeleteGroupRequest {
-    communityId: string;
-    groupId: number;
+    community_id: string;
+    group_id: number;
 }

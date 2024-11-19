@@ -5,13 +5,13 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         topicId: 1,
+ *         community_id: "community_id",
+ *         topic_id: 1,
  *         archive: true
  *     }
  */
 export interface ToggleArchiveTopicRequest {
-    communityId: string;
-    topicId: number;
+    community_id: string;
+    topic_id: number;
     archive: boolean;
 }

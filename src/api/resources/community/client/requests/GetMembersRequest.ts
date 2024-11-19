@@ -7,7 +7,7 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface GetMembersRequest {
@@ -16,13 +16,13 @@ export interface GetMembersRequest {
      * required for tRPC useInfiniteQuery hook, equivalent to page number
      */
     cursor?: string;
-    orderBy?: CommonApi.GetMembersRequestOrderBy;
-    orderDirection?: CommonApi.GetMembersRequestOrderDirection;
+    order_by?: CommonApi.GetMembersRequestOrderBy;
+    order_direction?: CommonApi.GetMembersRequestOrderDirection;
     search?: string;
-    communityId: string;
-    includeRoles?: boolean;
+    community_id: string;
+    include_roles?: boolean;
     memberships?: CommonApi.GetMembersRequestMemberships;
-    includeGroupIds?: boolean;
-    includeStakeBalances?: boolean;
+    include_group_ids?: boolean;
+    include_stake_balances?: boolean;
     allowedAddresses?: string;
 }

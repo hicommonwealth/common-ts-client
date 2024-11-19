@@ -7,28 +7,28 @@ import * as CommonApi from "../../../index";
 export interface GetTopicsResponseItem {
     id?: number;
     name?: string;
-    communityId: string;
+    community_id: string;
     description?: string;
     telegram?: string;
-    featuredInSidebar?: boolean;
-    featuredInNewPost?: boolean;
-    defaultOffchainTemplate?: string;
+    featured_in_sidebar?: boolean;
+    featured_in_new_post?: boolean;
+    default_offchain_template?: string;
     order?: number;
-    channelId?: string;
-    groupIds?: number[];
-    defaultOffchainTemplateBackup?: string;
-    weightedVoting?: CommonApi.GetTopicsResponseItemWeightedVoting;
+    channel_id?: string;
+    group_ids?: number[];
+    default_offchain_template_backup?: string;
+    weighted_voting?: CommonApi.GetTopicsResponseItemWeightedVoting;
     /** token address, used for ERC20 topics */
-    tokenAddress?: string;
+    token_address?: string;
     /** token symbol, used for ERC20 topics */
-    tokenSymbol?: string;
+    token_symbol?: string;
     /** vote weight multiplier, used for ERC20 topics */
-    voteWeightMultiplier?: number;
-    createdAt?: string;
-    updatedAt?: string;
-    deletedAt?: string;
-    archivedAt?: string;
-    contestTopics?: unknown;
-    totalThreads?: number;
-    activeContestManagers?: CommonApi.GetTopicsResponseItemActiveContestManagersItem[];
+    vote_weight_multiplier?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    archived_at?: string;
+    contest_topics?: unknown;
+    total_threads?: number;
+    active_contest_managers?: CommonApi.GetTopicsResponseItemActiveContestManagersItem[];
 }

@@ -7,17 +7,17 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         threadId: 1,
+ *         thread_id: 1,
  *         body: "body"
  *     }
  */
 export interface CreateCommentRequest {
-    threadId: number;
-    threadMsgId?: string;
+    thread_id: number;
+    thread_msg_id?: string;
     body: string;
-    parentId?: number;
-    parentMsgId?: string;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
-    discordMeta?: CommonApi.CreateCommentRequestDiscordMeta;
+    parent_id?: number;
+    parent_msg_id?: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
+    discord_meta?: CommonApi.CreateCommentRequestDiscordMeta;
 }

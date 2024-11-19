@@ -6,7 +6,6 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace User {
@@ -43,7 +42,14 @@ export class User {
         request: CommonApi.GetGlobalActivityRequest = {},
         requestOptions?: User.RequestOptions
     ): Promise<CommonApi.GetGlobalActivityResponse> {
-        const { limit, cursor, orderBy, orderDirection, threadLimit, commentLimit } = request;
+        const {
+            limit,
+            cursor,
+            order_by: orderBy,
+            order_direction: orderDirection,
+            thread_limit: threadLimit,
+            comment_limit: commentLimit,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
             _queryParams["limit"] = limit;
@@ -96,12 +102,7 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetGlobalActivityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetGlobalActivityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -137,7 +138,14 @@ export class User {
         request: CommonApi.GetUserActivityRequest = {},
         requestOptions?: User.RequestOptions
     ): Promise<CommonApi.GetUserActivityResponse> {
-        const { limit, cursor, orderBy, orderDirection, threadLimit, commentLimit } = request;
+        const {
+            limit,
+            cursor,
+            order_by: orderBy,
+            order_direction: orderDirection,
+            thread_limit: threadLimit,
+            comment_limit: commentLimit,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
             _queryParams["limit"] = limit;
@@ -190,12 +198,7 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetUserActivityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetUserActivityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -253,12 +256,7 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetNewContentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetNewContentResponse;
         }
 
         if (_response.error.reason === "status-code") {

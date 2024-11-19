@@ -9,8 +9,8 @@ export interface UpdateCommentResponseThreadAddressUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.UpdateCommentResponseThreadAddressUserProfileBackgroundImage;
+    background_image?: CommonApi.UpdateCommentResponseThreadAddressUserProfileBackgroundImage;
 }

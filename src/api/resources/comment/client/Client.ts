@@ -6,7 +6,6 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Comment {
@@ -38,14 +37,23 @@ export class Comment {
      *
      * @example
      *     await client.comment.getComments({
-     *         threadId: 1
+     *         thread_id: 1
      *     })
      */
     public async getComments(
         request: CommonApi.GetCommentsRequest,
         requestOptions?: Comment.RequestOptions
     ): Promise<CommonApi.GetCommentsResponse> {
-        const { limit, cursor, orderBy, orderDirection, threadId, commentId, includeUser, includeReactions } = request;
+        const {
+            limit,
+            cursor,
+            order_by: orderBy,
+            order_direction: orderDirection,
+            thread_id: threadId,
+            comment_id: commentId,
+            include_user: includeUser,
+            include_reactions: includeReactions,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
             _queryParams["limit"] = limit;
@@ -103,12 +111,7 @@ export class Comment {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetCommentsResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetCommentsResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -139,7 +142,7 @@ export class Comment {
      *
      * @example
      *     await client.comment.createComment({
-     *         threadId: 1,
+     *         thread_id: 1,
      *         body: "body"
      *     })
      */
@@ -168,18 +171,13 @@ export class Comment {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateCommentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateCommentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateCommentResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -210,7 +208,7 @@ export class Comment {
      *
      * @example
      *     await client.comment.updateComment({
-     *         commentId: 1,
+     *         comment_id: 1,
      *         body: "body"
      *     })
      */
@@ -239,18 +237,13 @@ export class Comment {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateCommentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateCommentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateCommentResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -281,7 +274,7 @@ export class Comment {
      *
      * @example
      *     await client.comment.deleteComment({
-     *         commentId: 1
+     *         comment_id: 1
      *     })
      */
     public async deleteComment(
@@ -309,18 +302,13 @@ export class Comment {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.DeleteCommentRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteCommentResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.DeleteCommentResponse;
         }
 
         if (_response.error.reason === "status-code") {

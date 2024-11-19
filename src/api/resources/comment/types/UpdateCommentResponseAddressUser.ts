@@ -10,14 +10,14 @@ export interface UpdateCommentResponseAddressUser {
     isAdmin?: boolean;
     disableRichText?: boolean;
     emailVerified?: boolean;
-    selectedCommunityId?: string;
+    selected_community_id?: string;
     emailNotificationInterval?: CommonApi.UpdateCommentResponseAddressUserEmailNotificationInterval;
-    promotionalEmailsEnabled?: boolean;
-    isWelcomeOnboardFlowComplete?: boolean;
+    promotional_emails_enabled?: boolean;
+    is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.UpdateCommentResponseAddressUserProfile;
-    xpPoints?: number;
-    profileTags?: CommonApi.UpdateCommentResponseAddressUserProfileTagsItem[];
-    apiKey?: CommonApi.UpdateCommentResponseAddressUserApiKey;
-    createdAt?: Date;
-    updatedAt?: Date;
+    xp_points?: number;
+    ProfileTags?: CommonApi.UpdateCommentResponseAddressUserProfileTagsItem[];
+    ApiKey?: CommonApi.UpdateCommentResponseAddressUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }

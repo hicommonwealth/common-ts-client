@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         threadId: 1
+ *         thread_id: 1
  *     }
  */
 export interface CreateThreadReactionRequest {
-    threadId: number;
-    threadMsgId?: string;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    thread_id: number;
+    thread_msg_id?: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

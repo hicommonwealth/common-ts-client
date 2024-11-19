@@ -5,5 +5,5 @@
 import * as CommonApi from "../../../index";
 
 export interface CreateContestMetadataResponse {
-    contestManagers: CommonApi.CreateContestMetadataResponseContestManagersItem[];
+    contest_managers: CommonApi.CreateContestMetadataResponseContestManagersItem[];
 }

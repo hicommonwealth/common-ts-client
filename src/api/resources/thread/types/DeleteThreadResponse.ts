@@ -3,7 +3,7 @@
  */
 
 export interface DeleteThreadResponse {
-    threadId: number;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    thread_id: number;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

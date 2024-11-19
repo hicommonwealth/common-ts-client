@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface CreateCommunityResponseCommunityCommunityTagsItem {
-    communityId: string;
-    tagId: number;
-    tag?: CommonApi.CreateCommunityResponseCommunityCommunityTagsItemTag;
+    community_id: string;
+    tag_id: number;
+    Tag?: CommonApi.CreateCommunityResponseCommunityCommunityTagsItemTag;
 }

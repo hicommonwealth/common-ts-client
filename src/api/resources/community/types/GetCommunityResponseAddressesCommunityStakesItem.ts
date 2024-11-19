@@ -6,12 +6,12 @@ import * as CommonApi from "../../../index";
 
 export interface GetCommunityResponseAddressesCommunityStakesItem {
     id?: number;
-    communityId: string;
-    stakeId?: number;
-    stakeToken?: string;
-    voteWeight?: number;
-    stakeEnabled?: boolean;
-    stakeTransactions?: CommonApi.GetCommunityResponseAddressesCommunityStakesItemStakeTransactionsItem[];
-    createdAt?: Date;
-    updatedAt?: Date;
+    community_id: string;
+    stake_id?: number;
+    stake_token?: string;
+    vote_weight?: number;
+    stake_enabled?: boolean;
+    StakeTransactions?: CommonApi.GetCommunityResponseAddressesCommunityStakesItemStakeTransactionsItem[];
+    created_at?: string;
+    updated_at?: string;
 }

@@ -9,8 +9,8 @@ export interface GetThreadsResponseThreadsItemCommentsItemAddressUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddressUserProfileBackgroundImage;
+    background_image?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddressUserProfileBackgroundImage;
 }

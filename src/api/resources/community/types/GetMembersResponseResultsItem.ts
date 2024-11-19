@@ -5,10 +5,10 @@
 import * as CommonApi from "../../../index";
 
 export interface GetMembersResponseResultsItem {
-    userId: number;
-    profileName?: string;
-    avatarUrl?: string;
+    user_id: number;
+    profile_name?: string;
+    avatar_url?: string;
     addresses: CommonApi.GetMembersResponseResultsItemAddressesItem[];
-    groupIds: number[];
-    lastActive?: unknown;
+    group_ids: number[];
+    last_active?: unknown;
 }

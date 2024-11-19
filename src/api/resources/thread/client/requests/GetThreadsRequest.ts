@@ -7,19 +7,19 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface GetThreadsRequest {
-    communityId: string;
+    community_id: string;
     page?: number;
     limit?: number;
     stage?: string;
-    topicId?: number;
+    topic_id?: number;
     includePinnedThreads?: boolean;
-    orderBy?: CommonApi.GetThreadsRequestOrderBy;
-    fromDate?: string;
-    toDate?: string;
+    order_by?: CommonApi.GetThreadsRequestOrderBy;
+    from_date?: string;
+    to_date?: string;
     archived?: boolean;
     contestAddress?: string;
     status?: CommonApi.GetThreadsRequestStatus;

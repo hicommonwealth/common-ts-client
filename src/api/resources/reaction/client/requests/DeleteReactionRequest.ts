@@ -5,13 +5,13 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         reactionId: 1
+ *         community_id: "community_id",
+ *         reaction_id: 1
  *     }
  */
 export interface DeleteReactionRequest {
-    communityId: string;
-    reactionId: number;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    community_id: string;
+    reaction_id: number;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

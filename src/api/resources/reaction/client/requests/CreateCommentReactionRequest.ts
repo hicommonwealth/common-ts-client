@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         commentId: 1
+ *         comment_id: 1
  *     }
  */
 export interface CreateCommentReactionRequest {
-    commentId: number;
-    commentMsgId?: string;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    comment_id: number;
+    comment_msg_id?: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

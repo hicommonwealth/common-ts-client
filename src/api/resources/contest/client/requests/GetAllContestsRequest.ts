@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface GetAllContestsRequest {
-    communityId: string;
-    contestAddress?: string;
-    contestId?: number;
+    community_id: string;
+    contest_address?: string;
+    contest_id?: number;
     running?: boolean;
 }

@@ -10,14 +10,14 @@ export interface CreateCommunityResponseCommunityAddressesItemUser {
     isAdmin?: boolean;
     disableRichText?: boolean;
     emailVerified?: boolean;
-    selectedCommunityId?: string;
+    selected_community_id?: string;
     emailNotificationInterval?: CommonApi.CreateCommunityResponseCommunityAddressesItemUserEmailNotificationInterval;
-    promotionalEmailsEnabled?: boolean;
-    isWelcomeOnboardFlowComplete?: boolean;
+    promotional_emails_enabled?: boolean;
+    is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.CreateCommunityResponseCommunityAddressesItemUserProfile;
-    xpPoints?: number;
-    profileTags?: CommonApi.CreateCommunityResponseCommunityAddressesItemUserProfileTagsItem[];
-    apiKey?: CommonApi.CreateCommunityResponseCommunityAddressesItemUserApiKey;
-    createdAt?: Date;
-    updatedAt?: Date;
+    xp_points?: number;
+    ProfileTags?: CommonApi.CreateCommunityResponseCommunityAddressesItemUserProfileTagsItem[];
+    ApiKey?: CommonApi.CreateCommunityResponseCommunityAddressesItemUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }

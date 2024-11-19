@@ -7,14 +7,14 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         threadId: 1
+ *         thread_id: 1
  *     }
  */
 export interface UpdateThreadRequest {
-    threadId: number;
+    thread_id: number;
     body?: string;
     title?: string;
-    topicId?: number;
+    topic_id?: number;
     stage?: string;
     url?: string;
     locked?: boolean;
@@ -22,6 +22,6 @@ export interface UpdateThreadRequest {
     archived?: boolean;
     spam?: boolean;
     collaborators?: CommonApi.UpdateThreadRequestCollaborators;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

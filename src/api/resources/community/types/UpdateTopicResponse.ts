@@ -6,5 +6,5 @@ import * as CommonApi from "../../../index";
 
 export interface UpdateTopicResponse {
     topic: CommonApi.UpdateTopicResponseTopic;
-    userId: number;
+    user_id: number;
 }

@@ -9,33 +9,33 @@ import * as CommonApi from "../../../index";
  */
 export interface CreateGroupResponseContestManagersItem {
     /** On-Chain contest manager address */
-    contestAddress: string;
-    communityId: string;
+    contest_address: string;
+    community_id: string;
     name: string;
-    imageUrl?: string;
+    image_url?: string;
     /** Provided by admin on creation when stake funds are not used */
-    fundingTokenAddress?: string;
+    funding_token_address?: string;
     /** Percentage of pool used for prizes in recurring contests */
-    prizePercentage?: number;
+    prize_percentage?: number;
     /** Sorted array of percentages for prize, from first to last */
-    payoutStructure: number[];
+    payout_structure: number[];
     /** Recurring contest interval, 0 when one-off */
     interval: number;
     ticker?: string;
     decimals?: number;
-    createdAt: Date;
+    created_at: string;
     /** Flags when contest policy is cancelled by admin */
     cancelled?: boolean;
     /** Flags when the one-off contest has ended and rollover was completed */
     ended?: boolean;
     contests?: CommonApi.CreateGroupResponseContestManagersItemContestsItem[];
-    farcasterFrameUrl?: string;
-    farcasterFrameHashes?: string[];
+    farcaster_frame_url?: string;
+    farcaster_frame_hashes?: string[];
     /** Neynar ID of the CastCreated webhook */
-    neynarWebhookId?: string;
+    neynar_webhook_id?: string;
     /** Neynar secret for the CastCreated webhook */
-    neynarWebhookSecret?: string;
-    topicId?: number;
+    neynar_webhook_secret?: string;
+    topic_id?: number;
     topics?: CommonApi.CreateGroupResponseContestManagersItemTopicsItem[];
-    isFarcasterContest: boolean;
+    is_farcaster_contest: boolean;
 }

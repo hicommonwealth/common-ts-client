@@ -5,9 +5,9 @@
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface JoinCommunityRequest {
-    communityId: string;
+    community_id: string;
 }

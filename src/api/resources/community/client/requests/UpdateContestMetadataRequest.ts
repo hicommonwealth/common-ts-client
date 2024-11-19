@@ -5,15 +5,15 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         contestAddress: "contest_address"
+ *         community_id: "community_id",
+ *         contest_address: "contest_address"
  *     }
  */
 export interface UpdateContestMetadataRequest {
-    communityId: string;
+    community_id: string;
     /** On-Chain contest manager address */
-    contestAddress: string;
+    contest_address: string;
     name?: string;
-    imageUrl?: string;
-    topicId?: number;
+    image_url?: string;
+    topic_id?: number;
 }

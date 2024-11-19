@@ -3,8 +3,8 @@
  */
 
 export interface GetAllContestsResponseItemContestsItemScoreItem {
-    creatorAddress: string;
-    contentId: string;
+    creator_address: string;
+    content_id: string;
     votes: string;
     prize: string;
     tickerPrize?: number;

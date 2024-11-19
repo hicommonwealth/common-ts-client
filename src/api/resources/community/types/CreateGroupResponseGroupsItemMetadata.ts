@@ -5,6 +5,6 @@
 export interface CreateGroupResponseGroupsItemMetadata {
     name: string;
     description: string;
-    requiredRequirements?: number;
-    membershipTtl?: number;
+    required_requirements?: number;
+    membership_ttl?: number;
 }

@@ -6,10 +6,10 @@ import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemThreadVersionHistoriesItem {
     id: number;
-    threadId: number;
+    thread_id: number;
     /** Address of the creator of the post or the collaborator */
     address: string;
     body: string;
     timestamp: CommonApi.GetThreadsResponseThreadsItemThreadVersionHistoriesItemTimestamp;
-    contentUrl?: string;
+    content_url?: string;
 }

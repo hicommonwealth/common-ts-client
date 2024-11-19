@@ -3,9 +3,9 @@
  */
 
 export interface CreateThreadResponseCollaboratorsItemUserApiKey {
-    userId?: number;
-    hashedApiKey: string;
+    user_id?: number;
+    hashed_api_key: string;
     salt: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_at?: string;
+    updated_at?: string;
 }

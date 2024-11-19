@@ -20,10 +20,10 @@ import { CommonApiClient } from "@commonxyz/api-client";
 
 const client = new CommonApiClient({ apiKey: "YOUR_API_KEY", address: "YOUR_ADDRESS" });
 await client.community.createContestMetadata({
-    communityId: "community_id",
-    contestAddress: "contest_address",
+    community_id: "community_id",
+    contest_address: "contest_address",
     name: "name",
-    payoutStructure: [1],
+    payout_structure: [1],
     interval: 1,
 });
 ```

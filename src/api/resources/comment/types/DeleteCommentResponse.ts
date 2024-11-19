@@ -3,7 +3,7 @@
  */
 
 export interface DeleteCommentResponse {
-    commentId: number;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    comment_id: number;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

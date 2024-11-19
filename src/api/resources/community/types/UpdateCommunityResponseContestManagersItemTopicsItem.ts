@@ -7,25 +7,25 @@ import * as CommonApi from "../../../index";
 export interface UpdateCommunityResponseContestManagersItemTopicsItem {
     id?: number;
     name?: string;
-    communityId: string;
+    community_id: string;
     description?: string;
     telegram?: string;
-    featuredInSidebar?: boolean;
-    featuredInNewPost?: boolean;
-    defaultOffchainTemplate?: string;
+    featured_in_sidebar?: boolean;
+    featured_in_new_post?: boolean;
+    default_offchain_template?: string;
     order?: number;
-    channelId?: string;
-    groupIds?: number[];
-    defaultOffchainTemplateBackup?: string;
-    weightedVoting?: CommonApi.UpdateCommunityResponseContestManagersItemTopicsItemWeightedVoting;
+    channel_id?: string;
+    group_ids?: number[];
+    default_offchain_template_backup?: string;
+    weighted_voting?: CommonApi.UpdateCommunityResponseContestManagersItemTopicsItemWeightedVoting;
     /** token address, used for ERC20 topics */
-    tokenAddress?: string;
+    token_address?: string;
     /** token symbol, used for ERC20 topics */
-    tokenSymbol?: string;
+    token_symbol?: string;
     /** vote weight multiplier, used for ERC20 topics */
-    voteWeightMultiplier?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
-    deletedAt?: Date;
-    archivedAt?: Date;
+    vote_weight_multiplier?: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    archived_at?: string;
 }

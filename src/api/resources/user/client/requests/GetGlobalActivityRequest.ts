@@ -14,8 +14,8 @@ export interface GetGlobalActivityRequest {
      * required for tRPC useInfiniteQuery hook, equivalent to page number
      */
     cursor?: string;
-    orderBy?: string;
-    orderDirection?: CommonApi.GetGlobalActivityRequestOrderDirection;
-    threadLimit?: number;
-    commentLimit?: number;
+    order_by?: string;
+    order_direction?: CommonApi.GetGlobalActivityRequestOrderDirection;
+    thread_limit?: number;
+    comment_limit?: number;
 }

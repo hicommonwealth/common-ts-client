@@ -9,8 +9,8 @@ export interface DeleteReactionResponseAddressUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.DeleteReactionResponseAddressUserProfileBackgroundImage;
+    background_image?: CommonApi.DeleteReactionResponseAddressUserProfileBackgroundImage;
 }

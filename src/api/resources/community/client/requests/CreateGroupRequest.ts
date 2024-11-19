@@ -7,7 +7,7 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         communityId: "community_id",
+ *         community_id: "community_id",
  *         metadata: {
  *             name: "name",
  *             description: "description"
@@ -15,7 +15,7 @@ import * as CommonApi from "../../../../index";
  *     }
  */
 export interface CreateGroupRequest {
-    communityId: string;
+    community_id: string;
     metadata: CommonApi.CreateGroupRequestMetadata;
     requirements?: CommonApi.CreateGroupRequestRequirementsItem[];
     topics?: CommonApi.CreateGroupRequestTopicsItem[];

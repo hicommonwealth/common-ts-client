@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         contestAddress: "contest_address"
+ *         community_id: "community_id",
+ *         contest_address: "contest_address"
  *     }
  */
 export interface CancelContestMetadataRequest {
-    communityId: string;
-    contestAddress: string;
+    community_id: string;
+    contest_address: string;
 }

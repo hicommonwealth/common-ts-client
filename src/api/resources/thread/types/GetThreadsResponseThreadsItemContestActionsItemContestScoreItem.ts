@@ -5,6 +5,6 @@
 export interface GetThreadsResponseThreadsItemContestActionsItemContestScoreItem {
     prize: string;
     votes: string;
-    contentId: string;
-    creatorAddress: string;
+    content_id: string;
+    creator_address: string;
 }

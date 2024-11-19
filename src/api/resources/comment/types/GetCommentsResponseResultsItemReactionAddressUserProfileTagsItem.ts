@@ -5,9 +5,9 @@
 import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemReactionAddressUserProfileTagsItem {
-    userId: number;
-    tagId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
-    tag?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserProfileTagsItemTag;
+    user_id: number;
+    tag_id: number;
+    created_at?: string;
+    updated_at?: string;
+    Tag?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserProfileTagsItemTag;
 }

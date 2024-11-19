@@ -10,14 +10,14 @@ export interface GetThreadsResponseThreadsItemCollaboratorsItemUser {
     isAdmin?: boolean;
     disableRichText?: boolean;
     emailVerified?: boolean;
-    selectedCommunityId?: string;
+    selected_community_id?: string;
     emailNotificationInterval?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserEmailNotificationInterval;
-    promotionalEmailsEnabled?: boolean;
-    isWelcomeOnboardFlowComplete?: boolean;
+    promotional_emails_enabled?: boolean;
+    is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserProfile;
-    xpPoints?: number;
-    profileTags?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserProfileTagsItem[];
-    apiKey?: unknown;
-    createdAt?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserCreatedAt;
-    updatedAt?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserUpdatedAt;
+    xp_points?: number;
+    ProfileTags?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserProfileTagsItem[];
+    ApiKey?: unknown;
+    created_at?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserCreatedAt;
+    updated_at?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserUpdatedAt;
 }

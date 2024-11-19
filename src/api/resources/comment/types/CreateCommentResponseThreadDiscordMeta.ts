@@ -6,6 +6,6 @@ import * as CommonApi from "../../../index";
 
 export interface CreateCommentResponseThreadDiscordMeta {
     user: CommonApi.CreateCommentResponseThreadDiscordMetaUser;
-    channelId: string;
-    messageId: string;
+    channel_id: string;
+    message_id: string;
 }

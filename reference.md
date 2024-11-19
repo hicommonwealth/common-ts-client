@@ -252,7 +252,7 @@ await client.community.getCommunity({
 
 ```typescript
 await client.community.getMembers({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -302,7 +302,7 @@ await client.community.getMembers({
 
 ```typescript
 await client.community.getTopics({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -352,10 +352,10 @@ await client.community.getTopics({
 
 ```typescript
 await client.community.createContestMetadata({
-    communityId: "community_id",
-    contestAddress: "contest_address",
+    community_id: "community_id",
+    contest_address: "contest_address",
     name: "name",
-    payoutStructure: [1],
+    payout_structure: [1],
     interval: 1,
 });
 ```
@@ -406,8 +406,8 @@ await client.community.createContestMetadata({
 
 ```typescript
 await client.community.updateContestMetadata({
-    communityId: "community_id",
-    contestAddress: "contest_address",
+    community_id: "community_id",
+    contest_address: "contest_address",
 });
 ```
 
@@ -457,8 +457,8 @@ await client.community.updateContestMetadata({
 
 ```typescript
 await client.community.cancelContestMetadata({
-    communityId: "community_id",
-    contestAddress: "contest_address",
+    community_id: "community_id",
+    contest_address: "contest_address",
 });
 ```
 
@@ -510,9 +510,9 @@ await client.community.cancelContestMetadata({
 await client.community.createCommunity({
     id: "id",
     name: "name",
-    chainNodeId: 1,
+    chain_node_id: 1,
     base: CommonApi.CreateCommunityRequestBase.Cosmos,
-    defaultSymbol: "default_symbol",
+    default_symbol: "default_symbol",
 });
 ```
 
@@ -562,7 +562,7 @@ await client.community.createCommunity({
 
 ```typescript
 await client.community.updateCommunity({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -612,7 +612,7 @@ await client.community.updateCommunity({
 
 ```typescript
 await client.community.createTopic({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -662,8 +662,8 @@ await client.community.createTopic({
 
 ```typescript
 await client.community.updateTopic({
-    topicId: 1.1,
-    communityId: "community_id",
+    topic_id: 1.1,
+    community_id: "community_id",
 });
 ```
 
@@ -713,8 +713,8 @@ await client.community.updateTopic({
 
 ```typescript
 await client.community.toggleArchiveTopic({
-    communityId: "community_id",
-    topicId: 1,
+    community_id: "community_id",
+    topic_id: 1,
     archive: true,
 });
 ```
@@ -765,7 +765,7 @@ await client.community.toggleArchiveTopic({
 
 ```typescript
 await client.community.createGroup({
-    communityId: "community_id",
+    community_id: "community_id",
     metadata: {
         name: "name",
         description: "description",
@@ -819,8 +819,8 @@ await client.community.createGroup({
 
 ```typescript
 await client.community.updateGroup({
-    communityId: "community_id",
-    groupId: 1,
+    community_id: "community_id",
+    group_id: 1,
 });
 ```
 
@@ -870,8 +870,8 @@ await client.community.updateGroup({
 
 ```typescript
 await client.community.deleteGroup({
-    communityId: "community_id",
-    groupId: 1,
+    community_id: "community_id",
+    group_id: 1,
 });
 ```
 
@@ -921,7 +921,7 @@ await client.community.deleteGroup({
 
 ```typescript
 await client.community.joinCommunity({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -971,7 +971,7 @@ await client.community.joinCommunity({
 
 ```typescript
 await client.community.banAddress({
-    communityId: "community_id",
+    community_id: "community_id",
     address: "address",
 });
 ```
@@ -1024,7 +1024,7 @@ await client.community.banAddress({
 
 ```typescript
 await client.comment.getComments({
-    threadId: 1,
+    thread_id: 1,
 });
 ```
 
@@ -1074,7 +1074,7 @@ await client.comment.getComments({
 
 ```typescript
 await client.comment.createComment({
-    threadId: 1,
+    thread_id: 1,
     body: "body",
 });
 ```
@@ -1125,7 +1125,7 @@ await client.comment.createComment({
 
 ```typescript
 await client.comment.updateComment({
-    commentId: 1,
+    comment_id: 1,
     body: "body",
 });
 ```
@@ -1176,7 +1176,7 @@ await client.comment.updateComment({
 
 ```typescript
 await client.comment.deleteComment({
-    commentId: 1,
+    comment_id: 1,
 });
 ```
 
@@ -1228,7 +1228,7 @@ await client.comment.deleteComment({
 
 ```typescript
 await client.thread.getThreads({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -1278,13 +1278,13 @@ await client.thread.getThreads({
 
 ```typescript
 await client.thread.createThread({
-    communityId: "community_id",
-    topicId: 1,
+    community_id: "community_id",
+    topic_id: 1,
     title: "title",
     body: "body",
     kind: CommonApi.CreateThreadRequestKind.Discussion,
     stage: "stage",
-    readOnly: true,
+    read_only: true,
 });
 ```
 
@@ -1334,7 +1334,7 @@ await client.thread.createThread({
 
 ```typescript
 await client.thread.updateThread({
-    threadId: 1,
+    thread_id: 1,
 });
 ```
 
@@ -1384,7 +1384,7 @@ await client.thread.updateThread({
 
 ```typescript
 await client.thread.deleteThread({
-    threadId: 1,
+    thread_id: 1,
 });
 ```
 
@@ -1436,7 +1436,7 @@ await client.thread.deleteThread({
 
 ```typescript
 await client.contest.getAllContests({
-    communityId: "community_id",
+    community_id: "community_id",
 });
 ```
 
@@ -1488,7 +1488,7 @@ await client.contest.getAllContests({
 
 ```typescript
 await client.reaction.createThreadReaction({
-    threadId: 1,
+    thread_id: 1,
 });
 ```
 
@@ -1538,7 +1538,7 @@ await client.reaction.createThreadReaction({
 
 ```typescript
 await client.reaction.createCommentReaction({
-    commentId: 1,
+    comment_id: 1,
 });
 ```
 
@@ -1588,8 +1588,8 @@ await client.reaction.createCommentReaction({
 
 ```typescript
 await client.reaction.deleteReaction({
-    communityId: "community_id",
-    reactionId: 1,
+    community_id: "community_id",
+    reaction_id: 1,
 });
 ```
 

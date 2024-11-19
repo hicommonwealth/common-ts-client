@@ -5,28 +5,28 @@
 import * as CommonApi from "../../../index";
 
 export interface GetUserActivityResponseResultsItem {
-    communityId: string;
-    communityIcon?: string;
+    community_id: string;
+    community_icon?: string;
     id: number;
-    userId: number;
-    userAddress: string;
-    profileName?: string;
-    profileAvatar?: string;
+    user_id: number;
+    user_address: string;
+    profile_name?: string;
+    profile_avatar?: string;
     body: string;
-    contentUrl?: string;
+    content_url?: string;
     title: string;
     kind: string;
     stage: string;
-    numberOfComments: number;
-    createdAt?: string;
-    updatedAt?: string;
-    deletedAt?: string;
-    lockedAt?: string;
-    archivedAt?: string;
-    markedAsSpamAt?: string;
-    readOnly: boolean;
-    hasPoll?: boolean;
-    discordMeta?: CommonApi.GetUserActivityResponseResultsItemDiscordMeta;
+    number_of_comments: number;
+    created_at?: string;
+    updated_at?: string;
+    deleted_at?: string;
+    locked_at?: string;
+    archived_at?: string;
+    marked_as_spam_at?: string;
+    read_only: boolean;
+    has_poll?: boolean;
+    discord_meta?: CommonApi.GetUserActivityResponseResultsItemDiscordMeta;
     topic: CommonApi.GetUserActivityResponseResultsItemTopic;
-    recentComments?: CommonApi.GetUserActivityResponseResultsItemRecentCommentsItem[];
+    recent_comments?: CommonApi.GetUserActivityResponseResultsItemRecentCommentsItem[];
 }

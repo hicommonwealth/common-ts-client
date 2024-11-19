@@ -6,15 +6,15 @@ import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemThreadReactionsItem {
     id?: number;
-    addressId: number;
+    address_id: number;
     reaction: "like";
-    threadId?: number;
-    commentId?: number;
-    proposalId?: number;
-    calculatedVotingWeight?: string;
-    canvasSignedData?: unknown;
-    canvasMsgId?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-    address?: CommonApi.GetCommentsResponseResultsItemThreadReactionsItemAddress;
+    thread_id?: number;
+    comment_id?: number;
+    proposal_id?: number;
+    calculated_voting_weight?: string;
+    canvas_signed_data?: unknown;
+    canvas_msg_id?: string;
+    created_at?: string;
+    updated_at?: string;
+    Address?: CommonApi.GetCommentsResponseResultsItemThreadReactionsItemAddress;
 }

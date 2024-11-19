@@ -9,8 +9,8 @@ export interface UpdateCommunityRequestAddressesItemUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.UpdateCommunityRequestAddressesItemUserProfileBackgroundImage;
+    background_image?: CommonApi.UpdateCommunityRequestAddressesItemUserProfileBackgroundImage;
 }

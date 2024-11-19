@@ -3,7 +3,7 @@
  */
 
 export interface UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceTokenSymbol {
-    sourceType: "cosmos_native";
-    cosmosChainId: string;
-    tokenSymbol: string;
+    source_type: "cosmos_native";
+    cosmos_chain_id: string;
+    token_symbol: string;
 }

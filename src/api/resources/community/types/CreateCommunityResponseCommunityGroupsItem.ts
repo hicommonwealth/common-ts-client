@@ -6,10 +6,10 @@ import * as CommonApi from "../../../index";
 
 export interface CreateCommunityResponseCommunityGroupsItem {
     id?: number;
-    communityId: string;
+    community_id: string;
     metadata: CommonApi.CreateCommunityResponseCommunityGroupsItemMetadata;
     requirements: CommonApi.CreateCommunityResponseCommunityGroupsItemRequirementsItem[];
-    isSystemManaged?: boolean;
-    createdAt?: Date;
-    updatedAt?: Date;
+    is_system_managed?: boolean;
+    created_at?: string;
+    updated_at?: string;
 }

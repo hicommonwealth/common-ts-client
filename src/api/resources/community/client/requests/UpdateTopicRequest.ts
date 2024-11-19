@@ -5,18 +5,18 @@
 /**
  * @example
  *     {
- *         topicId: 1.1,
- *         communityId: "community_id"
+ *         topic_id: 1.1,
+ *         community_id: "community_id"
  *     }
  */
 export interface UpdateTopicRequest {
-    topicId: number;
-    communityId: string;
+    topic_id: number;
+    community_id: string;
     name?: string;
     description?: string;
-    groupIds?: number[];
+    group_ids?: number[];
     telegram?: string;
-    featuredInSidebar?: boolean;
-    featuredInNewPost?: boolean;
-    defaultOffchainTemplate?: string;
+    featured_in_sidebar?: boolean;
+    featured_in_new_post?: boolean;
+    default_offchain_template?: string;
 }

@@ -5,11 +5,11 @@
 /**
  * @example
  *     {
- *         threadId: 1
+ *         thread_id: 1
  *     }
  */
 export interface DeleteThreadRequest {
-    threadId: number;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    thread_id: number;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

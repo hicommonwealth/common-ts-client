@@ -9,20 +9,20 @@ import * as CommonApi from "../../../index";
  */
 export interface GetTopicsResponseItemActiveContestManagersItemContentItem {
     /** On-Chain contest manager address */
-    contestAddress: string;
+    contest_address: string;
     /** On-Chain contest id, 0 when one-off */
-    contestId: number;
+    contest_id: number;
     /** On-Chain content id, 0 when adding */
-    contentId: number;
-    actorAddress: string;
+    content_id: number;
+    actor_address: string;
     /** Type of content action */
     action: CommonApi.GetTopicsResponseItemActiveContestManagersItemContentItemAction;
     /** Content url */
-    contentUrl?: string;
+    content_url?: string;
     /** Thread id mapped from content url */
-    threadId?: number;
-    threadTitle?: string;
+    thread_id?: number;
+    thread_title?: string;
     /** Voting power of address when action was recorded */
-    votingPower: string;
-    createdAt: string;
+    voting_power: string;
+    created_at: string;
 }

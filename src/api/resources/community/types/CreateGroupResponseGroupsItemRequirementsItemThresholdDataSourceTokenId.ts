@@ -5,8 +5,8 @@
 import * as CommonApi from "../../../index";
 
 export interface CreateGroupResponseGroupsItemRequirementsItemThresholdDataSourceTokenId {
-    sourceType: CommonApi.CreateGroupResponseGroupsItemRequirementsItemThresholdDataSourceTokenIdSourceType;
-    evmChainId: number;
-    contractAddress: string;
-    tokenId?: string;
+    source_type: CommonApi.CreateGroupResponseGroupsItemRequirementsItemThresholdDataSourceTokenIdSourceType;
+    evm_chain_id: number;
+    contract_address: string;
+    token_id?: string;
 }

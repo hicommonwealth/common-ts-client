@@ -6,7 +6,6 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Community {
@@ -46,19 +45,19 @@ export class Community {
         const {
             limit,
             cursor,
-            orderBy,
-            orderDirection,
-            relevanceBy,
+            order_by: orderBy,
+            order_direction: orderDirection,
+            relevance_by: relevanceBy,
             network,
             base,
-            ethChainId,
-            cosmosChainId,
-            communityType,
-            tagIds,
-            includeNodeInfo,
-            stakeEnabled,
-            hasGroups,
-            includeLast30DayThreadCount,
+            eth_chain_id: ethChainId,
+            cosmos_chain_id: cosmosChainId,
+            community_type: communityType,
+            tag_ids: tagIds,
+            include_node_info: includeNodeInfo,
+            stake_enabled: stakeEnabled,
+            has_groups: hasGroups,
+            include_last_30_day_thread_count: includeLast30DayThreadCount,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
@@ -152,12 +151,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetCommunitiesResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetCommunitiesResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -195,7 +189,7 @@ export class Community {
         request: CommonApi.GetCommunityRequest,
         requestOptions?: Community.RequestOptions
     ): Promise<CommonApi.GetCommunityResponse> {
-        const { id, includeNodeInfo } = request;
+        const { id, include_node_info: includeNodeInfo } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["id"] = id;
         if (includeNodeInfo != null) {
@@ -229,12 +223,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetCommunityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetCommunityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -265,7 +254,7 @@ export class Community {
      *
      * @example
      *     await client.community.getMembers({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async getMembers(
@@ -275,14 +264,14 @@ export class Community {
         const {
             limit,
             cursor,
-            orderBy,
-            orderDirection,
+            order_by: orderBy,
+            order_direction: orderDirection,
             search,
-            communityId,
-            includeRoles,
+            community_id: communityId,
+            include_roles: includeRoles,
             memberships,
-            includeGroupIds,
-            includeStakeBalances,
+            include_group_ids: includeGroupIds,
+            include_stake_balances: includeStakeBalances,
             allowedAddresses,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
@@ -354,12 +343,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.GetMembersResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetMembersResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -390,14 +374,18 @@ export class Community {
      *
      * @example
      *     await client.community.getTopics({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async getTopics(
         request: CommonApi.GetTopicsRequest,
         requestOptions?: Community.RequestOptions
     ): Promise<CommonApi.GetTopicsResponseItem[]> {
-        const { communityId, withContestManagers, withArchivedTopics } = request;
+        const {
+            community_id: communityId,
+            with_contest_managers: withContestManagers,
+            with_archived_topics: withArchivedTopics,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["community_id"] = communityId;
         if (withContestManagers != null) {
@@ -435,12 +423,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.community.getTopics.Response.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetTopicsResponseItem[];
         }
 
         if (_response.error.reason === "status-code") {
@@ -471,10 +454,10 @@ export class Community {
      *
      * @example
      *     await client.community.createContestMetadata({
-     *         communityId: "community_id",
-     *         contestAddress: "contest_address",
+     *         community_id: "community_id",
+     *         contest_address: "contest_address",
      *         name: "name",
-     *         payoutStructure: [1],
+     *         payout_structure: [1],
      *         interval: 1
      *     })
      */
@@ -503,18 +486,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateContestMetadataRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateContestMetadataResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateContestMetadataResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -545,8 +523,8 @@ export class Community {
      *
      * @example
      *     await client.community.updateContestMetadata({
-     *         communityId: "community_id",
-     *         contestAddress: "contest_address"
+     *         community_id: "community_id",
+     *         contest_address: "contest_address"
      *     })
      */
     public async updateContestMetadata(
@@ -574,18 +552,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateContestMetadataRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateContestMetadataResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateContestMetadataResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -616,8 +589,8 @@ export class Community {
      *
      * @example
      *     await client.community.cancelContestMetadata({
-     *         communityId: "community_id",
-     *         contestAddress: "contest_address"
+     *         community_id: "community_id",
+     *         contest_address: "contest_address"
      *     })
      */
     public async cancelContestMetadata(
@@ -645,18 +618,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CancelContestMetadataRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CancelContestMetadataResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CancelContestMetadataResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -689,9 +657,9 @@ export class Community {
      *     await client.community.createCommunity({
      *         id: "id",
      *         name: "name",
-     *         chainNodeId: 1,
+     *         chain_node_id: 1,
      *         base: CommonApi.CreateCommunityRequestBase.Cosmos,
-     *         defaultSymbol: "default_symbol"
+     *         default_symbol: "default_symbol"
      *     })
      */
     public async createCommunity(
@@ -719,18 +687,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateCommunityRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateCommunityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateCommunityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -761,7 +724,7 @@ export class Community {
      *
      * @example
      *     await client.community.updateCommunity({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async updateCommunity(
@@ -789,18 +752,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateCommunityRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateCommunityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateCommunityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -831,7 +789,7 @@ export class Community {
      *
      * @example
      *     await client.community.createTopic({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async createTopic(
@@ -859,18 +817,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateTopicRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateTopicResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateTopicResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -901,8 +854,8 @@ export class Community {
      *
      * @example
      *     await client.community.updateTopic({
-     *         topicId: 1.1,
-     *         communityId: "community_id"
+     *         topic_id: 1.1,
+     *         community_id: "community_id"
      *     })
      */
     public async updateTopic(
@@ -930,18 +883,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateTopicRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateTopicResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateTopicResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -972,8 +920,8 @@ export class Community {
      *
      * @example
      *     await client.community.toggleArchiveTopic({
-     *         communityId: "community_id",
-     *         topicId: 1,
+     *         community_id: "community_id",
+     *         topic_id: 1,
      *         archive: true
      *     })
      */
@@ -1002,18 +950,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.ToggleArchiveTopicRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.ToggleArchiveTopicResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.ToggleArchiveTopicResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -1044,7 +987,7 @@ export class Community {
      *
      * @example
      *     await client.community.createGroup({
-     *         communityId: "community_id",
+     *         community_id: "community_id",
      *         metadata: {
      *             name: "name",
      *             description: "description"
@@ -1076,18 +1019,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.CreateGroupRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.CreateGroupResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.CreateGroupResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -1118,8 +1056,8 @@ export class Community {
      *
      * @example
      *     await client.community.updateGroup({
-     *         communityId: "community_id",
-     *         groupId: 1
+     *         community_id: "community_id",
+     *         group_id: 1
      *     })
      */
     public async updateGroup(
@@ -1147,18 +1085,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.UpdateGroupRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.UpdateGroupResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.UpdateGroupResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -1189,8 +1122,8 @@ export class Community {
      *
      * @example
      *     await client.community.deleteGroup({
-     *         communityId: "community_id",
-     *         groupId: 1
+     *         community_id: "community_id",
+     *         group_id: 1
      *     })
      */
     public async deleteGroup(
@@ -1218,18 +1151,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.DeleteGroupRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.DeleteGroupResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.DeleteGroupResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -1260,7 +1188,7 @@ export class Community {
      *
      * @example
      *     await client.community.joinCommunity({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async joinCommunity(
@@ -1288,18 +1216,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.JoinCommunityRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.JoinCommunityResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.JoinCommunityResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -1330,7 +1253,7 @@ export class Community {
      *
      * @example
      *     await client.community.banAddress({
-     *         communityId: "community_id",
+     *         community_id: "community_id",
      *         address: "address"
      *     })
      */
@@ -1359,18 +1282,13 @@ export class Community {
             },
             contentType: "application/json",
             requestType: "json",
-            body: serializers.BanAddressRequest.jsonOrThrow(request, { unrecognizedObjectKeys: "strip" }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.BanAddressResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.BanAddressResponse;
         }
 
         if (_response.error.reason === "status-code") {

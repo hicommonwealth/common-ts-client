@@ -9,8 +9,8 @@ export interface GetCommunityResponseAddressesAddressesItemUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.GetCommunityResponseAddressesAddressesItemUserProfileBackgroundImage;
+    background_image?: CommonApi.GetCommunityResponseAddressesAddressesItemUserProfileBackgroundImage;
 }

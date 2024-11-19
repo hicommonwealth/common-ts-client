@@ -6,6 +6,6 @@ import * as CommonApi from "../../../index";
 
 export interface GetUserActivityResponseResultsItemDiscordMeta {
     user: CommonApi.GetUserActivityResponseResultsItemDiscordMetaUser;
-    channelId: string;
-    messageId: string;
+    channel_id: string;
+    message_id: string;
 }

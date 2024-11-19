@@ -7,25 +7,25 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         communityId: "community_id",
- *         topicId: 1,
+ *         community_id: "community_id",
+ *         topic_id: 1,
  *         title: "title",
  *         body: "body",
  *         kind: CommonApi.CreateThreadRequestKind.Discussion,
  *         stage: "stage",
- *         readOnly: true
+ *         read_only: true
  *     }
  */
 export interface CreateThreadRequest {
-    communityId: string;
-    topicId: number;
+    community_id: string;
+    topic_id: number;
     title: string;
     body: string;
-    canvasSignedData?: string;
-    canvasMsgId?: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
     kind: CommonApi.CreateThreadRequestKind;
     stage: string;
     url?: string;
-    readOnly: boolean;
-    discordMeta?: CommonApi.CreateThreadRequestDiscordMeta;
+    read_only: boolean;
+    discord_meta?: CommonApi.CreateThreadRequestDiscordMeta;
 }

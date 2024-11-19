@@ -10,14 +10,14 @@ export interface CreateCommentResponseThreadReactionAddressUser {
     isAdmin?: boolean;
     disableRichText?: boolean;
     emailVerified?: boolean;
-    selectedCommunityId?: string;
+    selected_community_id?: string;
     emailNotificationInterval?: CommonApi.CreateCommentResponseThreadReactionAddressUserEmailNotificationInterval;
-    promotionalEmailsEnabled?: boolean;
-    isWelcomeOnboardFlowComplete?: boolean;
+    promotional_emails_enabled?: boolean;
+    is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.CreateCommentResponseThreadReactionAddressUserProfile;
-    xpPoints?: number;
-    profileTags?: CommonApi.CreateCommentResponseThreadReactionAddressUserProfileTagsItem[];
-    apiKey?: CommonApi.CreateCommentResponseThreadReactionAddressUserApiKey;
-    createdAt?: Date;
-    updatedAt?: Date;
+    xp_points?: number;
+    ProfileTags?: CommonApi.CreateCommentResponseThreadReactionAddressUserProfileTagsItem[];
+    ApiKey?: CommonApi.CreateCommentResponseThreadReactionAddressUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }

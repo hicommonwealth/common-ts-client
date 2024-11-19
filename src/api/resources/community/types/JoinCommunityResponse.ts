@@ -5,10 +5,10 @@
 import * as CommonApi from "../../../index";
 
 export interface JoinCommunityResponse {
-    communityId: string;
+    community_id: string;
     base: CommonApi.JoinCommunityResponseBase;
-    addressId: number;
+    address_id: number;
     address: string;
-    walletId?: CommonApi.JoinCommunityResponseWalletId;
+    wallet_id?: CommonApi.JoinCommunityResponseWalletId;
     ss58Prefix?: number;
 }

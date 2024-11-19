@@ -5,9 +5,9 @@
 import * as CommonApi from "../../../index";
 
 export interface UpdateCommentResponseThreadReactionsItemAddressUserProfileTagsItem {
-    userId: number;
-    tagId: number;
-    createdAt?: Date;
-    updatedAt?: Date;
-    tag?: CommonApi.UpdateCommentResponseThreadReactionsItemAddressUserProfileTagsItemTag;
+    user_id: number;
+    tag_id: number;
+    created_at?: string;
+    updated_at?: string;
+    Tag?: CommonApi.UpdateCommentResponseThreadReactionsItemAddressUserProfileTagsItemTag;
 }

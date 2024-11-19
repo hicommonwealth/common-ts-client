@@ -3,6 +3,6 @@
  */
 
 export interface ToggleArchiveTopicResponse {
-    communityId: string;
-    topicId: number;
+    community_id: string;
+    topic_id: number;
 }

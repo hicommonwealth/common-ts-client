@@ -9,8 +9,8 @@ export interface UpdateCommentResponseThreadCollaboratorsItemUserProfile {
     email?: string;
     website?: string;
     bio?: string;
-    avatarUrl?: string;
+    avatar_url?: string;
     slug?: string;
     socials?: string[];
-    backgroundImage?: CommonApi.UpdateCommentResponseThreadCollaboratorsItemUserProfileBackgroundImage;
+    background_image?: CommonApi.UpdateCommentResponseThreadCollaboratorsItemUserProfileBackgroundImage;
 }

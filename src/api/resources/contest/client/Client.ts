@@ -6,7 +6,6 @@ import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as CommonApi from "../../../index";
 import urlJoin from "url-join";
-import * as serializers from "../../../../serialization/index";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Contest {
@@ -38,14 +37,14 @@ export class Contest {
      *
      * @example
      *     await client.contest.getAllContests({
-     *         communityId: "community_id"
+     *         community_id: "community_id"
      *     })
      */
     public async getAllContests(
         request: CommonApi.GetAllContestsRequest,
         requestOptions?: Contest.RequestOptions
     ): Promise<CommonApi.GetAllContestsResponseItem[]> {
-        const { communityId, contestAddress, contestId, running } = request;
+        const { community_id: communityId, contest_address: contestAddress, contest_id: contestId, running } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["community_id"] = communityId;
         if (contestAddress != null) {
@@ -87,12 +86,7 @@ export class Contest {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return serializers.contest.getAllContests.Response.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                breadcrumbsPrefix: ["response"],
-            });
+            return _response.body as CommonApi.GetAllContestsResponseItem[];
         }
 
         if (_response.error.reason === "status-code") {

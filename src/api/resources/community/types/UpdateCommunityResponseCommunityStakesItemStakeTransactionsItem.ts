@@ -5,12 +5,12 @@
 import * as CommonApi from "../../../index";
 
 export interface UpdateCommunityResponseCommunityStakesItemStakeTransactionsItem {
-    transactionHash: string;
-    communityId: string;
-    stakeId?: number;
+    transaction_hash: string;
+    community_id: string;
+    stake_id?: number;
     address: string;
-    stakeAmount: number;
-    stakePrice?: string;
-    stakeDirection: CommonApi.UpdateCommunityResponseCommunityStakesItemStakeTransactionsItemStakeDirection;
+    stake_amount: number;
+    stake_price?: string;
+    stake_direction: CommonApi.UpdateCommunityResponseCommunityStakesItemStakeTransactionsItemStakeDirection;
     timestamp: number;
 }

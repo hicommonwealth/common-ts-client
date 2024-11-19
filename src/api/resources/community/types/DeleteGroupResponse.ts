@@ -3,6 +3,6 @@
  */
 
 export interface DeleteGroupResponse {
-    communityId: string;
-    groupId: number;
+    community_id: string;
+    group_id: number;
 }

@@ -14,8 +14,8 @@ export interface GetUserActivityRequest {
      * required for tRPC useInfiniteQuery hook, equivalent to page number
      */
     cursor?: string;
-    orderBy?: string;
-    orderDirection?: CommonApi.GetUserActivityRequestOrderDirection;
-    threadLimit?: number;
-    commentLimit?: number;
+    order_by?: string;
+    order_direction?: CommonApi.GetUserActivityRequestOrderDirection;
+    thread_limit?: number;
+    comment_limit?: number;
 }

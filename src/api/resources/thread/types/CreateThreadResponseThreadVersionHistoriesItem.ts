@@ -4,10 +4,10 @@
 
 export interface CreateThreadResponseThreadVersionHistoriesItem {
     id?: number;
-    threadId: number;
+    thread_id: number;
     /** Address of the creator of the post or the collaborator */
     address: string;
     body: string;
-    timestamp: Date;
-    contentUrl?: string;
+    timestamp: string;
+    content_url?: string;
 }

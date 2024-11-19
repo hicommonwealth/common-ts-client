@@ -7,21 +7,21 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         communityId: "community_id"
+ *         community_id: "community_id"
  *     }
  */
 export interface CreateTopicRequest {
-    communityId: string;
+    community_id: string;
     name?: string;
     description?: string;
-    featuredInSidebar?: boolean;
-    featuredInNewPost?: boolean;
-    defaultOffchainTemplate?: string;
-    weightedVoting?: CommonApi.CreateTopicRequestWeightedVoting;
+    featured_in_sidebar?: boolean;
+    featured_in_new_post?: boolean;
+    default_offchain_template?: string;
+    weighted_voting?: CommonApi.CreateTopicRequestWeightedVoting;
     /** token address, used for ERC20 topics */
-    tokenAddress?: string;
+    token_address?: string;
     /** token symbol, used for ERC20 topics */
-    tokenSymbol?: string;
+    token_symbol?: string;
     /** vote weight multiplier, used for ERC20 topics */
-    voteWeightMultiplier?: number;
+    vote_weight_multiplier?: number;
 }

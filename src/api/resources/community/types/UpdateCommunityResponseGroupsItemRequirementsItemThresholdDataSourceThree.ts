@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceThree {
-    sourceType: CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceThreeSourceType;
-    cosmosChainId: string;
-    contractAddress: string;
+    source_type: CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceThreeSourceType;
+    cosmos_chain_id: string;
+    contract_address: string;
 }

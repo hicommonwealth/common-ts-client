@@ -9,24 +9,24 @@ import * as CommonApi from "../../../../index";
  *     {
  *         id: "id",
  *         name: "name",
- *         chainNodeId: 1,
+ *         chain_node_id: 1,
  *         base: CommonApi.CreateCommunityRequestBase.Cosmos,
- *         defaultSymbol: "default_symbol"
+ *         default_symbol: "default_symbol"
  *     }
  */
 export interface CreateCommunityRequest {
     id: string;
     name: string;
-    chainNodeId: number;
+    chain_node_id: number;
     description?: string;
-    iconUrl?: string;
-    socialLinks?: string[];
+    icon_url?: string;
+    social_links?: string[];
     tags?: string[];
-    directoryPageEnabled?: boolean;
+    directory_page_enabled?: boolean;
     type?: CommonApi.CreateCommunityRequestType;
     base: CommonApi.CreateCommunityRequestBase;
-    tokenName?: string;
-    defaultSymbol: string;
+    token_name?: string;
+    default_symbol: string;
     website?: string;
     github?: string;
     telegram?: string;
