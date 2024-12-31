@@ -16,6 +16,7 @@ export interface UpdateCommentResponseThreadReactionsItemAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.UpdateCommentResponseThreadReactionsItemAddressUserProfile;
     xp_points?: number;
+    referral_link?: string;
     ProfileTags?: CommonApi.UpdateCommentResponseThreadReactionsItemAddressUserProfileTagsItem[];
     ApiKey?: CommonApi.UpdateCommentResponseThreadReactionsItemAddressUserApiKey;
     created_at?: string;

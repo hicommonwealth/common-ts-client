@@ -12,6 +12,7 @@ export interface UpdateContestMetadataResponseContestManagersItem {
     contest_address: string;
     community_id: string;
     name: string;
+    description?: string;
     image_url?: string;
     /** Provided by admin on creation when stake funds are not used */
     funding_token_address?: string;
@@ -31,11 +32,13 @@ export interface UpdateContestMetadataResponseContestManagersItem {
     contests?: CommonApi.UpdateContestMetadataResponseContestManagersItemContestsItem[];
     farcaster_frame_url?: string;
     farcaster_frame_hashes?: string[];
-    /** Neynar ID of the CastCreated webhook */
+    /** Neynar ID of the ReplyCastCreated webhook */
     neynar_webhook_id?: string;
-    /** Neynar secret for the CastCreated webhook */
+    /** Neynar secret for the ReplyCastCreated webhook */
     neynar_webhook_secret?: string;
     topic_id?: number;
     topics?: CommonApi.UpdateContestMetadataResponseContestManagersItemTopicsItem[];
     is_farcaster_contest: boolean;
+    /** Vote weight multiplier */
+    vote_weight_multiplier?: number;
 }

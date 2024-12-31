@@ -26,6 +26,7 @@ export interface CreateCommunityRequest {
     type?: CommonApi.CreateCommunityRequestType;
     base: CommonApi.CreateCommunityRequestBase;
     token_name?: string;
+    referral_link?: string;
     default_symbol: string;
     website?: string;
     github?: string;

@@ -16,6 +16,7 @@ export interface GetCommentsResponseResultsItemThreadAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetCommentsResponseResultsItemThreadAddressUserProfile;
     xp_points?: number;
+    referral_link?: string;
     ProfileTags?: CommonApi.GetCommentsResponseResultsItemThreadAddressUserProfileTagsItem[];
     ApiKey?: CommonApi.GetCommentsResponseResultsItemThreadAddressUserApiKey;
     created_at?: string;

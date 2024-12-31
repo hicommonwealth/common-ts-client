@@ -16,6 +16,7 @@ export interface DeleteReactionResponseAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.DeleteReactionResponseAddressUserProfile;
     xp_points?: number;
+    referral_link?: string;
     ProfileTags?: CommonApi.DeleteReactionResponseAddressUserProfileTagsItem[];
     ApiKey?: CommonApi.DeleteReactionResponseAddressUserApiKey;
     created_at?: string;

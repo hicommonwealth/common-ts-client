@@ -14,6 +14,7 @@ export interface UpdateContestMetadataRequest {
     /** On-Chain contest manager address */
     contest_address: string;
     name?: string;
+    description?: string;
     image_url?: string;
     topic_id?: number;
 }

@@ -36,17 +36,24 @@ export class Contest {
      * @param {Contest.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.contest.getAllContests({
-     *         community_id: "community_id"
-     *     })
+     *     await client.contest.getAllContests()
      */
     public async getAllContests(
-        request: CommonApi.GetAllContestsRequest,
+        request: CommonApi.GetAllContestsRequest = {},
         requestOptions?: Contest.RequestOptions
     ): Promise<CommonApi.GetAllContestsResponseItem[]> {
-        const { community_id: communityId, contest_address: contestAddress, contest_id: contestId, running } = request;
+        const {
+            community_id: communityId,
+            contest_address: contestAddress,
+            contest_id: contestId,
+            running,
+            with_chain_node: withChainNode,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["community_id"] = communityId;
+        if (communityId != null) {
+            _queryParams["community_id"] = communityId;
+        }
+
         if (contestAddress != null) {
             _queryParams["contest_address"] = contestAddress;
         }
@@ -57,6 +64,10 @@ export class Contest {
 
         if (running != null) {
             _queryParams["running"] = running.toString();
+        }
+
+        if (withChainNode != null) {
+            _queryParams["with_chain_node"] = withChainNode;
         }
 
         const _response = await core.fetcher({
@@ -72,8 +83,8 @@ export class Contest {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.0",
+                "User-Agent": "@commonxyz/api-client/2.1.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

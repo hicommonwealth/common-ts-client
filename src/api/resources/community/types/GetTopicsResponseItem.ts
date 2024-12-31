@@ -18,6 +18,7 @@ export interface GetTopicsResponseItem {
     group_ids?: number[];
     default_offchain_template_backup?: string;
     weighted_voting?: CommonApi.GetTopicsResponseItemWeightedVoting;
+    chain_node_id?: number;
     /** token address, used for ERC20 topics */
     token_address?: string;
     /** token symbol, used for ERC20 topics */
@@ -31,4 +32,6 @@ export interface GetTopicsResponseItem {
     contest_topics?: unknown;
     total_threads?: number;
     active_contest_managers?: CommonApi.GetTopicsResponseItemActiveContestManagersItem[];
+    chain_node_url?: string;
+    eth_chain_id?: number;
 }

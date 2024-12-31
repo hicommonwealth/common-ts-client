@@ -1435,9 +1435,7 @@ await client.thread.deleteThread({
 <dd>
 
 ```typescript
-await client.contest.getAllContests({
-    community_id: "community_id",
-});
+await client.contest.getAllContests();
 ```
 
 </dd>

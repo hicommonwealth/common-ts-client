@@ -4,13 +4,12 @@
 
 /**
  * @example
- *     {
- *         community_id: "community_id"
- *     }
+ *     {}
  */
 export interface GetAllContestsRequest {
-    community_id: string;
+    community_id?: string;
     contest_address?: string;
     contest_id?: number;
     running?: boolean;
+    with_chain_node?: string;
 }

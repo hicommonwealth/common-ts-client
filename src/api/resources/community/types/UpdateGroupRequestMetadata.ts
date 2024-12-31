@@ -5,6 +5,7 @@
 export interface UpdateGroupRequestMetadata {
     name: string;
     description: string;
+    groupImageUrl?: string;
     required_requirements?: number;
     membership_ttl?: number;
 }

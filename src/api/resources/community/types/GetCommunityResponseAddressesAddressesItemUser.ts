@@ -16,6 +16,7 @@ export interface GetCommunityResponseAddressesAddressesItemUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetCommunityResponseAddressesAddressesItemUserProfile;
     xp_points?: number;
+    referral_link?: string;
     ProfileTags?: CommonApi.GetCommunityResponseAddressesAddressesItemUserProfileTagsItem[];
     ApiKey?: CommonApi.GetCommunityResponseAddressesAddressesItemUserApiKey;
     created_at?: string;

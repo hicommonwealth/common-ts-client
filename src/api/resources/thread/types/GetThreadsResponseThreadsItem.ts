@@ -37,7 +37,7 @@ export interface GetThreadsResponseThreadsItem {
     activity_rank_date?: CommonApi.GetThreadsResponseThreadsItemActivityRankDate;
     created_by?: string;
     profile_name?: string;
-    search: CommonApi.GetThreadsResponseThreadsItemSearch;
+    search?: CommonApi.GetThreadsResponseThreadsItemSearch;
     Address?: CommonApi.GetThreadsResponseThreadsItemAddress;
     Reaction?: CommonApi.GetThreadsResponseThreadsItemReaction;
     topic?: CommonApi.GetThreadsResponseThreadsItemTopic;
@@ -47,4 +47,6 @@ export interface GetThreadsResponseThreadsItem {
     associatedContests?: CommonApi.GetThreadsResponseThreadsItemAssociatedContestsItem[];
     ContestActions?: CommonApi.GetThreadsResponseThreadsItemContestActionsItem[];
     Comments?: CommonApi.GetThreadsResponseThreadsItemCommentsItem[];
+    /** total number of thread results for the query */
+    total_num_thread_results?: number;
 }

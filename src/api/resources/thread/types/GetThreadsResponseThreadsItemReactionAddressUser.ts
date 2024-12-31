@@ -16,8 +16,8 @@ export interface GetThreadsResponseThreadsItemReactionAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetThreadsResponseThreadsItemReactionAddressUserProfile;
     xp_points?: number;
-    ProfileTags?: CommonApi.GetThreadsResponseThreadsItemReactionAddressUserProfileTagsItem[];
-    ApiKey?: unknown;
+    referral_link?: string;
     created_at?: CommonApi.GetThreadsResponseThreadsItemReactionAddressUserCreatedAt;
     updated_at?: CommonApi.GetThreadsResponseThreadsItemReactionAddressUserUpdatedAt;
+    ProfileTags?: CommonApi.GetThreadsResponseThreadsItemReactionAddressUserProfileTagsItem[];
 }

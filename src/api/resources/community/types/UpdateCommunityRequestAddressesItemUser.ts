@@ -16,6 +16,7 @@ export interface UpdateCommunityRequestAddressesItemUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.UpdateCommunityRequestAddressesItemUserProfile;
     xp_points?: number;
+    referral_link?: string;
     ProfileTags?: CommonApi.UpdateCommunityRequestAddressesItemUserProfileTagsItem[];
     ApiKey?: CommonApi.UpdateCommunityRequestAddressesItemUserApiKey;
     created_at?: string;

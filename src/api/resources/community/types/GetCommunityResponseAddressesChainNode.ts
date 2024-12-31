@@ -19,9 +19,9 @@ export interface GetCommunityResponseAddressesChainNode {
     cosmos_chain_id?: string;
     cosmos_gov_version?: CommonApi.GetCommunityResponseAddressesChainNodeCosmosGovVersion;
     health?: CommonApi.GetCommunityResponseAddressesChainNodeHealth;
-    contracts?: CommonApi.GetCommunityResponseAddressesChainNodeContractsItem[];
     block_explorer?: string;
     max_ce_block_range?: number;
+    alchemy_metadata?: CommonApi.GetCommunityResponseAddressesChainNodeAlchemyMetadata;
     created_at?: string;
     updated_at?: string;
 }

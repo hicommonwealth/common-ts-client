@@ -17,6 +17,7 @@ export interface CreateContestMetadataRequest {
     /** On-Chain contest manager address */
     contest_address: string;
     name: string;
+    description?: string;
     image_url?: string;
     /** Provided by admin on creation when stake funds are not used */
     funding_token_address?: string;
@@ -30,4 +31,5 @@ export interface CreateContestMetadataRequest {
     decimals?: number;
     topic_id?: number;
     is_farcaster_contest?: boolean;
+    vote_weight_multiplier?: number;
 }
