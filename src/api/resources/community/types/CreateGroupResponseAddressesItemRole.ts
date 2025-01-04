@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseAddressesItemRole = "admin" | "moderator" | "member";
-
 export const CreateGroupResponseAddressesItemRole = {
     Admin: "admin",
     Moderator: "moderator",

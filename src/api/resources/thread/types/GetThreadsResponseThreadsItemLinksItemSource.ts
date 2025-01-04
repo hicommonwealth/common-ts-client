@@ -3,7 +3,6 @@
  */
 
 export type GetThreadsResponseThreadsItemLinksItemSource = "snapshot" | "proposal" | "thread" | "web" | "template";
-
 export const GetThreadsResponseThreadsItemLinksItemSource = {
     Snapshot: "snapshot",
     Proposal: "proposal",

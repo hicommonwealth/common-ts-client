@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseHasHomepage = "true" | "false";
-
 export const CreateGroupResponseHasHomepage = {
     True: "true",
     False: "false",

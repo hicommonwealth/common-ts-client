@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesResponseResultsItemBase = "cosmos" | "substrate" | "ethereum" | "near" | "solana";
-
 export const GetCommunitiesResponseResultsItemBase = {
     Cosmos: "cosmos",
     Substrate: "substrate",

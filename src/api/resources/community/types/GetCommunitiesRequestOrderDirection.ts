@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesRequestOrderDirection = "ASC" | "DESC";
-
 export const GetCommunitiesRequestOrderDirection = {
     Asc: "ASC",
     Desc: "DESC",

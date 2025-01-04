@@ -11,7 +11,7 @@ import * as CommonApi from "../../../../index";
  *         topic_id: 1,
  *         title: "title",
  *         body: "body",
- *         kind: CommonApi.CreateThreadRequestKind.Discussion,
+ *         kind: "discussion",
  *         stage: "stage",
  *         read_only: true
  *     }

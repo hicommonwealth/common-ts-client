@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommentResponseReactionAddressUserEmailNotificationInterval = "weekly" | "never";
-
 export const UpdateCommentResponseReactionAddressUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

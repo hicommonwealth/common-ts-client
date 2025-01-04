@@ -16,7 +16,6 @@ export type CreateThreadResponseCollaboratorsItemWalletId =
     | "cosm-metamask"
     | "phantom"
     | "coinbase";
-
 export const CreateThreadResponseCollaboratorsItemWalletId = {
     Magic: "magic",
     Polkadot: "polkadot",

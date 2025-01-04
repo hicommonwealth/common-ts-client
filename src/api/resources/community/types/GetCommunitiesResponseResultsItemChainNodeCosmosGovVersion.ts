@@ -9,7 +9,6 @@ export type GetCommunitiesResponseResultsItemChainNodeCosmosGovVersion =
     | "v1beta1"
     | "v1beta1-attempt-failed"
     | "v1-attempt-failed";
-
 export const GetCommunitiesResponseResultsItemChainNodeCosmosGovVersion = {
     V1: "v1",
     V1Atomone: "v1atomone",

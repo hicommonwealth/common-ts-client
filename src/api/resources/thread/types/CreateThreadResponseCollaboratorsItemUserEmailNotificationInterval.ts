@@ -3,7 +3,6 @@
  */
 
 export type CreateThreadResponseCollaboratorsItemUserEmailNotificationInterval = "weekly" | "never";
-
 export const CreateThreadResponseCollaboratorsItemUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

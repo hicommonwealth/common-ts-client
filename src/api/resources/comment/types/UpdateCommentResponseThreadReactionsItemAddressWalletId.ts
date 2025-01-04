@@ -16,7 +16,6 @@ export type UpdateCommentResponseThreadReactionsItemAddressWalletId =
     | "cosm-metamask"
     | "phantom"
     | "coinbase";
-
 export const UpdateCommentResponseThreadReactionsItemAddressWalletId = {
     Magic: "magic",
     Polkadot: "polkadot",

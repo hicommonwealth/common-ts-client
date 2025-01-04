@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesRequestCommunityType = "launchpad" | "basic";
-
 export const GetCommunitiesRequestCommunityType = {
     Launchpad: "launchpad",
     Basic: "basic",

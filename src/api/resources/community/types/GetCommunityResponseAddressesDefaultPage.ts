@@ -6,7 +6,6 @@ export type GetCommunityResponseAddressesDefaultPage =
     | "default_all_discussions_view"
     | "default_summary_view"
     | "homepage";
-
 export const GetCommunityResponseAddressesDefaultPage = {
     DefaultAllDiscussionsView: "default_all_discussions_view",
     DefaultSummaryView: "default_summary_view",

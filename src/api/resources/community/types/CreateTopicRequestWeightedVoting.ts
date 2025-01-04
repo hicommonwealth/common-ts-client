@@ -3,7 +3,6 @@
  */
 
 export type CreateTopicRequestWeightedVoting = "stake" | "erc20";
-
 export const CreateTopicRequestWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

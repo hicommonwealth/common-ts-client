@@ -3,7 +3,6 @@
  */
 
 export type GetThreadsRequestStatus = "active" | "pastWinners" | "all";
-
 export const GetThreadsRequestStatus = {
     Active: "active",
     PastWinners: "pastWinners",

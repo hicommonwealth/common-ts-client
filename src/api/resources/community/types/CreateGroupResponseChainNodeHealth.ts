@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseChainNodeHealth = "failed" | "healthy";
-
 export const CreateGroupResponseChainNodeHealth = {
     Failed: "failed",
     Healthy: "healthy",

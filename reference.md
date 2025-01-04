@@ -511,7 +511,7 @@ await client.community.createCommunity({
     id: "id",
     name: "name",
     chain_node_id: 1,
-    base: CommonApi.CreateCommunityRequestBase.Cosmos,
+    base: "cosmos",
     default_symbol: "default_symbol",
 });
 ```
@@ -1282,7 +1282,7 @@ await client.thread.createThread({
     topic_id: 1,
     title: "title",
     body: "body",
-    kind: CommonApi.CreateThreadRequestKind.Discussion,
+    kind: "discussion",
     stage: "stage",
     read_only: true,
 });

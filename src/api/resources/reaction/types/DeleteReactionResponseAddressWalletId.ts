@@ -16,7 +16,6 @@ export type DeleteReactionResponseAddressWalletId =
     | "cosm-metamask"
     | "phantom"
     | "coinbase";
-
 export const DeleteReactionResponseAddressWalletId = {
     Magic: "magic",
     Polkadot: "polkadot",

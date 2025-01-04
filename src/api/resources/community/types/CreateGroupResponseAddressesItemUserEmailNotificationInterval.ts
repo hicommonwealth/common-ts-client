@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseAddressesItemUserEmailNotificationInterval = "weekly" | "never";
-
 export const CreateGroupResponseAddressesItemUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

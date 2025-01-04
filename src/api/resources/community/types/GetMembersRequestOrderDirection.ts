@@ -3,7 +3,6 @@
  */
 
 export type GetMembersRequestOrderDirection = "ASC" | "DESC";
-
 export const GetMembersRequestOrderDirection = {
     Asc: "ASC",
     Desc: "DESC",

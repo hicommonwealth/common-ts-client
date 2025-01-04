@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type CreateGroupResponseContestManagersItemContestsItemActionsItemAction = "added" | "upvoted";
-
 export const CreateGroupResponseContestManagersItemContestsItemActionsItemAction = {
     Added: "added",
     Upvoted: "upvoted",

@@ -8,7 +8,6 @@ export type GetCommentsResponseResultsItemThreadLinksItemSource =
     | "thread"
     | "web"
     | "template";
-
 export const GetCommentsResponseResultsItemThreadLinksItemSource = {
     Snapshot: "snapshot",
     Proposal: "proposal",

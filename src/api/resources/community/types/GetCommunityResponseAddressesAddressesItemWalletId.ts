@@ -16,7 +16,6 @@ export type GetCommunityResponseAddressesAddressesItemWalletId =
     | "cosm-metamask"
     | "phantom"
     | "coinbase";
-
 export const GetCommunityResponseAddressesAddressesItemWalletId = {
     Magic: "magic",
     Polkadot: "polkadot",

@@ -3,7 +3,6 @@
  */
 
 export type GetCommentsResponseResultsItemAddressRole = "admin" | "moderator" | "member";
-
 export const GetCommentsResponseResultsItemAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

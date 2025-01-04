@@ -7,7 +7,6 @@ export type UpdateCommunityRequestGroupsItemRequirementsItemThresholdDataSourceT
     | "erc721"
     | "erc1155"
     | "spl";
-
 export const UpdateCommunityRequestGroupsItemRequirementsItemThresholdDataSourceTokenIdSourceType = {
     Erc20: "erc20",
     Erc721: "erc721",

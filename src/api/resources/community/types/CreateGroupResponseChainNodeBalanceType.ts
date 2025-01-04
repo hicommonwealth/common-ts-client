@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseChainNodeBalanceType = "terra" | "ethereum" | "solana" | "cosmos" | "near" | "substrate";
-
 export const CreateGroupResponseChainNodeBalanceType = {
     Terra: "terra",
     Ethereum: "ethereum",

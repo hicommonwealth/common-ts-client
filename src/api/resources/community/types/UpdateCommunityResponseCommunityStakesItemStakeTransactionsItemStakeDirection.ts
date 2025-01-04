@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityResponseCommunityStakesItemStakeTransactionsItemStakeDirection = "buy" | "sell";
-
 export const UpdateCommunityResponseCommunityStakesItemStakeTransactionsItemStakeDirection = {
     Buy: "buy",
     Sell: "sell",

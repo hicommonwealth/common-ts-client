@@ -7,7 +7,6 @@ export type GetMembersRequestMemberships =
     | "not-in-group"
     | "allow-specified-addresses"
     | "not-allow-specified-addresses";
-
 export const GetMembersRequestMemberships = {
     InGroup: "in-group",
     NotInGroup: "not-in-group",

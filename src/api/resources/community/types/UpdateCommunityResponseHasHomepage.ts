@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityResponseHasHomepage = "true" | "false";
-
 export const UpdateCommunityResponseHasHomepage = {
     True: "true",
     False: "false",

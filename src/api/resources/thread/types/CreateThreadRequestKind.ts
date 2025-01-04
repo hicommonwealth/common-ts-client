@@ -3,7 +3,6 @@
  */
 
 export type CreateThreadRequestKind = "discussion" | "link";
-
 export const CreateThreadRequestKind = {
     Discussion: "discussion",
     Link: "link",

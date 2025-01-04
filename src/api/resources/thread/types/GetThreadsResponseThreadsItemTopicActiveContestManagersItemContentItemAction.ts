@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type GetThreadsResponseThreadsItemTopicActiveContestManagersItemContentItemAction = "added" | "upvoted";
-
 export const GetThreadsResponseThreadsItemTopicActiveContestManagersItemContentItemAction = {
     Added: "added",
     Upvoted: "upvoted",

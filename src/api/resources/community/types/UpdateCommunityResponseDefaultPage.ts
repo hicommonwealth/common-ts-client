@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityResponseDefaultPage = "default_all_discussions_view" | "default_summary_view" | "homepage";
-
 export const UpdateCommunityResponseDefaultPage = {
     DefaultAllDiscussionsView: "default_all_discussions_view",
     DefaultSummaryView: "default_summary_view",

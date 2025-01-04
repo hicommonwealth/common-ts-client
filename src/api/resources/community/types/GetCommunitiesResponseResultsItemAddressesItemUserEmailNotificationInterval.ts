@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesResponseResultsItemAddressesItemUserEmailNotificationInterval = "weekly" | "never";
-
 export const GetCommunitiesResponseResultsItemAddressesItemUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

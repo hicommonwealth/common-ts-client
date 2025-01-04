@@ -3,7 +3,6 @@
  */
 
 export type GetCommunityResponseAddressesType = "chain" | "dao" | "token" | "offchain";
-
 export const GetCommunityResponseAddressesType = {
     Chain: "chain",
     Dao: "dao",

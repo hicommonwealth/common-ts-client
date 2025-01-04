@@ -9,7 +9,6 @@ export type GetCommunitiesResponseResultsItemChainNodeBalanceType =
     | "cosmos"
     | "near"
     | "substrate";
-
 export const GetCommunitiesResponseResultsItemChainNodeBalanceType = {
     Terra: "terra",
     Ethereum: "ethereum",

@@ -3,7 +3,6 @@
  */
 
 export type GetCommentsRequestOrderDirection = "ASC" | "DESC";
-
 export const GetCommentsRequestOrderDirection = {
     Asc: "ASC",
     Desc: "DESC",

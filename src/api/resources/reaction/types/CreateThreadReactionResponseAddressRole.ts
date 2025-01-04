@@ -3,7 +3,6 @@
  */
 
 export type CreateThreadReactionResponseAddressRole = "admin" | "moderator" | "member";
-
 export const CreateThreadReactionResponseAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityRequestHasHomepage = "true" | "false";
-
 export const UpdateCommunityRequestHasHomepage = {
     True: "true",
     False: "false",

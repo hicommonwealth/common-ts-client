@@ -24,7 +24,7 @@ export interface GetTopicsResponseItemActiveContestManagersItemContentItem {
     thread_title?: string;
     /** Voting power of address when action was recorded */
     voting_power: string;
-    /** Calculated weight of the vote when action was recorded */
+    /** Calculated  weight of the vote when action was recorded */
     calculated_voting_weight?: string;
     created_at: string;
 }

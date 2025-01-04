@@ -8,12 +8,12 @@ export type UpdateGroupResponseRequirementsItem =
     | CommonApi.UpdateGroupResponseRequirementsItem.Threshold
     | CommonApi.UpdateGroupResponseRequirementsItem.Allow;
 
-export declare namespace UpdateGroupResponseRequirementsItem {
-    interface Threshold extends CommonApi.UpdateGroupResponseRequirementsItemThreshold {
+export namespace UpdateGroupResponseRequirementsItem {
+    export interface Threshold extends CommonApi.UpdateGroupResponseRequirementsItemThreshold {
         rule: "threshold";
     }
 
-    interface Allow extends CommonApi.UpdateGroupResponseRequirementsItemAllow {
+    export interface Allow extends CommonApi.UpdateGroupResponseRequirementsItemAllow {
         rule: "allow";
     }
 }

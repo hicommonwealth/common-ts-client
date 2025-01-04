@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseContestManagersItemTopicsItemWeightedVoting = "stake" | "erc20";
-
 export const CreateGroupResponseContestManagersItemTopicsItemWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

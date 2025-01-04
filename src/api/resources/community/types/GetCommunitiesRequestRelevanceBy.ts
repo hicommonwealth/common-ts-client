@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesRequestRelevanceBy = "tag_ids" | "membership";
-
 export const GetCommunitiesRequestRelevanceBy = {
     TagIds: "tag_ids",
     Membership: "membership",

@@ -3,7 +3,6 @@
  */
 
 export type CreateThreadResponseReactionsItemAddressUserEmailNotificationInterval = "weekly" | "never";
-
 export const CreateThreadResponseReactionsItemAddressUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

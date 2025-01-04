@@ -3,7 +3,6 @@
  */
 
 export type UpdateThreadResponseTopicWeightedVoting = "stake" | "erc20";
-
 export const UpdateThreadResponseTopicWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

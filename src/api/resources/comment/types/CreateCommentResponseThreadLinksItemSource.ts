@@ -3,7 +3,6 @@
  */
 
 export type CreateCommentResponseThreadLinksItemSource = "snapshot" | "proposal" | "thread" | "web" | "template";
-
 export const CreateCommentResponseThreadLinksItemSource = {
     Snapshot: "snapshot",
     Proposal: "proposal",

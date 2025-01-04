@@ -3,7 +3,6 @@
  */
 
 export type UpdateGroupResponseRequirementsItemThresholdDataSourceThreeSourceType = "cw721" | "cw20";
-
 export const UpdateGroupResponseRequirementsItemThresholdDataSourceThreeSourceType = {
     Cw721: "cw721",
     Cw20: "cw20",

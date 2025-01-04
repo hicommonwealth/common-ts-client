@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommentResponseThreadAddressRole = "admin" | "moderator" | "member";
-
 export const UpdateCommentResponseThreadAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

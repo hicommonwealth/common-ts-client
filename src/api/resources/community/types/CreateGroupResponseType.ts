@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseType = "chain" | "dao" | "token" | "offchain";
-
 export const CreateGroupResponseType = {
     Chain: "chain",
     Dao: "dao",

@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type GetAllContestsResponseItemContestsItemActionsItemAction = "added" | "upvoted";
-
 export const GetAllContestsResponseItemContestsItemActionsItemAction = {
     Added: "added",
     Upvoted: "upvoted",

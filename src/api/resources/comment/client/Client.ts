@@ -9,14 +9,14 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Comment {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -25,6 +25,8 @@ export declare namespace Comment {
         abortSignal?: AbortSignal;
         /** Override the address header */
         address?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -42,7 +44,7 @@ export class Comment {
      */
     public async getComments(
         request: CommonApi.GetCommentsRequest,
-        requestOptions?: Comment.RequestOptions
+        requestOptions?: Comment.RequestOptions,
     ): Promise<CommonApi.GetCommentsResponse> {
         const {
             limit,
@@ -87,7 +89,7 @@ export class Comment {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "GetComments"
+                "GetComments",
             ),
             method: "GET",
             headers: {
@@ -97,11 +99,12 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -128,7 +131,7 @@ export class Comment {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetComments.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -148,12 +151,12 @@ export class Comment {
      */
     public async createComment(
         request: CommonApi.CreateCommentRequest,
-        requestOptions?: Comment.RequestOptions
+        requestOptions?: Comment.RequestOptions,
     ): Promise<CommonApi.CreateCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "CreateComment"
+                "CreateComment",
             ),
             method: "POST",
             headers: {
@@ -163,11 +166,12 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -194,7 +198,7 @@ export class Comment {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -214,12 +218,12 @@ export class Comment {
      */
     public async updateComment(
         request: CommonApi.UpdateCommentRequest,
-        requestOptions?: Comment.RequestOptions
+        requestOptions?: Comment.RequestOptions,
     ): Promise<CommonApi.UpdateCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "UpdateComment"
+                "UpdateComment",
             ),
             method: "POST",
             headers: {
@@ -229,11 +233,12 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -260,7 +265,7 @@ export class Comment {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /UpdateComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -279,12 +284,12 @@ export class Comment {
      */
     public async deleteComment(
         request: CommonApi.DeleteCommentRequest,
-        requestOptions?: Comment.RequestOptions
+        requestOptions?: Comment.RequestOptions,
     ): Promise<CommonApi.DeleteCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "DeleteComment"
+                "DeleteComment",
             ),
             method: "POST",
             headers: {
@@ -294,11 +299,12 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -325,7 +331,7 @@ export class Comment {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

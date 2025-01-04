@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseDefaultPage = "default_all_discussions_view" | "default_summary_view" | "homepage";
-
 export const CreateGroupResponseDefaultPage = {
     DefaultAllDiscussionsView: "default_all_discussions_view",
     DefaultSummaryView: "default_summary_view",

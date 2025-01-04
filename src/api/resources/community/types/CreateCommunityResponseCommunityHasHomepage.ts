@@ -3,7 +3,6 @@
  */
 
 export type CreateCommunityResponseCommunityHasHomepage = "true" | "false";
-
 export const CreateCommunityResponseCommunityHasHomepage = {
     True: "true",
     False: "false",

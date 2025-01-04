@@ -9,14 +9,14 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace User {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -25,6 +25,8 @@ export declare namespace User {
         abortSignal?: AbortSignal;
         /** Override the address header */
         address?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -40,7 +42,7 @@ export class User {
      */
     public async getGlobalActivity(
         request: CommonApi.GetGlobalActivityRequest = {},
-        requestOptions?: User.RequestOptions
+        requestOptions?: User.RequestOptions,
     ): Promise<CommonApi.GetGlobalActivityResponse> {
         const {
             limit,
@@ -78,7 +80,7 @@ export class User {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "GetGlobalActivity"
+                "GetGlobalActivity",
             ),
             method: "GET",
             headers: {
@@ -88,11 +90,12 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -119,7 +122,7 @@ export class User {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetGlobalActivity.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -136,7 +139,7 @@ export class User {
      */
     public async getUserActivity(
         request: CommonApi.GetUserActivityRequest = {},
-        requestOptions?: User.RequestOptions
+        requestOptions?: User.RequestOptions,
     ): Promise<CommonApi.GetUserActivityResponse> {
         const {
             limit,
@@ -174,7 +177,7 @@ export class User {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "GetUserActivity"
+                "GetUserActivity",
             ),
             method: "GET",
             headers: {
@@ -184,11 +187,12 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             queryParameters: _queryParams,
@@ -215,7 +219,7 @@ export class User {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetUserActivity.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -233,7 +237,7 @@ export class User {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "GetNewContent"
+                "GetNewContent",
             ),
             method: "GET",
             headers: {
@@ -243,11 +247,12 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -273,7 +278,7 @@ export class User {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetNewContent.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

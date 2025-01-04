@@ -8,7 +8,6 @@ export type UpdateGroupRequestTopicsItemPermissionsItem =
     | "CREATE_THREAD_REACTION"
     | "CREATE_COMMENT_REACTION"
     | "UPDATE_POLL";
-
 export const UpdateGroupRequestTopicsItemPermissionsItem = {
     CreateThread: "CREATE_THREAD",
     CreateComment: "CREATE_COMMENT",

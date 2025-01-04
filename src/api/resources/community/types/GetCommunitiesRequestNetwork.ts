@@ -17,7 +17,6 @@ export type GetCommunitiesRequestNetwork =
     | "evmos"
     | "kava"
     | "kyve";
-
 export const GetCommunitiesRequestNetwork = {
     Ethereum: "ethereum",
     Erc20: "erc20",

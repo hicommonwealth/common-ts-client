@@ -5,7 +5,6 @@
 export type GetCommunityResponseAddressesGroupsItemRequirementsItemThresholdDataSourceThreeSourceType =
     | "cw721"
     | "cw20";
-
 export const GetCommunityResponseAddressesGroupsItemRequirementsItemThresholdDataSourceThreeSourceType = {
     Cw721: "cw721",
     Cw20: "cw20",

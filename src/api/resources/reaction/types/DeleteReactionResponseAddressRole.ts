@@ -3,7 +3,6 @@
  */
 
 export type DeleteReactionResponseAddressRole = "admin" | "moderator" | "member";
-
 export const DeleteReactionResponseAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

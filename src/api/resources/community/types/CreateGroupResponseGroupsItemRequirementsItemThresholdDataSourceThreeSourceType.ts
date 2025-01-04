@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseGroupsItemRequirementsItemThresholdDataSourceThreeSourceType = "cw721" | "cw20";
-
 export const CreateGroupResponseGroupsItemRequirementsItemThresholdDataSourceThreeSourceType = {
     Cw721: "cw721",
     Cw20: "cw20",

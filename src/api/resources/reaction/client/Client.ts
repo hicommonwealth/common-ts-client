@@ -9,14 +9,14 @@ import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Reaction {
-    interface Options {
+    export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
 
-    interface RequestOptions {
+    export interface RequestOptions {
         /** The maximum time to wait for a response in seconds. */
         timeoutInSeconds?: number;
         /** The number of times to retry the request. Defaults to 2. */
@@ -25,6 +25,8 @@ export declare namespace Reaction {
         abortSignal?: AbortSignal;
         /** Override the address header */
         address?: string | undefined;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
     }
 }
 
@@ -42,12 +44,12 @@ export class Reaction {
      */
     public async createThreadReaction(
         request: CommonApi.CreateThreadReactionRequest,
-        requestOptions?: Reaction.RequestOptions
+        requestOptions?: Reaction.RequestOptions,
     ): Promise<CommonApi.CreateThreadReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "CreateThreadReaction"
+                "CreateThreadReaction",
             ),
             method: "POST",
             headers: {
@@ -57,11 +59,12 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -88,7 +91,7 @@ export class Reaction {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateThreadReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -107,12 +110,12 @@ export class Reaction {
      */
     public async createCommentReaction(
         request: CommonApi.CreateCommentReactionRequest,
-        requestOptions?: Reaction.RequestOptions
+        requestOptions?: Reaction.RequestOptions,
     ): Promise<CommonApi.CreateCommentReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "CreateCommentReaction"
+                "CreateCommentReaction",
             ),
             method: "POST",
             headers: {
@@ -122,11 +125,12 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -153,7 +157,7 @@ export class Reaction {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateCommentReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -173,12 +177,12 @@ export class Reaction {
      */
     public async deleteReaction(
         request: CommonApi.DeleteReactionRequest,
-        requestOptions?: Reaction.RequestOptions
+        requestOptions?: Reaction.RequestOptions,
     ): Promise<CommonApi.DeleteReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "DeleteReaction"
+                "DeleteReaction",
             ),
             method: "POST",
             headers: {
@@ -188,11 +192,12 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
             },
             contentType: "application/json",
             requestType: "json",
@@ -219,7 +224,7 @@ export class Reaction {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError();
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

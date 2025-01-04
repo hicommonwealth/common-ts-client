@@ -3,7 +3,6 @@
  */
 
 export type GetCommentsResponseResultsItemThreadReactionAddressUserEmailNotificationInterval = "weekly" | "never";
-
 export const GetCommentsResponseResultsItemThreadReactionAddressUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

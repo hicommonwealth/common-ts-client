@@ -3,7 +3,6 @@
  */
 
 export type GetCommunityResponseAddressesAddressesItemRole = "admin" | "moderator" | "member";
-
 export const GetCommunityResponseAddressesAddressesItemRole = {
     Admin: "admin",
     Moderator: "moderator",

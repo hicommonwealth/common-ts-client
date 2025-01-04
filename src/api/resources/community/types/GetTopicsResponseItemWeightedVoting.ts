@@ -3,7 +3,6 @@
  */
 
 export type GetTopicsResponseItemWeightedVoting = "stake" | "erc20";
-
 export const GetTopicsResponseItemWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

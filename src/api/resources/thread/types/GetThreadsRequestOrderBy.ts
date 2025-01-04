@@ -3,7 +3,6 @@
  */
 
 export type GetThreadsRequestOrderBy = "newest" | "oldest" | "mostLikes" | "mostComments" | "latestActivity";
-
 export const GetThreadsRequestOrderBy = {
     Newest: "newest",
     Oldest: "oldest",

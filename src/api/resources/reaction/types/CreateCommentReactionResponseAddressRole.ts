@@ -3,7 +3,6 @@
  */
 
 export type CreateCommentReactionResponseAddressRole = "admin" | "moderator" | "member";
-
 export const CreateCommentReactionResponseAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

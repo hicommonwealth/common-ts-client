@@ -3,7 +3,6 @@
  */
 
 export type GetCommentsResponseResultsItemThreadReactionAddressRole = "admin" | "moderator" | "member";
-
 export const GetCommentsResponseResultsItemThreadReactionAddressRole = {
     Admin: "admin",
     Moderator: "moderator",

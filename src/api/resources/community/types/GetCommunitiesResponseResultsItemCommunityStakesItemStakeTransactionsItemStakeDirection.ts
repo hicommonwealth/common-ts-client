@@ -3,7 +3,6 @@
  */
 
 export type GetCommunitiesResponseResultsItemCommunityStakesItemStakeTransactionsItemStakeDirection = "buy" | "sell";
-
 export const GetCommunitiesResponseResultsItemCommunityStakesItemStakeTransactionsItemStakeDirection = {
     Buy: "buy",
     Sell: "sell",

@@ -3,7 +3,6 @@
  */
 
 export type CreateCommunityRequestBase = "cosmos" | "substrate" | "ethereum" | "near" | "solana";
-
 export const CreateCommunityRequestBase = {
     Cosmos: "cosmos",
     Substrate: "substrate",

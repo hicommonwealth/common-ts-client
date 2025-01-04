@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityRequestContestManagersItemTopicsItemWeightedVoting = "stake" | "erc20";
-
 export const UpdateCommunityRequestContestManagersItemTopicsItemWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

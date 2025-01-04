@@ -3,7 +3,6 @@
  */
 
 export type GetGlobalActivityRequestOrderDirection = "ASC" | "DESC";
-
 export const GetGlobalActivityRequestOrderDirection = {
     Asc: "ASC",
     Desc: "DESC",

@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type GetCommunityResponseAddressesContestManagersItemContestsItemActionsItemAction = "added" | "upvoted";
-
 export const GetCommunityResponseAddressesContestManagersItemContestsItemActionsItemAction = {
     Added: "added",
     Upvoted: "upvoted",

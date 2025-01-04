@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseCommunityStakesItemStakeTransactionsItemStakeDirection = "buy" | "sell";
-
 export const CreateGroupResponseCommunityStakesItemStakeTransactionsItemStakeDirection = {
     Buy: "buy",
     Sell: "sell",

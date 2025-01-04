@@ -3,7 +3,6 @@
  */
 
 export type GetCommunityResponseAddressesBase = "cosmos" | "substrate" | "ethereum" | "near" | "solana";
-
 export const GetCommunityResponseAddressesBase = {
     Cosmos: "cosmos",
     Substrate: "substrate",

@@ -7,7 +7,6 @@ export type GetCommunitiesRequestOrderBy =
     | "profile_count"
     | "lifetime_thread_count"
     | "last_30_day_thread_count";
-
 export const GetCommunitiesRequestOrderBy = {
     CreatedAt: "created_at",
     ProfileCount: "profile_count",

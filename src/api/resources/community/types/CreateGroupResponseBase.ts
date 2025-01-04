@@ -3,7 +3,6 @@
  */
 
 export type CreateGroupResponseBase = "cosmos" | "substrate" | "ethereum" | "near" | "solana";
-
 export const CreateGroupResponseBase = {
     Cosmos: "cosmos",
     Substrate: "substrate",

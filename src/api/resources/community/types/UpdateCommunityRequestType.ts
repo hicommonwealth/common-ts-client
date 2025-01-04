@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityRequestType = "chain" | "dao" | "token" | "offchain";
-
 export const UpdateCommunityRequestType = {
     Chain: "chain",
     Dao: "dao",

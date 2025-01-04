@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type UpdateContestMetadataResponseContestManagersItemContestsItemActionsItemAction = "added" | "upvoted";
-
 export const UpdateContestMetadataResponseContestManagersItemContestsItemActionsItemAction = {
     Added: "added",
     Upvoted: "upvoted",

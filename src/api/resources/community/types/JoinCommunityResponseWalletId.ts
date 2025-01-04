@@ -16,7 +16,6 @@ export type JoinCommunityResponseWalletId =
     | "cosm-metamask"
     | "phantom"
     | "coinbase";
-
 export const JoinCommunityResponseWalletId = {
     Magic: "magic",
     Polkadot: "polkadot",

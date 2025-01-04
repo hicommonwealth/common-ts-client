@@ -3,7 +3,6 @@
  */
 
 export type GetMembersRequestOrderBy = "last_active" | "name";
-
 export const GetMembersRequestOrderBy = {
     LastActive: "last_active",
     Name: "name",

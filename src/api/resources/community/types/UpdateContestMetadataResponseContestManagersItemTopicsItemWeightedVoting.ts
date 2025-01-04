@@ -3,7 +3,6 @@
  */
 
 export type UpdateContestMetadataResponseContestManagersItemTopicsItemWeightedVoting = "stake" | "erc20";
-
 export const UpdateContestMetadataResponseContestManagersItemTopicsItemWeightedVoting = {
     Stake: "stake",
     Erc20: "erc20",

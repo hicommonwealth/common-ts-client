@@ -3,7 +3,6 @@
  */
 
 export type DeleteReactionResponseAddressUserEmailNotificationInterval = "weekly" | "never";
-
 export const DeleteReactionResponseAddressUserEmailNotificationInterval = {
     Weekly: "weekly",
     Never: "never",

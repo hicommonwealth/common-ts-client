@@ -3,7 +3,6 @@
  */
 
 export type UpdateCommunityRequestChainNodeHealth = "failed" | "healthy";
-
 export const UpdateCommunityRequestChainNodeHealth = {
     Failed: "failed",
     Healthy: "healthy",

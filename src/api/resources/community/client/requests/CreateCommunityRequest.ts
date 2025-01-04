@@ -10,7 +10,7 @@ import * as CommonApi from "../../../../index";
  *         id: "id",
  *         name: "name",
  *         chain_node_id: 1,
- *         base: CommonApi.CreateCommunityRequestBase.Cosmos,
+ *         base: "cosmos",
  *         default_symbol: "default_symbol"
  *     }
  */

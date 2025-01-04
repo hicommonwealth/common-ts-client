@@ -9,7 +9,6 @@ export type UpdateCommunityRequestChainNodeBalanceType =
     | "cosmos"
     | "near"
     | "substrate";
-
 export const UpdateCommunityRequestChainNodeBalanceType = {
     Terra: "terra",
     Ethereum: "ethereum",

@@ -6,7 +6,6 @@
  * Type of content action
  */
 export type GetTopicsResponseItemActiveContestManagersItemContentItemAction = "added" | "upvoted";
-
 export const GetTopicsResponseItemActiveContestManagersItemContentItemAction = {
     Added: "added",
     Upvoted: "upvoted",

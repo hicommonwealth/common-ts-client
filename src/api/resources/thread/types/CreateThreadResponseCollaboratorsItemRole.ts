@@ -3,7 +3,6 @@
  */
 
 export type CreateThreadResponseCollaboratorsItemRole = "admin" | "moderator" | "member";
-
 export const CreateThreadResponseCollaboratorsItemRole = {
     Admin: "admin",
     Moderator: "moderator",
