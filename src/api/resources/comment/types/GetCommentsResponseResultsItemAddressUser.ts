@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemAddressUser {
-    id?: number;
+    id: number;
     email?: string;
     isAdmin?: boolean;
     disableRichText?: boolean;
@@ -16,9 +16,7 @@ export interface GetCommentsResponseResultsItemAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetCommentsResponseResultsItemAddressUserProfile;
     xp_points?: number;
-    referral_link?: string;
+    created_at?: CommonApi.GetCommentsResponseResultsItemAddressUserCreatedAt;
+    updated_at?: CommonApi.GetCommentsResponseResultsItemAddressUserUpdatedAt;
     ProfileTags?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItem[];
-    ApiKey?: CommonApi.GetCommentsResponseResultsItemAddressUserApiKey;
-    created_at?: string;
-    updated_at?: string;
 }

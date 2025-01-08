@@ -10,5 +10,5 @@
  */
 export interface JoinCommunityRequest {
     community_id: string;
-    referral_link?: string;
+    referrer_address?: string;
 }

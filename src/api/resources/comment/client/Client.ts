@@ -50,11 +50,11 @@ export class Comment {
             limit,
             cursor,
             order_by: orderBy,
-            order_direction: orderDirection,
             thread_id: threadId,
             comment_id: commentId,
-            include_user: includeUser,
+            parent_id: parentId,
             include_reactions: includeReactions,
+            include_spam_comments: includeSpamComments,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
@@ -69,21 +69,21 @@ export class Comment {
             _queryParams["order_by"] = orderBy;
         }
 
-        if (orderDirection != null) {
-            _queryParams["order_direction"] = orderDirection;
-        }
-
         _queryParams["thread_id"] = threadId.toString();
         if (commentId != null) {
             _queryParams["comment_id"] = commentId.toString();
         }
 
-        if (includeUser != null) {
-            _queryParams["include_user"] = includeUser.toString();
+        if (parentId != null) {
+            _queryParams["parent_id"] = parentId.toString();
         }
 
         if (includeReactions != null) {
             _queryParams["include_reactions"] = includeReactions.toString();
+        }
+
+        if (includeSpamComments != null) {
+            _queryParams["include_spam_comments"] = includeSpamComments;
         }
 
         const _response = await core.fetcher({
@@ -99,8 +99,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.2",
+                "User-Agent": "@commonxyz/api-client/2.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -166,8 +166,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.2",
+                "User-Agent": "@commonxyz/api-client/2.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -233,8 +233,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.2",
+                "User-Agent": "@commonxyz/api-client/2.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -299,8 +299,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.0.0",
-                "User-Agent": "@commonxyz/api-client/2.0.0",
+                "X-Fern-SDK-Version": "2.1.2",
+                "User-Agent": "@commonxyz/api-client/2.1.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

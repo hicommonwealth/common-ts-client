@@ -16,7 +16,7 @@ export interface CreateThreadReactionResponseAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.CreateThreadReactionResponseAddressUserProfile;
     xp_points?: number;
-    referral_link?: string;
+    referral_eth_earnings?: number;
     ProfileTags?: CommonApi.CreateThreadReactionResponseAddressUserProfileTagsItem[];
     ApiKey?: CommonApi.CreateThreadReactionResponseAddressUserApiKey;
     created_at?: string;

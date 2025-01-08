@@ -7,7 +7,7 @@ import * as CommonApi from "../../../index";
 export interface GetCommentsResponseResultsItemAddressUserProfileTagsItem {
     user_id: number;
     tag_id: number;
-    created_at?: string;
-    updated_at?: string;
+    created_at?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItemCreatedAt;
+    updated_at?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItemUpdatedAt;
     Tag?: CommonApi.GetCommentsResponseResultsItemAddressUserProfileTagsItemTag;
 }

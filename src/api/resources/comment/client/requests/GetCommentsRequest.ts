@@ -16,10 +16,10 @@ export interface GetCommentsRequest {
      * required for tRPC useInfiniteQuery hook, equivalent to page number
      */
     cursor?: string;
-    order_by?: string;
-    order_direction?: CommonApi.GetCommentsRequestOrderDirection;
+    order_by?: CommonApi.GetCommentsRequestOrderBy;
     thread_id: number;
     comment_id?: number;
-    include_user?: boolean;
+    parent_id?: number;
     include_reactions?: boolean;
+    include_spam_comments?: string;
 }

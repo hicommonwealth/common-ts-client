@@ -158,6 +158,9 @@ export * from "./GetThreadsResponseThreadsItemCommentsItemReactionAddressUpdated
 export * from "./GetThreadsResponseThreadsItemCommentsItemReactionAddress";
 export * from "./GetThreadsResponseThreadsItemCommentsItemReactionLastActive";
 export * from "./GetThreadsResponseThreadsItemCommentsItemReaction";
+export * from "./GetThreadsResponseThreadsItemCommentsItemCommentVersionHistoriesItemTimestamp";
+export * from "./GetThreadsResponseThreadsItemCommentsItemCommentVersionHistoriesItem";
+export * from "./GetThreadsResponseThreadsItemCommentsItemLastActive";
 export * from "./GetThreadsResponseThreadsItemCommentsItem";
 export * from "./GetThreadsResponseThreadsItem";
 export * from "./GetThreadsResponse";

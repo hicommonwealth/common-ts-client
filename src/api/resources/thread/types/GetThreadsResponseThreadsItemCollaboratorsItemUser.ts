@@ -16,7 +16,6 @@ export interface GetThreadsResponseThreadsItemCollaboratorsItemUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserProfile;
     xp_points?: number;
-    referral_link?: string;
     created_at?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserCreatedAt;
     updated_at?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserUpdatedAt;
     ProfileTags?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItemUserProfileTagsItem[];

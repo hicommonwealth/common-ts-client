@@ -16,4 +16,13 @@ export * from "./GetUserActivityResponseResultsItemRecentCommentsItemDiscordMeta
 export * from "./GetUserActivityResponseResultsItemRecentCommentsItem";
 export * from "./GetUserActivityResponseResultsItem";
 export * from "./GetUserActivityResponse";
+export * from "./GetUserResponseApiKeyEmailNotificationInterval";
+export * from "./GetUserResponseApiKeyProfileBackgroundImage";
+export * from "./GetUserResponseApiKeyProfile";
+export * from "./GetUserResponseApiKeyProfileTagsItemTag";
+export * from "./GetUserResponseApiKeyProfileTagsItem";
+export * from "./GetUserResponseApiKeyApiKey";
+export * from "./GetUserResponseApiKey";
+export * from "./GetUserResponseOne";
+export * from "./GetUserResponse";
 export * from "./GetNewContentResponse";

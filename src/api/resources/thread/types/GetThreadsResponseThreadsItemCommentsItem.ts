@@ -9,8 +9,9 @@ export interface GetThreadsResponseThreadsItemCommentsItem {
     thread_id: number;
     address_id: number;
     body: string;
-    parent_id?: string;
+    parent_id?: number;
     content_url?: string;
+    comment_level: number;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
     created_by?: string;
@@ -19,13 +20,16 @@ export interface GetThreadsResponseThreadsItemCommentsItem {
     deleted_at?: CommonApi.GetThreadsResponseThreadsItemCommentsItemDeletedAt;
     marked_as_spam_at?: CommonApi.GetThreadsResponseThreadsItemCommentsItemMarkedAsSpamAt;
     discord_meta?: CommonApi.GetThreadsResponseThreadsItemCommentsItemDiscordMeta;
+    reply_count: number;
     reaction_count: number;
     reaction_weights_sum?: string;
     search?: unknown;
     Address?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddress;
     Thread?: unknown;
     Reaction?: CommonApi.GetThreadsResponseThreadsItemCommentsItemReaction;
-    CommentVersionHistories?: unknown;
+    CommentVersionHistories?: CommonApi.GetThreadsResponseThreadsItemCommentsItemCommentVersionHistoriesItem[];
+    community_id: string;
+    last_active?: CommonApi.GetThreadsResponseThreadsItemCommentsItemLastActive;
     address: string;
     profile_name?: string;
     profile_avatar?: string;

@@ -12,4 +12,6 @@
 export interface UpdateCommentRequest {
     comment_id: number;
     body: string;
+    canvas_signed_data?: string;
+    canvas_msg_id?: string;
 }

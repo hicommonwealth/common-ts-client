@@ -16,7 +16,7 @@ export interface CreateCommentResponseAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.CreateCommentResponseAddressUserProfile;
     xp_points?: number;
-    referral_link?: string;
+    referral_eth_earnings?: number;
     ProfileTags?: CommonApi.CreateCommentResponseAddressUserProfileTagsItem[];
     ApiKey?: CommonApi.CreateCommentResponseAddressUserApiKey;
     created_at?: string;

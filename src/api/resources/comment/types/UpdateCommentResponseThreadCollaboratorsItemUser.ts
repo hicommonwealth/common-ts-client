@@ -16,7 +16,7 @@ export interface UpdateCommentResponseThreadCollaboratorsItemUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.UpdateCommentResponseThreadCollaboratorsItemUserProfile;
     xp_points?: number;
-    referral_link?: string;
+    referral_eth_earnings?: number;
     ProfileTags?: CommonApi.UpdateCommentResponseThreadCollaboratorsItemUserProfileTagsItem[];
     ApiKey?: CommonApi.UpdateCommentResponseThreadCollaboratorsItemUserApiKey;
     created_at?: string;

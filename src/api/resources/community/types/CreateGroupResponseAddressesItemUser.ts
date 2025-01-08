@@ -16,7 +16,7 @@ export interface CreateGroupResponseAddressesItemUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.CreateGroupResponseAddressesItemUserProfile;
     xp_points?: number;
-    referral_link?: string;
+    referral_eth_earnings?: number;
     ProfileTags?: CommonApi.CreateGroupResponseAddressesItemUserProfileTagsItem[];
     ApiKey?: CommonApi.CreateGroupResponseAddressesItemUserApiKey;
     created_at?: string;
