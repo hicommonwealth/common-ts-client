@@ -19,4 +19,5 @@ export interface GetCommentsResponseResultsItemReactionAddressUser {
     created_at?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserCreatedAt;
     updated_at?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserUpdatedAt;
     ProfileTags?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserProfileTagsItem[];
+    unsubscribe_uuid?: string;
 }

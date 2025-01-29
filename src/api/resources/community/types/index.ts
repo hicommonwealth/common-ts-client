@@ -115,6 +115,7 @@ export * from "./GetMembersRequestOrderDirection";
 export * from "./GetMembersRequestMemberships";
 export * from "./GetMembersResponseResultsItemAddressesItemRole";
 export * from "./GetMembersResponseResultsItemAddressesItem";
+export * from "./GetMembersResponseResultsItemReferredBy";
 export * from "./GetMembersResponseResultsItem";
 export * from "./GetMembersResponse";
 export * from "./GetTopicsResponseItemWeightedVoting";

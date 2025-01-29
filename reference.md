@@ -1252,6 +1252,57 @@ await client.comment.deleteComment({
 </dl>
 </details>
 
+<details><summary><code>client.comment.<a href="/src/api/resources/comment/client/Client.ts">toggleCommentSpam</a>({ ...params }) -> CommonApi.ToggleCommentSpamResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.comment.toggleCommentSpam({
+    comment_id: 1,
+    spam: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CommonApi.ToggleCommentSpamRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Comment.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Thread
 
 <details><summary><code>client.thread.<a href="/src/api/resources/thread/client/Client.ts">getThreads</a>({ ...params }) -> CommonApi.GetThreadsResponse</code></summary>
@@ -1653,6 +1704,159 @@ await client.reaction.deleteReaction({
 <dd>
 
 **requestOptions:** `Reaction.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Token
+
+<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">createToken</a>({ ...params }) -> CommonApi.CreateTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.token.createToken({
+    community_id: "community_id",
+    transaction_hash: "transaction_hash",
+    chain_node_id: 1.1,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CommonApi.CreateTokenRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Token.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">createTrade</a>({ ...params }) -> CommonApi.CreateTradeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.token.createTrade({
+    eth_chain_id: 1.1,
+    transaction_hash: "transaction_hash",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CommonApi.CreateTradeRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Token.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">getTokens</a>({ ...params }) -> CommonApi.GetTokensResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.token.getTokens();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CommonApi.GetTokensRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Token.RequestOptions`
 
 </dd>
 </dl>

@@ -19,4 +19,5 @@ export interface GetThreadsResponseThreadsItemCommentsItemAddressUser {
     created_at?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddressUserCreatedAt;
     updated_at?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddressUserUpdatedAt;
     ProfileTags?: CommonApi.GetThreadsResponseThreadsItemCommentsItemAddressUserProfileTagsItem[];
+    unsubscribe_uuid?: string;
 }

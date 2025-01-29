@@ -11,4 +11,7 @@ export interface GetMembersResponseResultsItem {
     addresses: CommonApi.GetMembersResponseResultsItemAddressesItem[];
     group_ids: number[];
     last_active?: unknown;
+    referred_by?: CommonApi.GetMembersResponseResultsItemReferredBy;
+    referral_count?: number;
+    referral_eth_earnings?: number;
 }

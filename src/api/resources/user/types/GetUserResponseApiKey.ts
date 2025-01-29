@@ -15,8 +15,12 @@ export interface GetUserResponseApiKey {
     promotional_emails_enabled?: boolean;
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetUserResponseApiKeyProfile;
-    xp_points?: number;
+    unsubscribe_uuid?: string;
+    referred_by_address?: string;
+    /** Number of referrals that have earned ETH */
+    referral_count?: number;
     referral_eth_earnings?: number;
+    xp_points?: number;
     ProfileTags?: CommonApi.GetUserResponseApiKeyProfileTagsItem[];
     ApiKey?: CommonApi.GetUserResponseApiKeyApiKey;
     created_at?: string;

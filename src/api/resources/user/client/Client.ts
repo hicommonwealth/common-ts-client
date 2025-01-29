@@ -11,7 +11,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace User {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
@@ -31,7 +31,7 @@ export declare namespace User {
 }
 
 export class User {
-    constructor(protected readonly _options: User.Options) {}
+    constructor(protected readonly _options: User.Options = {}) {}
 
     /**
      * @param {CommonApi.GetGlobalActivityRequest} request
@@ -90,8 +90,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -187,8 +187,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -247,8 +247,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -306,8 +306,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

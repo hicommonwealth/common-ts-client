@@ -11,7 +11,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Comment {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
-        apiKey: core.Supplier<string>;
+        apiKey?: core.Supplier<string | undefined>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
@@ -31,7 +31,7 @@ export declare namespace Comment {
 }
 
 export class Comment {
-    constructor(protected readonly _options: Comment.Options) {}
+    constructor(protected readonly _options: Comment.Options = {}) {}
 
     /**
      * @param {CommonApi.GetCommentsRequest} request
@@ -99,8 +99,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -166,8 +166,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -233,8 +233,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -299,8 +299,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.1.2",
-                "User-Agent": "@commonxyz/api-client/2.1.2",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -332,6 +332,73 @@ export class Comment {
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteComment.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.ToggleCommentSpamRequest} request
+     * @param {Comment.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.comment.toggleCommentSpam({
+     *         comment_id: 1,
+     *         spam: true
+     *     })
+     */
+    public async toggleCommentSpam(
+        request: CommonApi.ToggleCommentSpamRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<CommonApi.ToggleCommentSpamResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                "ToggleCommentSpam",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.2.2",
+                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.ToggleCommentSpamResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /ToggleCommentSpam.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
