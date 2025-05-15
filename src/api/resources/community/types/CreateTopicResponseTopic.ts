@@ -18,8 +18,6 @@ export interface CreateTopicResponseTopic {
     group_ids?: number[];
     default_offchain_template_backup?: string;
     weighted_voting?: CommonApi.CreateTopicResponseTopicWeightedVoting;
-    /** token chain node ID, used for ERC20 topics */
-    chain_node_id?: number;
     /** token address, used for ERC20 topics */
     token_address?: string;
     /** token symbol, used for ERC20 topics */
@@ -29,5 +27,5 @@ export interface CreateTopicResponseTopic {
     created_at?: string;
     updated_at?: string;
     deleted_at?: string;
-    archived_at?: string;
+    contest_topics?: CommonApi.CreateTopicResponseTopicContestTopicsItem[];
 }

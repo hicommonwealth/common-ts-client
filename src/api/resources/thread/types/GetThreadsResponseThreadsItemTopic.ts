@@ -18,7 +18,6 @@ export interface GetThreadsResponseThreadsItemTopic {
     group_ids?: number[];
     default_offchain_template_backup?: string;
     weighted_voting?: CommonApi.GetThreadsResponseThreadsItemTopicWeightedVoting;
-    chain_node_id?: number;
     /** token address, used for ERC20 topics */
     token_address?: string;
     /** token symbol, used for ERC20 topics */
@@ -28,10 +27,5 @@ export interface GetThreadsResponseThreadsItemTopic {
     created_at?: string;
     updated_at?: string;
     deleted_at?: string;
-    archived_at?: string;
-    contest_topics?: unknown;
-    total_threads?: number;
-    active_contest_managers?: CommonApi.GetThreadsResponseThreadsItemTopicActiveContestManagersItem[];
-    chain_node_url?: string;
-    eth_chain_id?: number;
+    contest_topics?: CommonApi.GetThreadsResponseThreadsItemTopicContestTopicsItem[];
 }

@@ -9,5 +9,4 @@ export interface GetThreadsResponse {
     limit: number;
     numVotingThreads: number;
     threads: CommonApi.GetThreadsResponseThreadsItem[];
-    threadCount?: number;
 }

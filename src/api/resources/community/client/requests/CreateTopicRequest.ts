@@ -24,6 +24,4 @@ export interface CreateTopicRequest {
     token_symbol?: string;
     /** vote weight multiplier, used for ERC20 topics */
     vote_weight_multiplier?: number;
-    /** token chain node ID, used for ERC20 topics */
-    chain_node_id?: number;
 }

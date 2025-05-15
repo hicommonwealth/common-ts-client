@@ -7,10 +7,11 @@ import * as CommonApi from "../../../../index";
 /**
  * @example
  *     {
- *         community_id: "community_id"
+ *         id: "id"
  *     }
  */
 export interface UpdateCommunityRequest {
+    id: string;
     name?: string;
     chain_node_id?: number;
     default_symbol?: string;
@@ -56,7 +57,6 @@ export interface UpdateCommunityRequest {
     topics?: CommonApi.UpdateCommunityRequestTopicsItem[];
     groups?: CommonApi.UpdateCommunityRequestGroupsItem[];
     contest_managers?: CommonApi.UpdateCommunityRequestContestManagersItem[];
-    community_id: string;
     featuredTopics?: string[];
     snapshot?: CommonApi.UpdateCommunityRequestSnapshot;
     transactionHash?: string;

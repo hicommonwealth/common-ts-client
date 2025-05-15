@@ -11,7 +11,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Community {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
-        apiKey?: core.Supplier<string | undefined>;
+        apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
@@ -31,7 +31,7 @@ export declare namespace Community {
 }
 
 export class Community {
-    constructor(protected readonly _options: Community.Options = {}) {}
+    constructor(protected readonly _options: Community.Options) {}
 
     /**
      * @param {CommonApi.GetCommunitiesRequest} request
@@ -52,9 +52,6 @@ export class Community {
             relevance_by: relevanceBy,
             network,
             base,
-            eth_chain_id: ethChainId,
-            cosmos_chain_id: cosmosChainId,
-            community_type: communityType,
             tag_ids: tagIds,
             include_node_info: includeNodeInfo,
             stake_enabled: stakeEnabled,
@@ -88,18 +85,6 @@ export class Community {
 
         if (base != null) {
             _queryParams["base"] = base;
-        }
-
-        if (ethChainId != null) {
-            _queryParams["eth_chain_id"] = ethChainId.toString();
-        }
-
-        if (cosmosChainId != null) {
-            _queryParams["cosmos_chain_id"] = cosmosChainId;
-        }
-
-        if (communityType != null) {
-            _queryParams["community_type"] = communityType;
         }
 
         if (tagIds != null) {
@@ -139,8 +124,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -212,8 +197,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -333,8 +318,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -386,19 +371,11 @@ export class Community {
         request: CommonApi.GetTopicsRequest,
         requestOptions?: Community.RequestOptions,
     ): Promise<CommonApi.GetTopicsResponseItem[]> {
-        const {
-            community_id: communityId,
-            with_contest_managers: withContestManagers,
-            with_archived_topics: withArchivedTopics,
-        } = request;
+        const { community_id: communityId, with_contest_managers: withContestManagers } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["community_id"] = communityId;
         if (withContestManagers != null) {
             _queryParams["with_contest_managers"] = withContestManagers.toString();
-        }
-
-        if (withArchivedTopics != null) {
-            _queryParams["with_archived_topics"] = withArchivedTopics.toString();
         }
 
         const _response = await core.fetcher({
@@ -414,8 +391,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -455,216 +432,6 @@ export class Community {
     }
 
     /**
-     * @param {CommonApi.CreateContestMetadataRequest} request
-     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.community.createContestMetadata({
-     *         community_id: "community_id",
-     *         contest_address: "contest_address",
-     *         name: "name",
-     *         payout_structure: [1],
-     *         interval: 1
-     *     })
-     */
-    public async createContestMetadata(
-        request: CommonApi.CreateContestMetadataRequest,
-        requestOptions?: Community.RequestOptions,
-    ): Promise<CommonApi.CreateContestMetadataResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "CreateContestManagerMetadata",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.CreateContestMetadataResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError(
-                    "Timeout exceeded when calling POST /CreateContestManagerMetadata.",
-                );
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.UpdateContestMetadataRequest} request
-     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.community.updateContestMetadata({
-     *         community_id: "community_id",
-     *         contest_address: "contest_address"
-     *     })
-     */
-    public async updateContestMetadata(
-        request: CommonApi.UpdateContestMetadataRequest,
-        requestOptions?: Community.RequestOptions,
-    ): Promise<CommonApi.UpdateContestMetadataResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "UpdateContestManagerMetadata",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.UpdateContestMetadataResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError(
-                    "Timeout exceeded when calling POST /UpdateContestManagerMetadata.",
-                );
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.CancelContestMetadataRequest} request
-     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.community.cancelContestMetadata({
-     *         community_id: "community_id",
-     *         contest_address: "contest_address"
-     *     })
-     */
-    public async cancelContestMetadata(
-        request: CommonApi.CancelContestMetadataRequest,
-        requestOptions?: Community.RequestOptions,
-    ): Promise<CommonApi.CancelContestMetadataResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "CancelContestManagerMetadata",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.CancelContestMetadataResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError(
-                    "Timeout exceeded when calling POST /CancelContestManagerMetadata.",
-                );
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
      * @param {CommonApi.CreateCommunityRequest} request
      * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -694,8 +461,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -740,7 +507,7 @@ export class Community {
      *
      * @example
      *     await client.community.updateCommunity({
-     *         community_id: "community_id"
+     *         id: "id"
      *     })
      */
     public async updateCommunity(
@@ -760,8 +527,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -826,8 +593,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -893,8 +660,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -934,24 +701,23 @@ export class Community {
     }
 
     /**
-     * @param {CommonApi.ToggleArchiveTopicRequest} request
+     * @param {CommonApi.DeleteTopicRequest} request
      * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.community.toggleArchiveTopic({
+     *     await client.community.deleteTopic({
      *         community_id: "community_id",
-     *         topic_id: 1,
-     *         archive: true
+     *         topic_id: 1
      *     })
      */
-    public async toggleArchiveTopic(
-        request: CommonApi.ToggleArchiveTopicRequest,
+    public async deleteTopic(
+        request: CommonApi.DeleteTopicRequest,
         requestOptions?: Community.RequestOptions,
-    ): Promise<CommonApi.ToggleArchiveTopicResponse> {
+    ): Promise<CommonApi.DeleteTopicResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "ToggleArchiveTopic",
+                "DeleteTopic",
             ),
             method: "POST",
             headers: {
@@ -961,8 +727,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -976,7 +742,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.ToggleArchiveTopicResponse;
+            return _response.body as CommonApi.DeleteTopicResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -993,7 +759,7 @@ export class Community {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /ToggleArchiveTopic.");
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteTopic.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -1031,8 +797,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1098,8 +864,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1165,8 +931,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1231,8 +997,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1298,8 +1064,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

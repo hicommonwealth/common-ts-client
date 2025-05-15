@@ -23,12 +23,12 @@ Instantiate and use the client with the following:
 import { CommonApiClient } from "@commonxyz/api-client";
 
 const client = new CommonApiClient({ apiKey: "YOUR_API_KEY", address: "YOUR_ADDRESS" });
-await client.community.createContestMetadata({
-    community_id: "community_id",
-    contest_address: "contest_address",
+await client.community.createCommunity({
+    id: "id",
     name: "name",
-    payout_structure: [1],
-    interval: 1,
+    chain_node_id: 1,
+    base: "cosmos",
+    default_symbol: "default_symbol",
 });
 ```
 
@@ -54,7 +54,7 @@ will be thrown.
 import { CommonApiError } from "@commonxyz/api-client";
 
 try {
-    await client.community.createContestMetadata(...);
+    await client.community.createCommunity(...);
 } catch (err) {
     if (err instanceof CommonApiError) {
         console.log(err.statusCode);
@@ -71,7 +71,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -93,7 +93,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -103,7 +103,7 @@ const response = await client.community.createContestMetadata(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -114,7 +114,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request

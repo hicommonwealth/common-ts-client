@@ -5,12 +5,12 @@
 import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItem {
-    id: number;
+    id?: number;
     address_id: number;
     title: string;
     kind: string;
     stage?: string;
-    body: string;
+    body?: string;
     url?: string;
     topic_id?: number;
     pinned?: boolean;
@@ -22,31 +22,27 @@ export interface GetThreadsResponseThreadsItem {
     has_poll?: boolean;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
-    created_at?: CommonApi.GetThreadsResponseThreadsItemCreatedAt;
-    updated_at?: CommonApi.GetThreadsResponseThreadsItemUpdatedAt;
-    last_edited?: CommonApi.GetThreadsResponseThreadsItemLastEdited;
-    deleted_at?: CommonApi.GetThreadsResponseThreadsItemDeletedAt;
-    last_commented_on?: CommonApi.GetThreadsResponseThreadsItemLastCommentedOn;
-    marked_as_spam_at?: CommonApi.GetThreadsResponseThreadsItemMarkedAsSpamAt;
-    archived_at?: CommonApi.GetThreadsResponseThreadsItemArchivedAt;
-    locked_at?: CommonApi.GetThreadsResponseThreadsItemLockedAt;
+    created_at?: string;
+    updated_at?: string;
+    last_edited?: string;
+    deleted_at?: string;
+    last_commented_on?: string;
+    marked_as_spam_at?: string;
+    archived_at?: string;
+    locked_at?: string;
     discord_meta?: CommonApi.GetThreadsResponseThreadsItemDiscordMeta;
     reaction_count?: number;
     reaction_weights_sum?: string;
     comment_count?: number;
-    activity_rank_date?: CommonApi.GetThreadsResponseThreadsItemActivityRankDate;
+    activity_rank_date?: string;
     created_by?: string;
     profile_name?: string;
-    search?: CommonApi.GetThreadsResponseThreadsItemSearch;
+    search: CommonApi.GetThreadsResponseThreadsItemSearch;
     Address?: CommonApi.GetThreadsResponseThreadsItemAddress;
     Reaction?: CommonApi.GetThreadsResponseThreadsItemReaction;
     topic?: CommonApi.GetThreadsResponseThreadsItemTopic;
     collaborators?: CommonApi.GetThreadsResponseThreadsItemCollaboratorsItem[];
     reactions?: CommonApi.GetThreadsResponseThreadsItemReactionsItem[];
     ThreadVersionHistories?: CommonApi.GetThreadsResponseThreadsItemThreadVersionHistoriesItem[];
-    associatedContests?: CommonApi.GetThreadsResponseThreadsItemAssociatedContestsItem[];
-    ContestActions?: CommonApi.GetThreadsResponseThreadsItemContestActionsItem[];
-    Comments?: CommonApi.GetThreadsResponseThreadsItemCommentsItem[];
-    /** total number of thread results for the query */
-    total_num_thread_results?: number;
+    associatedReactions: CommonApi.GetThreadsResponseThreadsItemAssociatedReactionsItem[];
 }

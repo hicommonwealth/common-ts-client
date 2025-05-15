@@ -10,9 +10,9 @@ export interface CreateThreadResponse {
     title: string;
     kind: string;
     stage?: string;
-    body: string;
+    body?: string;
     url?: string;
-    topic_id: number;
+    topic_id?: number;
     pinned?: boolean;
     community_id: string;
     view_count?: number;

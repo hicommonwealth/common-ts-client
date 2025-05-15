@@ -19,9 +19,6 @@ export interface GetCommunitiesRequest {
     relevance_by?: CommonApi.GetCommunitiesRequestRelevanceBy;
     network?: CommonApi.GetCommunitiesRequestNetwork;
     base?: CommonApi.GetCommunitiesRequestBase;
-    eth_chain_id?: number;
-    cosmos_chain_id?: string;
-    community_type?: CommonApi.GetCommunitiesRequestCommunityType;
     tag_ids?: number | number[];
     include_node_info?: boolean;
     stake_enabled?: boolean;

@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemReactionAddressUser {
-    id: number;
+    id?: number;
     email?: string;
     isAdmin?: boolean;
     disableRichText?: boolean;
@@ -16,8 +16,8 @@ export interface GetCommentsResponseResultsItemReactionAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetCommentsResponseResultsItemReactionAddressUserProfile;
     xp_points?: number;
-    created_at?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserCreatedAt;
-    updated_at?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserUpdatedAt;
     ProfileTags?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserProfileTagsItem[];
-    unsubscribe_uuid?: string;
+    ApiKey?: CommonApi.GetCommentsResponseResultsItemReactionAddressUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }

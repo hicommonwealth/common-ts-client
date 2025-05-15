@@ -2,7 +2,7 @@
 
 ## User
 
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getGlobalActivity</a>({ ...params }) -> CommonApi.GetGlobalActivityResponse</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getGlobalActivity</a>({ ...params }) -> CommonApi.GetGlobalActivityResponseItem[]</code></summary>
 <dl>
 <dd>
 
@@ -50,7 +50,7 @@ await client.user.getGlobalActivity();
 </dl>
 </details>
 
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getUserActivity</a>({ ...params }) -> CommonApi.GetUserActivityResponse</code></summary>
+<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getUserActivity</a>({ ...params }) -> CommonApi.GetUserActivityResponseItem[]</code></summary>
 <dl>
 <dd>
 
@@ -83,46 +83,6 @@ await client.user.getUserActivity();
 
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `User.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.user.<a href="/src/api/resources/user/client/Client.ts">getUser</a>() -> CommonApi.GetUserResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.user.getUser();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
 
 <dl>
 <dd>
@@ -378,162 +338,6 @@ await client.community.getTopics({
 </dl>
 </details>
 
-<details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">createContestMetadata</a>({ ...params }) -> CommonApi.CreateContestMetadataResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.community.createContestMetadata({
-    community_id: "community_id",
-    contest_address: "contest_address",
-    name: "name",
-    payout_structure: [1],
-    interval: 1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.CreateContestMetadataRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Community.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">updateContestMetadata</a>({ ...params }) -> CommonApi.UpdateContestMetadataResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.community.updateContestMetadata({
-    community_id: "community_id",
-    contest_address: "contest_address",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.UpdateContestMetadataRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Community.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">cancelContestMetadata</a>({ ...params }) -> CommonApi.CancelContestMetadataResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.community.cancelContestMetadata({
-    community_id: "community_id",
-    contest_address: "contest_address",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.CancelContestMetadataRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Community.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">createCommunity</a>({ ...params }) -> CommonApi.CreateCommunityResponse</code></summary>
 <dl>
 <dd>
@@ -602,7 +406,7 @@ await client.community.createCommunity({
 
 ```typescript
 await client.community.updateCommunity({
-    community_id: "community_id",
+    id: "id",
 });
 ```
 
@@ -739,7 +543,7 @@ await client.community.updateTopic({
 </dl>
 </details>
 
-<details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">toggleArchiveTopic</a>({ ...params }) -> CommonApi.ToggleArchiveTopicResponse</code></summary>
+<details><summary><code>client.community.<a href="/src/api/resources/community/client/Client.ts">deleteTopic</a>({ ...params }) -> CommonApi.DeleteTopicResponse</code></summary>
 <dl>
 <dd>
 
@@ -752,10 +556,9 @@ await client.community.updateTopic({
 <dd>
 
 ```typescript
-await client.community.toggleArchiveTopic({
+await client.community.deleteTopic({
     community_id: "community_id",
     topic_id: 1,
-    archive: true,
 });
 ```
 
@@ -772,7 +575,7 @@ await client.community.toggleArchiveTopic({
 <dl>
 <dd>
 
-**request:** `CommonApi.ToggleArchiveTopicRequest`
+**request:** `CommonApi.DeleteTopicRequest`
 
 </dd>
 </dl>
@@ -1115,7 +918,7 @@ await client.comment.getComments({
 ```typescript
 await client.comment.createComment({
     thread_id: 1,
-    body: "body",
+    text: "text",
 });
 ```
 
@@ -1166,7 +969,7 @@ await client.comment.createComment({
 ```typescript
 await client.comment.updateComment({
     comment_id: 1,
-    body: "body",
+    text: "text",
 });
 ```
 
@@ -1234,57 +1037,6 @@ await client.comment.deleteComment({
 <dd>
 
 **request:** `CommonApi.DeleteCommentRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Comment.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.comment.<a href="/src/api/resources/comment/client/Client.ts">toggleCommentSpam</a>({ ...params }) -> CommonApi.ToggleCommentSpamResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.comment.toggleCommentSpam({
-    comment_id: 1,
-    spam: true,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.ToggleCommentSpamRequest`
 
 </dd>
 </dl>
@@ -1511,56 +1263,6 @@ await client.thread.deleteThread({
 </dl>
 </details>
 
-## Contest
-
-<details><summary><code>client.contest.<a href="/src/api/resources/contest/client/Client.ts">getAllContests</a>({ ...params }) -> CommonApi.GetAllContestsResponseItem[]</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.contest.getAllContests();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.GetAllContestsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Contest.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## Reaction
 
 <details><summary><code>client.reaction.<a href="/src/api/resources/reaction/client/Client.ts">createThreadReaction</a>({ ...params }) -> CommonApi.CreateThreadReactionResponse</code></summary>
@@ -1704,159 +1406,6 @@ await client.reaction.deleteReaction({
 <dd>
 
 **requestOptions:** `Reaction.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Token
-
-<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">createToken</a>({ ...params }) -> CommonApi.CreateTokenResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.token.createToken({
-    community_id: "community_id",
-    transaction_hash: "transaction_hash",
-    chain_node_id: 1.1,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.CreateTokenRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Token.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">createTrade</a>({ ...params }) -> CommonApi.CreateTradeResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.token.createTrade({
-    eth_chain_id: 1.1,
-    transaction_hash: "transaction_hash",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.CreateTradeRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Token.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.token.<a href="/src/api/resources/token/client/Client.ts">getTokens</a>({ ...params }) -> CommonApi.GetTokensResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.token.getTokens();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CommonApi.GetTokensRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Token.RequestOptions`
 
 </dd>
 </dl>

@@ -8,13 +8,13 @@ import * as CommonApi from "../../../../index";
  * @example
  *     {
  *         thread_id: 1,
- *         body: "body"
+ *         text: "text"
  *     }
  */
 export interface CreateCommentRequest {
     thread_id: number;
     thread_msg_id?: string;
-    body: string;
+    text: string;
     parent_id?: number;
     parent_msg_id?: string;
     canvas_signed_data?: string;

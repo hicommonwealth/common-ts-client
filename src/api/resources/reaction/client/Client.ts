@@ -11,7 +11,7 @@ import * as errors from "../../../../errors/index";
 export declare namespace Reaction {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
-        apiKey?: core.Supplier<string | undefined>;
+        apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
     }
@@ -31,7 +31,7 @@ export declare namespace Reaction {
 }
 
 export class Reaction {
-    constructor(protected readonly _options: Reaction.Options = {}) {}
+    constructor(protected readonly _options: Reaction.Options) {}
 
     /**
      * @param {CommonApi.CreateThreadReactionRequest} request
@@ -59,8 +59,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -125,8 +125,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -192,8 +192,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.2.2",
-                "User-Agent": "@commonxyz/api-client/2.2.2",
+                "X-Fern-SDK-Version": "2.2.3",
+                "User-Agent": "@commonxyz/api-client/2.2.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

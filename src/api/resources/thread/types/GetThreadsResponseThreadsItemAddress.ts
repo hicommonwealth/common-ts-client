@@ -5,14 +5,14 @@
 import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemAddress {
-    id: number;
+    id?: number;
     address: string;
     community_id: string;
     user_id?: number;
     verification_token?: string;
-    verification_token_expires?: CommonApi.GetThreadsResponseThreadsItemAddressVerificationTokenExpires;
-    verified?: CommonApi.GetThreadsResponseThreadsItemAddressVerified;
-    last_active?: CommonApi.GetThreadsResponseThreadsItemAddressLastActive;
+    verification_token_expires?: string;
+    verified?: string;
+    last_active?: string;
     ghost_address?: boolean;
     wallet_id?: CommonApi.GetThreadsResponseThreadsItemAddressWalletId;
     block_info?: string;
@@ -21,6 +21,6 @@ export interface GetThreadsResponseThreadsItemAddress {
     is_banned?: boolean;
     hex?: string;
     User?: CommonApi.GetThreadsResponseThreadsItemAddressUser;
-    created_at?: CommonApi.GetThreadsResponseThreadsItemAddressCreatedAt;
-    updated_at?: CommonApi.GetThreadsResponseThreadsItemAddressUpdatedAt;
+    created_at?: string;
+    updated_at?: string;
 }

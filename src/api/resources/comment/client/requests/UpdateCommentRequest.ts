@@ -6,12 +6,10 @@
  * @example
  *     {
  *         comment_id: 1,
- *         body: "body"
+ *         text: "text"
  *     }
  */
 export interface UpdateCommentRequest {
     comment_id: number;
-    body: string;
-    canvas_signed_data?: string;
-    canvas_msg_id?: string;
+    text: string;
 }

@@ -8,10 +8,9 @@ export interface UpdateCommentResponse {
     id?: number;
     thread_id: number;
     address_id: number;
-    body: string;
-    parent_id?: number;
+    text: string;
+    parent_id?: string;
     content_url?: string;
-    comment_level: number;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
     created_by?: string;
@@ -20,7 +19,6 @@ export interface UpdateCommentResponse {
     deleted_at?: string;
     marked_as_spam_at?: string;
     discord_meta?: CommonApi.UpdateCommentResponseDiscordMeta;
-    reply_count: number;
     reaction_count: number;
     reaction_weights_sum?: string;
     search: CommonApi.UpdateCommentResponseSearch;

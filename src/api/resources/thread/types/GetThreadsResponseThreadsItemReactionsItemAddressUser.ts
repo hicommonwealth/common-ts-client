@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponseThreadsItemReactionsItemAddressUser {
-    id: number;
+    id?: number;
     email?: string;
     isAdmin?: boolean;
     disableRichText?: boolean;
@@ -16,8 +16,8 @@ export interface GetThreadsResponseThreadsItemReactionsItemAddressUser {
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfile;
     xp_points?: number;
-    created_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserCreatedAt;
-    updated_at?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserUpdatedAt;
     ProfileTags?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserProfileTagsItem[];
-    unsubscribe_uuid?: string;
+    ApiKey?: CommonApi.GetThreadsResponseThreadsItemReactionsItemAddressUserApiKey;
+    created_at?: string;
+    updated_at?: string;
 }
