@@ -1,6 +1,6 @@
 {
     "name": "@commonxyz/api-client",
-    "version": "2.2.3",
+    "version": "2.3.0",
     "private": false,
     "repository": "https://github.com/hicommonwealth/common-ts-client",
     "license": "MIT",
