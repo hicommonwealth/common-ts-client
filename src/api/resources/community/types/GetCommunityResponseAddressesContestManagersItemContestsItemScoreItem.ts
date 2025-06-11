@@ -5,7 +5,7 @@
 export interface GetCommunityResponseAddressesContestManagersItemContestsItemScoreItem {
     creator_address: string;
     content_id: string;
-    votes: number;
+    votes: string;
     prize: string;
     tickerPrize?: number;
 }

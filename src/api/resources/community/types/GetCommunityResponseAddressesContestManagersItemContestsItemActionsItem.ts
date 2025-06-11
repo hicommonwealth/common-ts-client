@@ -23,7 +23,11 @@ export interface GetCommunityResponseAddressesContestManagersItemContestsItemAct
     thread_id?: number;
     thread_title?: string;
     /** Voting power of address when action was recorded */
-    voting_power: number;
+    voting_power: string;
+    /** Calculated  weight of the vote when action was recorded */
+    calculated_voting_weight?: string;
+    /** Date-time when content was deleted */
+    cast_deleted_at?: string;
     /** Date-time when action was recorded */
     created_at: string;
 }

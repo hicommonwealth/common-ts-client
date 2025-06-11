@@ -10,9 +10,9 @@ export interface UpdateThreadResponse {
     title: string;
     kind: string;
     stage?: string;
-    body?: string;
+    body: string;
     url?: string;
-    topic_id?: number;
+    topic_id: number;
     pinned?: boolean;
     community_id: string;
     view_count?: number;
@@ -31,17 +31,21 @@ export interface UpdateThreadResponse {
     archived_at?: string;
     locked_at?: string;
     discord_meta?: CommonApi.UpdateThreadResponseDiscordMeta;
+    user_tier_at_creation?: number;
     reaction_count?: number;
     reaction_weights_sum?: string;
     comment_count?: number;
     activity_rank_date?: string;
     created_by?: string;
     profile_name?: string;
-    search: CommonApi.UpdateThreadResponseSearch;
+    search?: CommonApi.UpdateThreadResponseSearch;
+    is_linking_token?: boolean;
+    launchpad_token_address?: string;
     Address?: CommonApi.UpdateThreadResponseAddress;
     Reaction?: CommonApi.UpdateThreadResponseReaction;
     topic?: CommonApi.UpdateThreadResponseTopic;
     collaborators?: CommonApi.UpdateThreadResponseCollaboratorsItem[];
     reactions?: CommonApi.UpdateThreadResponseReactionsItem[];
     ThreadVersionHistories?: CommonApi.UpdateThreadResponseThreadVersionHistoriesItem[];
+    spam_toggled: boolean;
 }

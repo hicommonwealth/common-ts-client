@@ -4,6 +4,7 @@
 
 export type GetCommentsResponseResultsItemReactionAddressWalletId =
     | "magic"
+    | "privy"
     | "polkadot"
     | "metamask"
     | "walletconnect"
@@ -15,9 +16,15 @@ export type GetCommentsResponseResultsItemReactionAddressWalletId =
     | "terra-walletconnect"
     | "cosm-metamask"
     | "phantom"
-    | "coinbase";
+    | "backpack"
+    | "solflare"
+    | "coinbase"
+    | "farcaster"
+    | "okx"
+    | "sui-wallet";
 export const GetCommentsResponseResultsItemReactionAddressWalletId = {
     Magic: "magic",
+    Privy: "privy",
     Polkadot: "polkadot",
     Metamask: "metamask",
     Walletconnect: "walletconnect",
@@ -29,5 +36,10 @@ export const GetCommentsResponseResultsItemReactionAddressWalletId = {
     TerraWalletconnect: "terra-walletconnect",
     CosmMetamask: "cosm-metamask",
     Phantom: "phantom",
+    Backpack: "backpack",
+    Solflare: "solflare",
     Coinbase: "coinbase",
+    Farcaster: "farcaster",
+    Okx: "okx",
+    SuiWallet: "sui-wallet",
 } as const;

@@ -4,6 +4,7 @@
 
 export interface DeleteThreadResponse {
     thread_id: number;
+    community_id: string;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
 }

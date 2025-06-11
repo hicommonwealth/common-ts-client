@@ -7,4 +7,5 @@ export interface UpdateCommunityRequestGroupsItemMetadata {
     description: string;
     required_requirements?: number;
     membership_ttl?: number;
+    groupImageUrl?: string;
 }

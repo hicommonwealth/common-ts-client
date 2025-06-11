@@ -11,6 +11,8 @@ import * as errors from "../../../../errors/index";
 export declare namespace Community {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
@@ -52,6 +54,9 @@ export class Community {
             relevance_by: relevanceBy,
             network,
             base,
+            eth_chain_id: ethChainId,
+            cosmos_chain_id: cosmosChainId,
+            community_type: communityType,
             tag_ids: tagIds,
             include_node_info: includeNodeInfo,
             stake_enabled: stakeEnabled,
@@ -87,6 +92,18 @@ export class Community {
             _queryParams["base"] = base;
         }
 
+        if (ethChainId != null) {
+            _queryParams["eth_chain_id"] = ethChainId.toString();
+        }
+
+        if (cosmosChainId != null) {
+            _queryParams["cosmos_chain_id"] = cosmosChainId;
+        }
+
+        if (communityType != null) {
+            _queryParams["community_type"] = communityType;
+        }
+
         if (tagIds != null) {
             if (Array.isArray(tagIds)) {
                 _queryParams["tag_ids"] = tagIds.map((item) => item.toString());
@@ -113,7 +130,9 @@ export class Community {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetCommunities",
             ),
             method: "GET",
@@ -124,8 +143,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -177,16 +196,22 @@ export class Community {
         request: CommonApi.GetCommunityRequest,
         requestOptions?: Community.RequestOptions,
     ): Promise<CommonApi.GetCommunityResponse> {
-        const { id, include_node_info: includeNodeInfo } = request;
+        const { id, include_node_info: includeNodeInfo, include_groups: includeGroups } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["id"] = id;
         if (includeNodeInfo != null) {
             _queryParams["include_node_info"] = includeNodeInfo.toString();
         }
 
+        if (includeGroups != null) {
+            _queryParams["include_groups"] = includeGroups.toString();
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetCommunity",
             ),
             method: "GET",
@@ -197,8 +222,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -262,6 +287,7 @@ export class Community {
             include_group_ids: includeGroupIds,
             include_stake_balances: includeStakeBalances,
             allowedAddresses,
+            searchByNameAndAddress,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
@@ -305,9 +331,15 @@ export class Community {
             _queryParams["allowedAddresses"] = allowedAddresses;
         }
 
+        if (searchByNameAndAddress != null) {
+            _queryParams["searchByNameAndAddress"] = searchByNameAndAddress;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetMembers",
             ),
             method: "GET",
@@ -318,8 +350,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -371,16 +403,26 @@ export class Community {
         request: CommonApi.GetTopicsRequest,
         requestOptions?: Community.RequestOptions,
     ): Promise<CommonApi.GetTopicsResponseItem[]> {
-        const { community_id: communityId, with_contest_managers: withContestManagers } = request;
+        const {
+            community_id: communityId,
+            with_contest_managers: withContestManagers,
+            with_archived_topics: withArchivedTopics,
+        } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         _queryParams["community_id"] = communityId;
         if (withContestManagers != null) {
             _queryParams["with_contest_managers"] = withContestManagers.toString();
         }
 
+        if (withArchivedTopics != null) {
+            _queryParams["with_archived_topics"] = withArchivedTopics.toString();
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetTopics",
             ),
             method: "GET",
@@ -391,8 +433,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -432,6 +474,293 @@ export class Community {
     }
 
     /**
+     * @param {CommonApi.CreateContestMetadataRequest} request
+     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.community.createContestMetadata({
+     *         community_id: "community_id",
+     *         contest_address: "contest_address",
+     *         name: "name",
+     *         payout_structure: [1],
+     *         interval: 1
+     *     })
+     */
+    public async createContestMetadata(
+        request: CommonApi.CreateContestMetadataRequest,
+        requestOptions?: Community.RequestOptions,
+    ): Promise<CommonApi.CreateContestMetadataResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "CreateContestManagerMetadata",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.CreateContestMetadataResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError(
+                    "Timeout exceeded when calling POST /CreateContestManagerMetadata.",
+                );
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.UpdateContestMetadataRequest} request
+     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.community.updateContestMetadata({
+     *         community_id: "community_id",
+     *         contest_address: "contest_address"
+     *     })
+     */
+    public async updateContestMetadata(
+        request: CommonApi.UpdateContestMetadataRequest,
+        requestOptions?: Community.RequestOptions,
+    ): Promise<CommonApi.UpdateContestMetadataResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "UpdateContestManagerMetadata",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.UpdateContestMetadataResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError(
+                    "Timeout exceeded when calling POST /UpdateContestManagerMetadata.",
+                );
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.CancelContestMetadataRequest} request
+     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.community.cancelContestMetadata({
+     *         community_id: "community_id",
+     *         contest_address: "contest_address"
+     *     })
+     */
+    public async cancelContestMetadata(
+        request: CommonApi.CancelContestMetadataRequest,
+        requestOptions?: Community.RequestOptions,
+    ): Promise<CommonApi.CancelContestMetadataResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "CancelContestManagerMetadata",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.CancelContestMetadataResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError(
+                    "Timeout exceeded when calling POST /CancelContestManagerMetadata.",
+                );
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.DeleteContestMetadataRequest} request
+     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.community.deleteContestMetadata({
+     *         community_id: "community_id",
+     *         contest_address: "contest_address"
+     *     })
+     */
+    public async deleteContestMetadata(
+        request: CommonApi.DeleteContestMetadataRequest,
+        requestOptions?: Community.RequestOptions,
+    ): Promise<CommonApi.DeleteContestMetadataResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "DeleteContestManagerMetadata",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.DeleteContestMetadataResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError(
+                    "Timeout exceeded when calling POST /DeleteContestManagerMetadata.",
+                );
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * @param {CommonApi.CreateCommunityRequest} request
      * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -450,7 +779,9 @@ export class Community {
     ): Promise<CommonApi.CreateCommunityResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateCommunity",
             ),
             method: "POST",
@@ -461,8 +792,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -507,7 +838,7 @@ export class Community {
      *
      * @example
      *     await client.community.updateCommunity({
-     *         id: "id"
+     *         community_id: "community_id"
      *     })
      */
     public async updateCommunity(
@@ -516,7 +847,9 @@ export class Community {
     ): Promise<CommonApi.UpdateCommunityResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "UpdateCommunity",
             ),
             method: "POST",
@@ -527,8 +860,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -582,7 +915,9 @@ export class Community {
     ): Promise<CommonApi.CreateTopicResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateTopic",
             ),
             method: "POST",
@@ -593,8 +928,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -649,7 +984,9 @@ export class Community {
     ): Promise<CommonApi.UpdateTopicResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "UpdateTopic",
             ),
             method: "POST",
@@ -660,8 +997,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -701,23 +1038,26 @@ export class Community {
     }
 
     /**
-     * @param {CommonApi.DeleteTopicRequest} request
+     * @param {CommonApi.ToggleArchiveTopicRequest} request
      * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.community.deleteTopic({
+     *     await client.community.toggleArchiveTopic({
      *         community_id: "community_id",
-     *         topic_id: 1
+     *         topic_id: 1,
+     *         archive: true
      *     })
      */
-    public async deleteTopic(
-        request: CommonApi.DeleteTopicRequest,
+    public async toggleArchiveTopic(
+        request: CommonApi.ToggleArchiveTopicRequest,
         requestOptions?: Community.RequestOptions,
-    ): Promise<CommonApi.DeleteTopicResponse> {
+    ): Promise<CommonApi.ToggleArchiveTopicResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
-                "DeleteTopic",
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "ToggleArchiveTopic",
             ),
             method: "POST",
             headers: {
@@ -727,8 +1067,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -742,7 +1082,7 @@ export class Community {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.DeleteTopicResponse;
+            return _response.body as CommonApi.ToggleArchiveTopicResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -759,7 +1099,7 @@ export class Community {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteTopic.");
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /ToggleArchiveTopic.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
@@ -786,7 +1126,9 @@ export class Community {
     ): Promise<CommonApi.CreateGroupResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateGroup",
             ),
             method: "POST",
@@ -797,8 +1139,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -853,7 +1195,9 @@ export class Community {
     ): Promise<CommonApi.UpdateGroupResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "UpdateGroup",
             ),
             method: "POST",
@@ -864,8 +1208,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -920,7 +1264,9 @@ export class Community {
     ): Promise<CommonApi.DeleteGroupResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "DeleteGroup",
             ),
             method: "POST",
@@ -931,8 +1277,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -986,7 +1332,9 @@ export class Community {
     ): Promise<CommonApi.JoinCommunityResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "JoinCommunity",
             ),
             method: "POST",
@@ -997,8 +1345,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1053,7 +1401,9 @@ export class Community {
     ): Promise<CommonApi.BanAddressResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "BanAddress",
             ),
             method: "POST",
@@ -1064,8 +1414,8 @@ export class Community {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -1097,6 +1447,76 @@ export class Community {
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /BanAddress.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.UpdateRoleRequest} request
+     * @param {Community.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.community.updateRole({
+     *         community_id: "community_id",
+     *         address: "address",
+     *         role: "admin"
+     *     })
+     */
+    public async updateRole(
+        request: CommonApi.UpdateRoleRequest,
+        requestOptions?: Community.RequestOptions,
+    ): Promise<CommonApi.UpdateRoleResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "UpdateRole",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.UpdateRoleResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /UpdateRole.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

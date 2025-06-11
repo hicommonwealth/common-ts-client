@@ -16,7 +16,8 @@ export type GetCommunitiesRequestNetwork =
     | "stargaze"
     | "evmos"
     | "kava"
-    | "kyve";
+    | "kyve"
+    | "sui";
 export const GetCommunitiesRequestNetwork = {
     Ethereum: "ethereum",
     Erc20: "erc20",
@@ -32,4 +33,5 @@ export const GetCommunitiesRequestNetwork = {
     Evmos: "evmos",
     Kava: "kava",
     Kyve: "kyve",
+    Sui: "sui",
 } as const;

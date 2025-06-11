@@ -6,9 +6,15 @@ import * as CommonApi from "../../../index";
 
 export interface GetMembersResponseResultsItem {
     user_id: number;
+    tier: number;
     profile_name?: string;
     avatar_url?: string;
     addresses: CommonApi.GetMembersResponseResultsItemAddressesItem[];
     group_ids: number[];
     last_active?: unknown;
+    referred_by?: CommonApi.GetMembersResponseResultsItemReferredBy;
+    referral_count?: number;
+    referral_eth_earnings: number;
+    xp_points?: number;
+    xp_referrer_points?: number;
 }

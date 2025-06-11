@@ -8,4 +8,7 @@ export type CreateGroupRequestRequirementsItemThresholdDataSource =
     | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceTokenId
     | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceOne
     | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceTokenSymbol
-    | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceThree;
+    | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceThree
+    | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceContractAddress
+    | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceObjectId
+    | CommonApi.CreateGroupRequestRequirementsItemThresholdDataSourceCoinType;

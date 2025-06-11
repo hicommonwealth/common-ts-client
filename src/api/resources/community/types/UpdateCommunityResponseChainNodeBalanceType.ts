@@ -8,7 +8,8 @@ export type UpdateCommunityResponseChainNodeBalanceType =
     | "solana"
     | "cosmos"
     | "near"
-    | "substrate";
+    | "substrate"
+    | "sui";
 export const UpdateCommunityResponseChainNodeBalanceType = {
     Terra: "terra",
     Ethereum: "ethereum",
@@ -16,4 +17,5 @@ export const UpdateCommunityResponseChainNodeBalanceType = {
     Cosmos: "cosmos",
     Near: "near",
     Substrate: "substrate",
+    Sui: "sui",
 } as const;

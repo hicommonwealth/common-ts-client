@@ -10,6 +10,7 @@ export interface GetCommunitiesResponseResultsItemGroupsItem {
     metadata: CommonApi.GetCommunitiesResponseResultsItemGroupsItemMetadata;
     requirements: CommonApi.GetCommunitiesResponseResultsItemGroupsItemRequirementsItem[];
     is_system_managed?: boolean;
+    GroupGatedActions?: CommonApi.GetCommunitiesResponseResultsItemGroupsItemGroupGatedActionsItem[];
     created_at?: string;
     updated_at?: string;
 }

@@ -8,16 +8,17 @@ import * as CommonApi from "../../../../index";
  * @example
  *     {
  *         thread_id: 1,
- *         text: "text"
+ *         body: "body"
  *     }
  */
 export interface CreateCommentRequest {
     thread_id: number;
     thread_msg_id?: string;
-    text: string;
+    body: string;
     parent_id?: number;
     parent_msg_id?: string;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
     discord_meta?: CommonApi.CreateCommentRequestDiscordMeta;
+    turnstile_token?: string;
 }

@@ -10,6 +10,7 @@ export interface UpdateCommunityResponseGroupsItem {
     metadata: CommonApi.UpdateCommunityResponseGroupsItemMetadata;
     requirements: CommonApi.UpdateCommunityResponseGroupsItemRequirementsItem[];
     is_system_managed?: boolean;
+    GroupGatedActions?: CommonApi.UpdateCommunityResponseGroupsItemGroupGatedActionsItem[];
     created_at?: string;
     updated_at?: string;
 }

@@ -19,9 +19,9 @@ export interface CreateGroupResponseChainNode {
     cosmos_chain_id?: string;
     cosmos_gov_version?: CommonApi.CreateGroupResponseChainNodeCosmosGovVersion;
     health?: CommonApi.CreateGroupResponseChainNodeHealth;
-    contracts?: CommonApi.CreateGroupResponseChainNodeContractsItem[];
     block_explorer?: string;
     max_ce_block_range?: number;
+    alchemy_metadata?: CommonApi.CreateGroupResponseChainNodeAlchemyMetadata;
     created_at?: string;
     updated_at?: string;
 }

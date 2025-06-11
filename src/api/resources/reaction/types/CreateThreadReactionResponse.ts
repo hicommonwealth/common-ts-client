@@ -8,7 +8,7 @@ export interface CreateThreadReactionResponse {
     id?: number;
     address_id: number;
     reaction: "like";
-    thread_id?: number;
+    thread_id: number;
     comment_id?: number;
     proposal_id?: number;
     calculated_voting_weight?: string;
@@ -16,6 +16,7 @@ export interface CreateThreadReactionResponse {
     canvas_msg_id?: string;
     created_at?: string;
     updated_at?: string;
+    user_tier_at_creation?: number;
     Address?: CommonApi.CreateThreadReactionResponseAddress;
     community_id: string;
 }

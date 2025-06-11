@@ -11,6 +11,8 @@ import * as errors from "../../../../errors/index";
 export declare namespace Reaction {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
@@ -48,7 +50,9 @@ export class Reaction {
     ): Promise<CommonApi.CreateThreadReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateThreadReaction",
             ),
             method: "POST",
@@ -59,8 +63,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -114,7 +118,9 @@ export class Reaction {
     ): Promise<CommonApi.CreateCommentReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateCommentReaction",
             ),
             method: "POST",
@@ -125,8 +131,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -181,7 +187,9 @@ export class Reaction {
     ): Promise<CommonApi.DeleteReactionResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "DeleteReaction",
             ),
             method: "POST",
@@ -192,8 +200,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),

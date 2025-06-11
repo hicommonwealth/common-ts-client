@@ -15,17 +15,22 @@ export interface GetCommunitiesResponseResultsItemTopicsItem {
     default_offchain_template?: string;
     order?: number;
     channel_id?: string;
-    group_ids?: number[];
     default_offchain_template_backup?: string;
     weighted_voting?: CommonApi.GetCommunitiesResponseResultsItemTopicsItemWeightedVoting;
-    /** token address, used for ERC20 topics */
+    /** token chain node ID, used for ERC20 topics */
+    chain_node_id?: number;
+    /** token address, used for ERC20/SPL/SuiToken topics (for SuiToken, this stores the coin type) */
     token_address?: string;
-    /** token symbol, used for ERC20 topics */
+    /** token symbol, used for token-based topics */
     token_symbol?: string;
-    /** vote weight multiplier, used for ERC20 topics */
+    /** vote weight multiplier, used for token weighted topics */
     vote_weight_multiplier?: number;
+    /** number of decimals of token */
+    token_decimals?: number;
+    /** Allows a thread in this topic to be tokenized */
+    allow_tokenized_threads?: boolean;
     created_at?: string;
     updated_at?: string;
     deleted_at?: string;
-    contest_topics?: CommonApi.GetCommunitiesResponseResultsItemTopicsItemContestTopicsItem[];
+    archived_at?: string;
 }

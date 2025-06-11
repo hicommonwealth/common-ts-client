@@ -6,6 +6,7 @@ export interface GetCommunitiesResponseResultsItemAddressesItemUserApiKey {
     user_id?: number;
     hashed_api_key: string;
     salt: string;
+    premium_tier: boolean;
     created_at?: string;
     updated_at?: string;
 }

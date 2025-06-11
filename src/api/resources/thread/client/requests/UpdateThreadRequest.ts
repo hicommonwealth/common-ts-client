@@ -24,4 +24,6 @@ export interface UpdateThreadRequest {
     collaborators?: CommonApi.UpdateThreadRequestCollaborators;
     canvas_signed_data?: string;
     canvas_msg_id?: string;
+    is_linking_token?: boolean;
+    launchpad_token_address?: string;
 }

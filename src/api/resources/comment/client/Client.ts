@@ -11,6 +11,8 @@ import * as errors from "../../../../errors/index";
 export declare namespace Comment {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
@@ -38,23 +40,21 @@ export class Comment {
      * @param {Comment.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.comment.getComments({
-     *         thread_id: 1
-     *     })
+     *     await client.comment.getComments()
      */
     public async getComments(
-        request: CommonApi.GetCommentsRequest,
+        request: CommonApi.GetCommentsRequest = {},
         requestOptions?: Comment.RequestOptions,
     ): Promise<CommonApi.GetCommentsResponse> {
         const {
             limit,
             cursor,
             order_by: orderBy,
-            order_direction: orderDirection,
             thread_id: threadId,
             comment_id: commentId,
-            include_user: includeUser,
+            parent_id: parentId,
             include_reactions: includeReactions,
+            include_spam_comments: includeSpamComments,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
         if (limit != null) {
@@ -69,26 +69,31 @@ export class Comment {
             _queryParams["order_by"] = orderBy;
         }
 
-        if (orderDirection != null) {
-            _queryParams["order_direction"] = orderDirection;
+        if (threadId != null) {
+            _queryParams["thread_id"] = threadId.toString();
         }
 
-        _queryParams["thread_id"] = threadId.toString();
         if (commentId != null) {
             _queryParams["comment_id"] = commentId.toString();
         }
 
-        if (includeUser != null) {
-            _queryParams["include_user"] = includeUser.toString();
+        if (parentId != null) {
+            _queryParams["parent_id"] = parentId.toString();
         }
 
         if (includeReactions != null) {
             _queryParams["include_reactions"] = includeReactions.toString();
         }
 
+        if (includeSpamComments != null) {
+            _queryParams["include_spam_comments"] = includeSpamComments;
+        }
+
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetComments",
             ),
             method: "GET",
@@ -99,8 +104,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -146,7 +151,7 @@ export class Comment {
      * @example
      *     await client.comment.createComment({
      *         thread_id: 1,
-     *         text: "text"
+     *         body: "body"
      *     })
      */
     public async createComment(
@@ -155,7 +160,9 @@ export class Comment {
     ): Promise<CommonApi.CreateCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateComment",
             ),
             method: "POST",
@@ -166,8 +173,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -213,7 +220,7 @@ export class Comment {
      * @example
      *     await client.comment.updateComment({
      *         comment_id: 1,
-     *         text: "text"
+     *         body: "body"
      *     })
      */
     public async updateComment(
@@ -222,7 +229,9 @@ export class Comment {
     ): Promise<CommonApi.UpdateCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "UpdateComment",
             ),
             method: "POST",
@@ -233,8 +242,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -288,7 +297,9 @@ export class Comment {
     ): Promise<CommonApi.DeleteCommentResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "DeleteComment",
             ),
             method: "POST",
@@ -299,8 +310,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -332,6 +343,75 @@ export class Comment {
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteComment.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.ToggleCommentSpamRequest} request
+     * @param {Comment.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.comment.toggleCommentSpam({
+     *         comment_id: 1,
+     *         spam: true
+     *     })
+     */
+    public async toggleCommentSpam(
+        request: CommonApi.ToggleCommentSpamRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<CommonApi.ToggleCommentSpamResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "ToggleCommentSpam",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.ToggleCommentSpamResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /ToggleCommentSpam.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

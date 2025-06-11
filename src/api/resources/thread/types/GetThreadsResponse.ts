@@ -5,8 +5,9 @@
 import * as CommonApi from "../../../index";
 
 export interface GetThreadsResponse {
-    page: number;
     limit: number;
-    numVotingThreads: number;
-    threads: CommonApi.GetThreadsResponseThreadsItem[];
+    page: number;
+    totalPages: number;
+    totalResults: number;
+    results: CommonApi.GetThreadsResponseResultsItem[];
 }

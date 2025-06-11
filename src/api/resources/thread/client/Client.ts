@@ -11,6 +11,8 @@ import * as errors from "../../../../errors/index";
 export declare namespace Thread {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
@@ -47,13 +49,14 @@ export class Thread {
         requestOptions?: Thread.RequestOptions,
     ): Promise<CommonApi.GetThreadsResponse> {
         const {
-            community_id: communityId,
-            page,
             limit,
+            cursor,
+            order_by: orderBy,
+            order_direction: orderDirection,
+            community_id: communityId,
             stage,
             topic_id: topicId,
             includePinnedThreads,
-            order_by: orderBy,
             from_date: fromDate,
             to_date: toDate,
             archived,
@@ -62,15 +65,23 @@ export class Thread {
             withXRecentComments,
         } = request;
         const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["community_id"] = communityId;
-        if (page != null) {
-            _queryParams["page"] = page.toString();
-        }
-
         if (limit != null) {
-            _queryParams["limit"] = limit.toString();
+            _queryParams["limit"] = limit;
         }
 
+        if (cursor != null) {
+            _queryParams["cursor"] = cursor;
+        }
+
+        if (orderBy != null) {
+            _queryParams["order_by"] = orderBy;
+        }
+
+        if (orderDirection != null) {
+            _queryParams["order_direction"] = orderDirection;
+        }
+
+        _queryParams["community_id"] = communityId;
         if (stage != null) {
             _queryParams["stage"] = stage;
         }
@@ -81,10 +92,6 @@ export class Thread {
 
         if (includePinnedThreads != null) {
             _queryParams["includePinnedThreads"] = includePinnedThreads.toString();
-        }
-
-        if (orderBy != null) {
-            _queryParams["order_by"] = orderBy;
         }
 
         if (fromDate != null) {
@@ -113,7 +120,9 @@ export class Thread {
 
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "GetThreads",
             ),
             method: "GET",
@@ -124,8 +133,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -165,6 +174,86 @@ export class Thread {
     }
 
     /**
+     * @param {CommonApi.GetLinksRequest} request
+     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.thread.getLinks()
+     */
+    public async getLinks(
+        request: CommonApi.GetLinksRequest = {},
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<CommonApi.GetLinksResponse> {
+        const { thread_id: threadId, link_source: linkSource, link_identifier: linkIdentifier } = request;
+        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        if (threadId != null) {
+            _queryParams["thread_id"] = threadId.toString();
+        }
+
+        if (linkSource != null) {
+            _queryParams["link_source"] = linkSource;
+        }
+
+        if (linkIdentifier != null) {
+            _queryParams["link_identifier"] = linkIdentifier;
+        }
+
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "GetLinks",
+            ),
+            method: "GET",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.GetLinksResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetLinks.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * @param {CommonApi.CreateThreadRequest} request
      * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -185,7 +274,9 @@ export class Thread {
     ): Promise<CommonApi.CreateThreadResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "CreateThread",
             ),
             method: "POST",
@@ -196,8 +287,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -251,7 +342,9 @@ export class Thread {
     ): Promise<CommonApi.UpdateThreadResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "UpdateThread",
             ),
             method: "POST",
@@ -262,8 +355,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -317,7 +410,9 @@ export class Thread {
     ): Promise<CommonApi.DeleteThreadResponse> {
         const _response = await core.fetcher({
             url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.CommonApiEnvironment.Default,
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
                 "DeleteThread",
             ),
             method: "POST",
@@ -328,8 +423,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.3.0",
-                "User-Agent": "@commonxyz/api-client/2.3.0",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -361,6 +456,150 @@ export class Thread {
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteThread.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.AddLinksRequest} request
+     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.thread.addLinks({
+     *         thread_id: 1,
+     *         links: [{
+     *                 source: "snapshot",
+     *                 identifier: "identifier"
+     *             }]
+     *     })
+     */
+    public async addLinks(
+        request: CommonApi.AddLinksRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<CommonApi.AddLinksResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "AddLinks",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.AddLinksResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /AddLinks.");
+            case "unknown":
+                throw new errors.CommonApiError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * @param {CommonApi.DeleteLinksRequest} request
+     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.thread.deleteLinks({
+     *         thread_id: 1,
+     *         links: [{
+     *                 source: "snapshot",
+     *                 identifier: "identifier"
+     *             }]
+     *     })
+     */
+    public async deleteLinks(
+        request: CommonApi.DeleteLinksRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<CommonApi.DeleteLinksResponse> {
+        const _response = await core.fetcher({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.CommonApiEnvironment.Default,
+                "DeleteLinks",
+            ),
+            method: "POST",
+            headers: {
+                address:
+                    (await core.Supplier.get(this._options.address)) != null
+                        ? await core.Supplier.get(this._options.address)
+                        : undefined,
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "@commonxyz/api-client",
+                "X-Fern-SDK-Version": "2.4.0",
+                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...(await this._getCustomAuthorizationHeaders()),
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as CommonApi.DeleteLinksResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.CommonApiError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.CommonApiError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteLinks.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,

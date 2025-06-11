@@ -18,10 +18,16 @@ export interface CreateTopicRequest {
     featured_in_new_post?: boolean;
     default_offchain_template?: string;
     weighted_voting?: CommonApi.CreateTopicRequestWeightedVoting;
-    /** token address, used for ERC20 topics */
+    /** token address, used for ERC20/SPL/SuiToken topics (for SuiToken, this stores the coin type) */
     token_address?: string;
-    /** token symbol, used for ERC20 topics */
+    /** token symbol, used for token-based topics */
     token_symbol?: string;
-    /** vote weight multiplier, used for ERC20 topics */
+    /** number of decimals of token */
+    token_decimals?: number;
+    /** vote weight multiplier, used for token weighted topics */
     vote_weight_multiplier?: number;
+    /** token chain node ID, used for ERC20 topics */
+    chain_node_id?: number;
+    /** Allows a thread in this topic to be tokenized */
+    allow_tokenized_threads?: boolean;
 }

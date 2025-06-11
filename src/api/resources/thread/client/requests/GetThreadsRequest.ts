@@ -11,13 +11,17 @@ import * as CommonApi from "../../../../index";
  *     }
  */
 export interface GetThreadsRequest {
+    limit?: string;
+    /**
+     * required for tRPC useInfiniteQuery hook, equivalent to page number
+     */
+    cursor?: string;
+    order_by?: CommonApi.GetThreadsRequestOrderBy;
+    order_direction?: CommonApi.GetThreadsRequestOrderDirection;
     community_id: string;
-    page?: number;
-    limit?: number;
     stage?: string;
     topic_id?: number;
     includePinnedThreads?: boolean;
-    order_by?: CommonApi.GetThreadsRequestOrderBy;
     from_date?: string;
     to_date?: string;
     archived?: boolean;

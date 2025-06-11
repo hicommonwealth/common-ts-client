@@ -6,9 +6,7 @@ import * as CommonApi from "../../../../index";
 
 /**
  * @example
- *     {
- *         thread_id: 1
- *     }
+ *     {}
  */
 export interface GetCommentsRequest {
     limit?: string;
@@ -16,10 +14,10 @@ export interface GetCommentsRequest {
      * required for tRPC useInfiniteQuery hook, equivalent to page number
      */
     cursor?: string;
-    order_by?: string;
-    order_direction?: CommonApi.GetCommentsRequestOrderDirection;
-    thread_id: number;
+    order_by?: CommonApi.GetCommentsRequestOrderBy;
+    thread_id?: number;
     comment_id?: number;
-    include_user?: boolean;
+    parent_id?: number;
     include_reactions?: boolean;
+    include_spam_comments?: string;
 }

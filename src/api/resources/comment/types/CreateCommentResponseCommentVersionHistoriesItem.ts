@@ -5,7 +5,7 @@
 export interface CreateCommentResponseCommentVersionHistoriesItem {
     id?: number;
     comment_id: number;
-    text: string;
+    body: string;
     timestamp: string;
     content_url?: string;
 }

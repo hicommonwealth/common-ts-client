@@ -11,4 +11,5 @@
 export interface GetCommunityRequest {
     id: string;
     include_node_info?: boolean;
+    include_groups?: boolean;
 }

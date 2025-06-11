@@ -8,11 +8,16 @@ import { User } from "./api/resources/user/client/Client";
 import { Community } from "./api/resources/community/client/Client";
 import { Comment } from "./api/resources/comment/client/Client";
 import { Thread } from "./api/resources/thread/client/Client";
+import { Contest } from "./api/resources/contest/client/Client";
+import { Token } from "./api/resources/token/client/Client";
 import { Reaction } from "./api/resources/reaction/client/Client";
+import { Bot } from "./api/resources/bot/client/Client";
 
 export declare namespace CommonApiClient {
     export interface Options {
         environment?: core.Supplier<environments.CommonApiEnvironment | string>;
+        /** Specify a custom URL to connect the client to. */
+        baseUrl?: core.Supplier<string>;
         apiKey: core.Supplier<string>;
         /** Override the address header */
         address?: core.Supplier<string | undefined>;
@@ -37,7 +42,10 @@ export class CommonApiClient {
     protected _community: Community | undefined;
     protected _comment: Comment | undefined;
     protected _thread: Thread | undefined;
+    protected _contest: Contest | undefined;
+    protected _token: Token | undefined;
     protected _reaction: Reaction | undefined;
+    protected _bot: Bot | undefined;
 
     constructor(protected readonly _options: CommonApiClient.Options) {}
 
@@ -57,7 +65,19 @@ export class CommonApiClient {
         return (this._thread ??= new Thread(this._options));
     }
 
+    public get contest(): Contest {
+        return (this._contest ??= new Contest(this._options));
+    }
+
+    public get token(): Token {
+        return (this._token ??= new Token(this._options));
+    }
+
     public get reaction(): Reaction {
         return (this._reaction ??= new Reaction(this._options));
+    }
+
+    public get bot(): Bot {
+        return (this._bot ??= new Bot(this._options));
     }
 }

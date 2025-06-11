@@ -11,4 +11,5 @@
 export interface GetTopicsRequest {
     community_id: string;
     with_contest_managers?: boolean;
+    with_archived_topics?: boolean;
 }
