@@ -5,21 +5,22 @@
 import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemAddress {
-    id: number;
+    id?: number;
     address: string;
     community_id: string;
     user_id?: number;
     verification_token?: string;
-    verification_token_expires?: CommonApi.GetCommentsResponseResultsItemAddressVerificationTokenExpires;
-    verified?: CommonApi.GetCommentsResponseResultsItemAddressVerified;
-    last_active?: CommonApi.GetCommentsResponseResultsItemAddressLastActive;
+    verification_token_expires?: string;
+    verified?: string;
+    last_active?: string;
     ghost_address?: boolean;
     wallet_id?: CommonApi.GetCommentsResponseResultsItemAddressWalletId;
     block_info?: string;
+    is_user_default?: boolean;
     role?: CommonApi.GetCommentsResponseResultsItemAddressRole;
     is_banned?: boolean;
     hex?: string;
     User?: CommonApi.GetCommentsResponseResultsItemAddressUser;
-    created_at?: CommonApi.GetCommentsResponseResultsItemAddressCreatedAt;
-    updated_at?: CommonApi.GetCommentsResponseResultsItemAddressUpdatedAt;
+    created_at?: string;
+    updated_at?: string;
 }

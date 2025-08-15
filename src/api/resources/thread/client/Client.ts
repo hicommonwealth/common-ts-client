@@ -44,19 +44,25 @@ export class Thread {
      *         community_id: "community_id"
      *     })
      */
-    public async getThreads(
+    public getThreads(
         request: CommonApi.GetThreadsRequest,
         requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.GetThreadsResponse> {
+    ): core.HttpResponsePromise<CommonApi.GetThreadsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getThreads(request, requestOptions));
+    }
+
+    private async __getThreads(
+        request: CommonApi.GetThreadsRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.GetThreadsResponse>> {
         const {
-            limit,
-            cursor,
-            order_by: orderBy,
-            order_direction: orderDirection,
             community_id: communityId,
+            page,
+            limit,
             stage,
             topic_id: topicId,
             includePinnedThreads,
+            order_by: orderBy,
             from_date: fromDate,
             to_date: toDate,
             archived,
@@ -64,24 +70,16 @@ export class Thread {
             status,
             withXRecentComments,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (limit != null) {
-            _queryParams["limit"] = limit;
-        }
-
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (orderBy != null) {
-            _queryParams["order_by"] = orderBy;
-        }
-
-        if (orderDirection != null) {
-            _queryParams["order_direction"] = orderDirection;
-        }
-
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["community_id"] = communityId;
+        if (page != null) {
+            _queryParams["page"] = page.toString();
+        }
+
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
         if (stage != null) {
             _queryParams["stage"] = stage;
         }
@@ -92,6 +90,10 @@ export class Thread {
 
         if (includePinnedThreads != null) {
             _queryParams["includePinnedThreads"] = includePinnedThreads.toString();
+        }
+
+        if (orderBy != null) {
+            _queryParams["order_by"] = orderBy;
         }
 
         if (fromDate != null) {
@@ -133,8 +135,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -148,13 +150,14 @@ export class Thread {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.GetThreadsResponse;
+            return { data: _response.body as CommonApi.GetThreadsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -163,92 +166,14 @@ export class Thread {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetThreads.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.GetLinksRequest} request
-     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.thread.getLinks()
-     */
-    public async getLinks(
-        request: CommonApi.GetLinksRequest = {},
-        requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.GetLinksResponse> {
-        const { thread_id: threadId, link_source: linkSource, link_identifier: linkIdentifier } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (threadId != null) {
-            _queryParams["thread_id"] = threadId.toString();
-        }
-
-        if (linkSource != null) {
-            _queryParams["link_source"] = linkSource;
-        }
-
-        if (linkIdentifier != null) {
-            _queryParams["link_identifier"] = linkIdentifier;
-        }
-
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.CommonApiEnvironment.Default,
-                "GetLinks",
-            ),
-            method: "GET",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.GetLinksResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetLinks.");
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -268,10 +193,17 @@ export class Thread {
      *         read_only: true
      *     })
      */
-    public async createThread(
+    public createThread(
         request: CommonApi.CreateThreadRequest,
         requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.CreateThreadResponse> {
+    ): core.HttpResponsePromise<CommonApi.CreateThreadResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createThread(request, requestOptions));
+    }
+
+    private async __createThread(
+        request: CommonApi.CreateThreadRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.CreateThreadResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -287,8 +219,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -302,13 +234,14 @@ export class Thread {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.CreateThreadResponse;
+            return { data: _response.body as CommonApi.CreateThreadResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -317,12 +250,14 @@ export class Thread {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateThread.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -336,10 +271,17 @@ export class Thread {
      *         thread_id: 1
      *     })
      */
-    public async updateThread(
+    public updateThread(
         request: CommonApi.UpdateThreadRequest,
         requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.UpdateThreadResponse> {
+    ): core.HttpResponsePromise<CommonApi.UpdateThreadResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__updateThread(request, requestOptions));
+    }
+
+    private async __updateThread(
+        request: CommonApi.UpdateThreadRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.UpdateThreadResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -355,8 +297,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -370,13 +312,14 @@ export class Thread {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.UpdateThreadResponse;
+            return { data: _response.body as CommonApi.UpdateThreadResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -385,12 +328,14 @@ export class Thread {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /UpdateThread.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -404,10 +349,17 @@ export class Thread {
      *         thread_id: 1
      *     })
      */
-    public async deleteThread(
+    public deleteThread(
         request: CommonApi.DeleteThreadRequest,
         requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.DeleteThreadResponse> {
+    ): core.HttpResponsePromise<CommonApi.DeleteThreadResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteThread(request, requestOptions));
+    }
+
+    private async __deleteThread(
+        request: CommonApi.DeleteThreadRequest,
+        requestOptions?: Thread.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.DeleteThreadResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -423,8 +375,8 @@ export class Thread {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -438,13 +390,14 @@ export class Thread {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.DeleteThreadResponse;
+            return { data: _response.body as CommonApi.DeleteThreadResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -453,156 +406,14 @@ export class Thread {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteThread.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.AddLinksRequest} request
-     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.thread.addLinks({
-     *         thread_id: 1,
-     *         links: [{
-     *                 source: "snapshot",
-     *                 identifier: "identifier"
-     *             }]
-     *     })
-     */
-    public async addLinks(
-        request: CommonApi.AddLinksRequest,
-        requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.AddLinksResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.CommonApiEnvironment.Default,
-                "AddLinks",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.AddLinksResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /AddLinks.");
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.DeleteLinksRequest} request
-     * @param {Thread.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.thread.deleteLinks({
-     *         thread_id: 1,
-     *         links: [{
-     *                 source: "snapshot",
-     *                 identifier: "identifier"
-     *             }]
-     *     })
-     */
-    public async deleteLinks(
-        request: CommonApi.DeleteLinksRequest,
-        requestOptions?: Thread.RequestOptions,
-    ): Promise<CommonApi.DeleteLinksResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.CommonApiEnvironment.Default,
-                "DeleteLinks",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.DeleteLinksResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteLinks.");
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

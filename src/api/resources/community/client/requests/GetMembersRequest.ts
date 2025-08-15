@@ -25,5 +25,4 @@ export interface GetMembersRequest {
     include_group_ids?: boolean;
     include_stake_balances?: boolean;
     allowedAddresses?: string;
-    searchByNameAndAddress?: string;
 }

@@ -7,8 +7,6 @@ import * as CommonApi from "../../../index";
 export interface UpdateCommunityResponse {
     id: string;
     name: string;
-    tier: number;
-    spam_tier_level: number;
     chain_node_id?: number;
     default_symbol?: string;
     network?: string;
@@ -29,7 +27,6 @@ export interface UpdateCommunityResponse {
     has_homepage?: CommonApi.UpdateCommunityResponseHasHomepage;
     terms?: CommonApi.UpdateCommunityResponseTerms;
     admin_only_polling?: boolean;
-    ai_features_enabled: boolean;
     bech32_prefix?: string;
     hide_projects?: boolean;
     token_name?: string;
@@ -41,20 +38,12 @@ export interface UpdateCommunityResponse {
     directory_page_chain_node_id?: number;
     namespace?: string;
     namespace_address?: string;
-    namespace_creator_address?: string;
-    namespace_verification_configured?: boolean;
-    namespace_nominations?: string[];
-    namespace_verified?: boolean;
     redirect?: string;
     snapshot_spaces?: string[];
     include_in_digest_email?: boolean;
     profile_count?: number;
     lifetime_thread_count?: number;
     banner_text?: string;
-    allow_tokenized_threads?: boolean;
-    thread_purchase_token?: string;
-    environment?: string;
-    pending_namespace_judge_token_id?: number;
     created_at?: string;
     updated_at?: string;
     Addresses?: CommonApi.UpdateCommunityResponseAddressesItem[];

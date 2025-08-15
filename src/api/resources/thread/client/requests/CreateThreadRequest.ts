@@ -28,6 +28,4 @@ export interface CreateThreadRequest {
     url?: string;
     read_only: boolean;
     discord_meta?: CommonApi.CreateThreadRequestDiscordMeta;
-    is_linking_token?: boolean;
-    turnstile_token?: string;
 }

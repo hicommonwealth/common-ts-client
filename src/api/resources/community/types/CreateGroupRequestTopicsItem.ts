@@ -6,6 +6,5 @@ import * as CommonApi from "../../../index";
 
 export interface CreateGroupRequestTopicsItem {
     id: number;
-    is_private?: boolean;
     permissions: CommonApi.CreateGroupRequestTopicsItemPermissionsItem[];
 }

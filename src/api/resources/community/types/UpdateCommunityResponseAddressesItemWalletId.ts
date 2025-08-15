@@ -4,7 +4,6 @@
 
 export type UpdateCommunityResponseAddressesItemWalletId =
     | "magic"
-    | "privy"
     | "polkadot"
     | "metamask"
     | "walletconnect"
@@ -16,15 +15,9 @@ export type UpdateCommunityResponseAddressesItemWalletId =
     | "terra-walletconnect"
     | "cosm-metamask"
     | "phantom"
-    | "backpack"
-    | "solflare"
-    | "coinbase"
-    | "farcaster"
-    | "okx"
-    | "sui-wallet";
+    | "coinbase";
 export const UpdateCommunityResponseAddressesItemWalletId = {
     Magic: "magic",
-    Privy: "privy",
     Polkadot: "polkadot",
     Metamask: "metamask",
     Walletconnect: "walletconnect",
@@ -36,10 +29,5 @@ export const UpdateCommunityResponseAddressesItemWalletId = {
     TerraWalletconnect: "terra-walletconnect",
     CosmMetamask: "cosm-metamask",
     Phantom: "phantom",
-    Backpack: "backpack",
-    Solflare: "solflare",
     Coinbase: "coinbase",
-    Farcaster: "farcaster",
-    Okx: "okx",
-    SuiWallet: "sui-wallet",
 } as const;

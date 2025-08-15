@@ -5,7 +5,7 @@
 import * as CommonApi from "../../../index";
 
 export interface GetCommentsResponseResultsItemReaction {
-    id: number;
+    id?: number;
     address_id: number;
     reaction: "like";
     thread_id?: number;
@@ -14,11 +14,7 @@ export interface GetCommentsResponseResultsItemReaction {
     calculated_voting_weight?: string;
     canvas_signed_data?: unknown;
     canvas_msg_id?: string;
-    created_at?: CommonApi.GetCommentsResponseResultsItemReactionCreatedAt;
-    updated_at?: CommonApi.GetCommentsResponseResultsItemReactionUpdatedAt;
+    created_at?: string;
+    updated_at?: string;
     Address?: CommonApi.GetCommentsResponseResultsItemReactionAddress;
-    address?: string;
-    last_active?: CommonApi.GetCommentsResponseResultsItemReactionLastActive;
-    profile_name?: string;
-    avatar_url?: string;
 }

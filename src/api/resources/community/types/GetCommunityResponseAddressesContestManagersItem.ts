@@ -10,11 +10,8 @@ import * as CommonApi from "../../../index";
 export interface GetCommunityResponseAddressesContestManagersItem {
     /** On-Chain contest manager address */
     contest_address: string;
-    /** Creator of the contest manager */
-    creator_address?: string;
     community_id: string;
     name: string;
-    description?: string;
     image_url?: string;
     /** Provided by admin on creation when stake funds are not used */
     funding_token_address?: string;
@@ -29,24 +26,11 @@ export interface GetCommunityResponseAddressesContestManagersItem {
     created_at: string;
     /** Flags when contest policy is cancelled by admin */
     cancelled?: boolean;
-    /** Flags when contest is ending */
-    ending?: boolean;
     /** Flags when the one-off contest has ended and rollover was completed */
     ended?: boolean;
+    topics?: CommonApi.GetCommunityResponseAddressesContestManagersItemTopicsItem[];
     contests?: CommonApi.GetCommunityResponseAddressesContestManagersItemContestsItem[];
     farcaster_frame_url?: string;
     farcaster_frame_hashes?: string[];
-    topic_id?: number;
-    topics?: CommonApi.GetCommunityResponseAddressesContestManagersItemTopicsItem[];
-    is_farcaster_contest: boolean;
-    /** Vote weight multiplier */
-    vote_weight_multiplier?: number;
-    /** For bot-created contests, the hash of the farcaster author's cast that created the contest */
-    farcaster_author_cast_hash?: string;
-    namespace_judge_token_id?: number;
-    namespace_judges?: string[];
-    /** The environment that created the contest manager */
-    environment?: CommonApi.GetCommunityResponseAddressesContestManagersItemEnvironment;
-    /** Soft deletion timestamp */
-    deleted_at?: string;
+    neynar_webhook_id?: string;
 }

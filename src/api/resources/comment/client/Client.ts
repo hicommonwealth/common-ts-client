@@ -40,23 +40,32 @@ export class Comment {
      * @param {Comment.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.comment.getComments()
+     *     await client.comment.getComments({
+     *         thread_id: 1
+     *     })
      */
-    public async getComments(
-        request: CommonApi.GetCommentsRequest = {},
+    public getComments(
+        request: CommonApi.GetCommentsRequest,
         requestOptions?: Comment.RequestOptions,
-    ): Promise<CommonApi.GetCommentsResponse> {
+    ): core.HttpResponsePromise<CommonApi.GetCommentsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getComments(request, requestOptions));
+    }
+
+    private async __getComments(
+        request: CommonApi.GetCommentsRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.GetCommentsResponse>> {
         const {
             limit,
             cursor,
             order_by: orderBy,
+            order_direction: orderDirection,
             thread_id: threadId,
             comment_id: commentId,
-            parent_id: parentId,
+            include_user: includeUser,
             include_reactions: includeReactions,
-            include_spam_comments: includeSpamComments,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (limit != null) {
             _queryParams["limit"] = limit;
         }
@@ -69,24 +78,21 @@ export class Comment {
             _queryParams["order_by"] = orderBy;
         }
 
-        if (threadId != null) {
-            _queryParams["thread_id"] = threadId.toString();
+        if (orderDirection != null) {
+            _queryParams["order_direction"] = orderDirection;
         }
 
+        _queryParams["thread_id"] = threadId.toString();
         if (commentId != null) {
             _queryParams["comment_id"] = commentId.toString();
         }
 
-        if (parentId != null) {
-            _queryParams["parent_id"] = parentId.toString();
+        if (includeUser != null) {
+            _queryParams["include_user"] = includeUser.toString();
         }
 
         if (includeReactions != null) {
             _queryParams["include_reactions"] = includeReactions.toString();
-        }
-
-        if (includeSpamComments != null) {
-            _queryParams["include_spam_comments"] = includeSpamComments;
         }
 
         const _response = await core.fetcher({
@@ -104,8 +110,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -119,13 +125,14 @@ export class Comment {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.GetCommentsResponse;
+            return { data: _response.body as CommonApi.GetCommentsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -134,12 +141,14 @@ export class Comment {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetComments.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -151,13 +160,20 @@ export class Comment {
      * @example
      *     await client.comment.createComment({
      *         thread_id: 1,
-     *         body: "body"
+     *         text: "text"
      *     })
      */
-    public async createComment(
+    public createComment(
         request: CommonApi.CreateCommentRequest,
         requestOptions?: Comment.RequestOptions,
-    ): Promise<CommonApi.CreateCommentResponse> {
+    ): core.HttpResponsePromise<CommonApi.CreateCommentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createComment(request, requestOptions));
+    }
+
+    private async __createComment(
+        request: CommonApi.CreateCommentRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.CreateCommentResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -173,8 +189,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -188,13 +204,14 @@ export class Comment {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.CreateCommentResponse;
+            return { data: _response.body as CommonApi.CreateCommentResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -203,12 +220,14 @@ export class Comment {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -220,13 +239,20 @@ export class Comment {
      * @example
      *     await client.comment.updateComment({
      *         comment_id: 1,
-     *         body: "body"
+     *         text: "text"
      *     })
      */
-    public async updateComment(
+    public updateComment(
         request: CommonApi.UpdateCommentRequest,
         requestOptions?: Comment.RequestOptions,
-    ): Promise<CommonApi.UpdateCommentResponse> {
+    ): core.HttpResponsePromise<CommonApi.UpdateCommentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__updateComment(request, requestOptions));
+    }
+
+    private async __updateComment(
+        request: CommonApi.UpdateCommentRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.UpdateCommentResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -242,8 +268,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -257,13 +283,14 @@ export class Comment {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.UpdateCommentResponse;
+            return { data: _response.body as CommonApi.UpdateCommentResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -272,12 +299,14 @@ export class Comment {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /UpdateComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -291,10 +320,17 @@ export class Comment {
      *         comment_id: 1
      *     })
      */
-    public async deleteComment(
+    public deleteComment(
         request: CommonApi.DeleteCommentRequest,
         requestOptions?: Comment.RequestOptions,
-    ): Promise<CommonApi.DeleteCommentResponse> {
+    ): core.HttpResponsePromise<CommonApi.DeleteCommentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteComment(request, requestOptions));
+    }
+
+    private async __deleteComment(
+        request: CommonApi.DeleteCommentRequest,
+        requestOptions?: Comment.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.DeleteCommentResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -310,8 +346,8 @@ export class Comment {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -325,13 +361,14 @@ export class Comment {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.DeleteCommentResponse;
+            return { data: _response.body as CommonApi.DeleteCommentResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -340,81 +377,14 @@ export class Comment {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteComment.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {CommonApi.ToggleCommentSpamRequest} request
-     * @param {Comment.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.comment.toggleCommentSpam({
-     *         comment_id: 1,
-     *         spam: true
-     *     })
-     */
-    public async toggleCommentSpam(
-        request: CommonApi.ToggleCommentSpamRequest,
-        requestOptions?: Comment.RequestOptions,
-    ): Promise<CommonApi.ToggleCommentSpamResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.CommonApiEnvironment.Default,
-                "ToggleCommentSpam",
-            ),
-            method: "POST",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.ToggleCommentSpamResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /ToggleCommentSpam.");
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

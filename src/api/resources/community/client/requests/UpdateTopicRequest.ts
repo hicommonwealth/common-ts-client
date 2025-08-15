@@ -14,10 +14,9 @@ export interface UpdateTopicRequest {
     community_id: string;
     name?: string;
     description?: string;
+    group_ids?: number[];
     telegram?: string;
     featured_in_sidebar?: boolean;
     featured_in_new_post?: boolean;
     default_offchain_template?: string;
-    /** Allows a thread in this topic to be tokenized */
-    allow_tokenized_threads?: boolean;
 }

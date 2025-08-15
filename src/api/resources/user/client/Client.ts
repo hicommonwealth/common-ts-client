@@ -42,36 +42,25 @@ export class User {
      * @example
      *     await client.user.getGlobalActivity()
      */
-    public async getGlobalActivity(
+    public getGlobalActivity(
         request: CommonApi.GetGlobalActivityRequest = {},
         requestOptions?: User.RequestOptions,
-    ): Promise<CommonApi.GetGlobalActivityResponse> {
-        const {
-            limit,
-            cursor,
-            order_by: orderBy,
-            order_direction: orderDirection,
-            comment_limit: commentLimit,
-        } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (limit != null) {
-            _queryParams["limit"] = limit;
-        }
+    ): core.HttpResponsePromise<CommonApi.GetGlobalActivityResponseItem[]> {
+        return core.HttpResponsePromise.fromPromise(this.__getGlobalActivity(request, requestOptions));
+    }
 
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (orderBy != null) {
-            _queryParams["order_by"] = orderBy;
-        }
-
-        if (orderDirection != null) {
-            _queryParams["order_direction"] = orderDirection;
+    private async __getGlobalActivity(
+        request: CommonApi.GetGlobalActivityRequest = {},
+        requestOptions?: User.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.GetGlobalActivityResponseItem[]>> {
+        const { thread_limit: threadLimit, comment_limit: commentLimit } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (threadLimit != null) {
+            _queryParams["thread_limit"] = threadLimit.toString();
         }
 
         if (commentLimit != null) {
-            _queryParams["comment_limit"] = commentLimit;
+            _queryParams["comment_limit"] = commentLimit.toString();
         }
 
         const _response = await core.fetcher({
@@ -89,8 +78,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -104,13 +93,17 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.GetGlobalActivityResponse;
+            return {
+                data: _response.body as CommonApi.GetGlobalActivityResponseItem[],
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -119,12 +112,14 @@ export class User {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetGlobalActivity.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -136,35 +131,19 @@ export class User {
      * @example
      *     await client.user.getUserActivity()
      */
-    public async getUserActivity(
+    public getUserActivity(
         request: CommonApi.GetUserActivityRequest = {},
         requestOptions?: User.RequestOptions,
-    ): Promise<CommonApi.GetUserActivityResponse> {
-        const {
-            limit,
-            cursor,
-            order_by: orderBy,
-            order_direction: orderDirection,
-            thread_limit: threadLimit,
-            comment_limit: commentLimit,
-        } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (limit != null) {
-            _queryParams["limit"] = limit;
-        }
+    ): core.HttpResponsePromise<CommonApi.GetUserActivityResponseItem[]> {
+        return core.HttpResponsePromise.fromPromise(this.__getUserActivity(request, requestOptions));
+    }
 
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (orderBy != null) {
-            _queryParams["order_by"] = orderBy;
-        }
-
-        if (orderDirection != null) {
-            _queryParams["order_direction"] = orderDirection;
-        }
-
+    private async __getUserActivity(
+        request: CommonApi.GetUserActivityRequest = {},
+        requestOptions?: User.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.GetUserActivityResponseItem[]>> {
+        const { thread_limit: threadLimit, comment_limit: commentLimit } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (threadLimit != null) {
             _queryParams["thread_limit"] = threadLimit.toString();
         }
@@ -188,8 +167,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -203,13 +182,17 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.GetUserActivityResponse;
+            return {
+                data: _response.body as CommonApi.GetUserActivityResponseItem[],
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -218,73 +201,14 @@ export class User {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetUserActivity.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {User.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.user.getUser()
-     */
-    public async getUser(requestOptions?: User.RequestOptions): Promise<CommonApi.GetUserResponse> {
-        const _response = await core.fetcher({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)) ??
-                    environments.CommonApiEnvironment.Default,
-                "GetUser",
-            ),
-            method: "GET",
-            headers: {
-                address:
-                    (await core.Supplier.get(this._options.address)) != null
-                        ? await core.Supplier.get(this._options.address)
-                        : undefined,
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...(await this._getCustomAuthorizationHeaders()),
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as CommonApi.GetUserResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.CommonApiError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.CommonApiError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetUser.");
-            case "unknown":
-                throw new errors.CommonApiError({
-                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -295,7 +219,15 @@ export class User {
      * @example
      *     await client.user.getNewContent()
      */
-    public async getNewContent(requestOptions?: User.RequestOptions): Promise<CommonApi.GetNewContentResponse> {
+    public getNewContent(
+        requestOptions?: User.RequestOptions,
+    ): core.HttpResponsePromise<CommonApi.GetNewContentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getNewContent(requestOptions));
+    }
+
+    private async __getNewContent(
+        requestOptions?: User.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.GetNewContentResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -311,8 +243,8 @@ export class User {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -325,13 +257,14 @@ export class User {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.GetNewContentResponse;
+            return { data: _response.body as CommonApi.GetNewContentResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -340,12 +273,14 @@ export class User {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling GET /GetNewContent.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

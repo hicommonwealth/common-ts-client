@@ -16,14 +16,10 @@ export interface UpdateCommentResponseThreadReactionAddress {
     ghost_address?: boolean;
     wallet_id?: CommonApi.UpdateCommentResponseThreadReactionAddressWalletId;
     block_info?: string;
+    is_user_default?: boolean;
     role?: CommonApi.UpdateCommentResponseThreadReactionAddressRole;
     is_banned?: boolean;
     hex?: string;
-    oauth_provider?: string;
-    oauth_email?: string;
-    oauth_email_verified?: boolean;
-    oauth_username?: string;
-    oauth_phone_number?: string;
     User?: CommonApi.UpdateCommentResponseThreadReactionAddressUser;
     created_at?: string;
     updated_at?: string;

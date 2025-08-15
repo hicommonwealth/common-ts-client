@@ -16,14 +16,10 @@ export interface CreateThreadResponseCollaboratorsItem {
     ghost_address?: boolean;
     wallet_id?: CommonApi.CreateThreadResponseCollaboratorsItemWalletId;
     block_info?: string;
+    is_user_default?: boolean;
     role?: CommonApi.CreateThreadResponseCollaboratorsItemRole;
     is_banned?: boolean;
     hex?: string;
-    oauth_provider?: string;
-    oauth_email?: string;
-    oauth_email_verified?: boolean;
-    oauth_username?: string;
-    oauth_phone_number?: string;
     User?: CommonApi.CreateThreadResponseCollaboratorsItemUser;
     created_at?: string;
     updated_at?: string;

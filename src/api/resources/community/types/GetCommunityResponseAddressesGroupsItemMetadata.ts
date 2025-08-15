@@ -7,5 +7,4 @@ export interface GetCommunityResponseAddressesGroupsItemMetadata {
     description: string;
     required_requirements?: number;
     membership_ttl?: number;
-    groupImageUrl?: string;
 }

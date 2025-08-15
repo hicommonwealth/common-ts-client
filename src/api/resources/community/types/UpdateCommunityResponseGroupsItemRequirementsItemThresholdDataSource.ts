@@ -8,7 +8,4 @@ export type UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSource
     | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceTokenId
     | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceOne
     | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceTokenSymbol
-    | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceThree
-    | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceContractAddress
-    | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceObjectId
-    | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceCoinType;
+    | CommonApi.UpdateCommunityResponseGroupsItemRequirementsItemThresholdDataSourceThree;

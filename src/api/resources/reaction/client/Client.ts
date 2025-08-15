@@ -44,10 +44,17 @@ export class Reaction {
      *         thread_id: 1
      *     })
      */
-    public async createThreadReaction(
+    public createThreadReaction(
         request: CommonApi.CreateThreadReactionRequest,
         requestOptions?: Reaction.RequestOptions,
-    ): Promise<CommonApi.CreateThreadReactionResponse> {
+    ): core.HttpResponsePromise<CommonApi.CreateThreadReactionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createThreadReaction(request, requestOptions));
+    }
+
+    private async __createThreadReaction(
+        request: CommonApi.CreateThreadReactionRequest,
+        requestOptions?: Reaction.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.CreateThreadReactionResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -63,8 +70,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -78,13 +85,17 @@ export class Reaction {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.CreateThreadReactionResponse;
+            return {
+                data: _response.body as CommonApi.CreateThreadReactionResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -93,12 +104,14 @@ export class Reaction {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateThreadReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -112,10 +125,17 @@ export class Reaction {
      *         comment_id: 1
      *     })
      */
-    public async createCommentReaction(
+    public createCommentReaction(
         request: CommonApi.CreateCommentReactionRequest,
         requestOptions?: Reaction.RequestOptions,
-    ): Promise<CommonApi.CreateCommentReactionResponse> {
+    ): core.HttpResponsePromise<CommonApi.CreateCommentReactionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createCommentReaction(request, requestOptions));
+    }
+
+    private async __createCommentReaction(
+        request: CommonApi.CreateCommentReactionRequest,
+        requestOptions?: Reaction.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.CreateCommentReactionResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -131,8 +151,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -146,13 +166,17 @@ export class Reaction {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.CreateCommentReactionResponse;
+            return {
+                data: _response.body as CommonApi.CreateCommentReactionResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -161,12 +185,14 @@ export class Reaction {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /CreateCommentReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -181,10 +207,17 @@ export class Reaction {
      *         reaction_id: 1
      *     })
      */
-    public async deleteReaction(
+    public deleteReaction(
         request: CommonApi.DeleteReactionRequest,
         requestOptions?: Reaction.RequestOptions,
-    ): Promise<CommonApi.DeleteReactionResponse> {
+    ): core.HttpResponsePromise<CommonApi.DeleteReactionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteReaction(request, requestOptions));
+    }
+
+    private async __deleteReaction(
+        request: CommonApi.DeleteReactionRequest,
+        requestOptions?: Reaction.RequestOptions,
+    ): Promise<core.WithRawResponse<CommonApi.DeleteReactionResponse>> {
         const _response = await core.fetcher({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -200,8 +233,8 @@ export class Reaction {
                         : undefined,
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@commonxyz/api-client",
-                "X-Fern-SDK-Version": "2.4.0",
-                "User-Agent": "@commonxyz/api-client/2.4.0",
+                "X-Fern-SDK-Version": "2.1.1",
+                "User-Agent": "@commonxyz/api-client/2.1.1",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...(await this._getCustomAuthorizationHeaders()),
@@ -215,13 +248,14 @@ export class Reaction {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as CommonApi.DeleteReactionResponse;
+            return { data: _response.body as CommonApi.DeleteReactionResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.CommonApiError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -230,12 +264,14 @@ export class Reaction {
                 throw new errors.CommonApiError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.CommonApiTimeoutError("Timeout exceeded when calling POST /DeleteReaction.");
             case "unknown":
                 throw new errors.CommonApiError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

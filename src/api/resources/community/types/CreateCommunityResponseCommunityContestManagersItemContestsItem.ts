@@ -18,6 +18,4 @@ export interface CreateCommunityResponseCommunityContestManagersItemContestsItem
     /** Contest score, sorted from first to last */
     score?: CommonApi.CreateCommunityResponseCommunityContestManagersItemContestsItemScoreItem[];
     actions?: CommonApi.CreateCommunityResponseCommunityContestManagersItemContestsItemActionsItem[];
-    /** Last recorded contest balance (not always up to date with onchain balance) */
-    contest_balance?: string;
 }

@@ -10,7 +10,6 @@ export interface CreateGroupResponseGroupsItem {
     metadata: CommonApi.CreateGroupResponseGroupsItemMetadata;
     requirements: CommonApi.CreateGroupResponseGroupsItemRequirementsItem[];
     is_system_managed?: boolean;
-    GroupGatedActions?: CommonApi.CreateGroupResponseGroupsItemGroupGatedActionsItem[];
     created_at?: string;
     updated_at?: string;
 }

@@ -25,8 +25,6 @@ export interface CreateCommunityRequest {
     directory_page_enabled?: boolean;
     type?: CommonApi.CreateCommunityRequestType;
     base: CommonApi.CreateCommunityRequestBase;
-    allow_tokenized_threads?: boolean;
-    thread_purchase_token?: string;
     token_name?: string;
     default_symbol: string;
     website?: string;
@@ -34,5 +32,4 @@ export interface CreateCommunityRequest {
     telegram?: string;
     element?: string;
     discord?: string;
-    turnstile_token?: string;
 }

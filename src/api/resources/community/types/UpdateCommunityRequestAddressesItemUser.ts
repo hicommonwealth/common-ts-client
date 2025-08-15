@@ -6,7 +6,6 @@ import * as CommonApi from "../../../index";
 
 export interface UpdateCommunityRequestAddressesItemUser {
     id?: number;
-    tier: number;
     email?: string;
     isAdmin?: boolean;
     disableRichText?: boolean;
@@ -16,14 +15,7 @@ export interface UpdateCommunityRequestAddressesItemUser {
     promotional_emails_enabled?: boolean;
     is_welcome_onboard_flow_complete?: boolean;
     profile: CommonApi.UpdateCommunityRequestAddressesItemUserProfile;
-    unsubscribe_uuid?: string;
-    referred_by_address?: string;
-    /** Number of referrals that have earned ETH */
-    referral_count?: number;
-    referral_eth_earnings?: number;
     xp_points?: number;
-    xp_referrer_points?: number;
-    privy_id?: string;
     ProfileTags?: CommonApi.UpdateCommunityRequestAddressesItemUserProfileTagsItem[];
     ApiKey?: CommonApi.UpdateCommunityRequestAddressesItemUserApiKey;
     created_at?: string;

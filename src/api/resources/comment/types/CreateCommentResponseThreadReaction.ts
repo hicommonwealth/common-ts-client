@@ -16,6 +16,5 @@ export interface CreateCommentResponseThreadReaction {
     canvas_msg_id?: string;
     created_at?: string;
     updated_at?: string;
-    user_tier_at_creation?: number;
     Address?: CommonApi.CreateCommentResponseThreadReactionAddress;
 }

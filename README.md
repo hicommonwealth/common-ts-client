@@ -23,12 +23,12 @@ Instantiate and use the client with the following:
 import { CommonApiClient } from "@commonxyz/api-client";
 
 const client = new CommonApiClient({ apiKey: "YOUR_API_KEY", address: "YOUR_ADDRESS" });
-await client.community.createContestMetadata({
-    community_id: "community_id",
-    contest_address: "contest_address",
+await client.community.createCommunity({
+    id: "id",
     name: "name",
-    payout_structure: [1],
-    interval: 1,
+    chain_node_id: 1,
+    base: "cosmos",
+    default_symbol: "default_symbol",
 });
 ```
 
@@ -54,12 +54,13 @@ will be thrown.
 import { CommonApiError } from "@commonxyz/api-client";
 
 try {
-    await client.community.createContestMetadata(...);
+    await client.community.createCommunity(...);
 } catch (err) {
     if (err instanceof CommonApiError) {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
+        console.log(err.rawResponse);
     }
 }
 ```
@@ -71,7 +72,7 @@ try {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -81,10 +82,10 @@ const response = await client.community.createContestMetadata(..., {
 ### Retries
 
 The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
-as the request is deemed retriable and the number of retry attempts has not grown larger than the configured
+as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
 retry limit (default: 2).
 
-A request is deemed retriable when any of the following HTTP status codes is returned:
+A request is deemed retryable when any of the following HTTP status codes is returned:
 
 - [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
 - [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
@@ -93,7 +94,7 @@ A request is deemed retriable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -103,7 +104,7 @@ const response = await client.community.createContestMetadata(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -114,10 +115,22 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.community.createContestMetadata(..., {
+const response = await client.community.createCommunity(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
+```
+
+### Access Raw Response Data
+
+The SDK provides access to raw response data, including headers, through the `.withRawResponse()` method.
+The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
+
+```typescript
+const { data, rawResponse } = await client.community.createCommunity(...).withRawResponse();
+
+console.log(data);
+console.log(rawResponse.headers['X-My-Header']);
 ```
 
 ### Runtime Compatibility
@@ -134,7 +147,7 @@ runtimes:
 
 ### Customizing Fetch Client
 
-The SDK provides a way for your to customize the underlying HTTP client / Fetch function. If you're running in an
+The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript
